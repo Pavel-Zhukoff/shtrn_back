@@ -19,7 +19,7 @@ from django.urls import path, include
 
 import account.urls
 import home.urls
-from school import settings
+from school.settings import base
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -27,4 +27,4 @@ urlpatterns = [
     path('account/', include('account.urls')),
 ]
 
-urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+urlpatterns += static(base.MEDIA_URL, document_root=base.MEDIA_ROOT)
