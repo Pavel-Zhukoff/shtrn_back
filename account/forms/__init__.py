@@ -1,0 +1,2 @@
+from account.forms.UserRegisterForm import UserRegisterForm
+from account.forms.UserLoginForm import UserLoginForm
