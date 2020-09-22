@@ -17,9 +17,7 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
 
-import account.urls
-import home.urls
-from school.settings import base
+from school import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -27,4 +25,4 @@ urlpatterns = [
     path('account/', include('account.urls')),
 ]
 
-urlpatterns += static(base.MEDIA_URL, document_root=base.MEDIA_ROOT)
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

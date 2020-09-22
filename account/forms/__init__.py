@@ -1,2 +1,1 @@
-from account.forms.UserRegisterForm import UserRegisterForm
-from account.forms.UserLoginForm import UserLoginForm
+from .auth import UserRegisterForm, UserCodeConfirmForm, UserLoginForm

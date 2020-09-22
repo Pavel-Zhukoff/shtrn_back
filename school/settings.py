@@ -13,7 +13,7 @@ import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent.parent
+BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
 DEFAULT_SECRET_KEY = 'v1(#5%5s#fn&hied)-^fs&@=-#poD=o+okkjd(^9n1zo%=ms0)'
@@ -21,7 +21,14 @@ SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', DEFAULT_SECRET_KEY)
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
+DEBUG = True
 
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
+}
 
 
 ALLOWED_HOSTS = []
@@ -120,3 +127,9 @@ STATICFILES_DIRS = [
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+AUTH_USER_MODEL = 'account.User'
+
+SMS_SENDER_NAME = 'SMS_TEST'
+DEFAULT_SMS_SENDER_API_KEY = 'Kl15f68999b561352b5e9ba6a75455e755d1ce784f548e1d'
+SMS_SENDER_API_KEY = os.environ.get('SMS_SENDER_API_KEY', DEFAULT_SMS_SENDER_API_KEY)

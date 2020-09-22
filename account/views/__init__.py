@@ -1,1 +1,2 @@
-from .auth import LoginCustomView, RegisterCustomView
+from .auth import register, code_verification, login
+from .account import personal_page

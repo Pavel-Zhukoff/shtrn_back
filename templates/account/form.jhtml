@@ -1,0 +1,18 @@
+{% extends  'base.jhtml' %}
+
+{% block content %}
+    <section class="section">
+        <h2 class="section-title">Регистрация</h2>
+
+        <form method="post">
+
+            {% csrf_token %}
+
+            {{ form }}
+
+            <div>
+                <button type="submit" class="button-default">Войти</button>
+            </div>
+        </form>
+    </section>
+{% endblock %}
