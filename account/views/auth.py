@@ -7,7 +7,7 @@ from django.shortcuts import render
 from django.urls import reverse_lazy
 
 
-from account.forms import UserRegisterForm, UserLoginForm
+from account.forms import UserRegisterForm, UserLoginForm, PasswordChangeForm
 from account.forms import UserCodeConfirmForm
 from account.models import User, VerificationModel
 from account.utils import build_url, send_sms, normalize_phone
@@ -19,7 +19,6 @@ def register(request):
         if form.is_valid():
             phone = normalize_phone(form.cleaned_data.get('phone'))
             code = random.randint(10000000, 99999999) % 10000000
-            print(code)
             #send_sms(phone, 'Код подтверждения - {}'.format(code))
             verify = VerificationModel()
             verify.phone = phone
@@ -37,8 +36,7 @@ def code_verification(request):
     phone = request.GET.get('phone', None)
     if phone is None:
         return HttpResponseRedirect(reverse_lazy('account:register'))
-    form = UserCodeConfirmForm()
-    form.fields['phone'].widget.attrs['value'] = phone
+    form = UserCodeConfirmForm(initial={'phone': phone})
     if request.method == 'POST':
         form = UserCodeConfirmForm(request.POST)
         verification = VerificationModel.objects.get(phone=phone)
@@ -73,7 +71,26 @@ def login(request):
                   {'form': form, 'title': 'Регистрация'})
 
 
-@login_required
+@login_required(login_url='/account/login')
 def logout(request):
     auth.logout(request)
     return HttpResponseRedirect(reverse_lazy('home:main-page'))
+
+
+@login_required(login_url='/account/login')
+def password_change(request):
+    if request.method == 'POST':
+        form = PasswordChangeForm(request.POST)
+        if form.is_valid():
+            if form.cleaned_data.get('password') == form.cleaned_data.get('match_password'):
+                request.user.set_password(form.cleaned_data.get('password'))
+                request.user.save()
+                return HttpResponseRedirect(reverse_lazy('account:main-page'))
+            else:
+                form.errors['password'] = ['Пароли не совпадают']
+    else:
+        form = PasswordChangeForm()
+
+    return render(request,
+                  'account/form.jhtml',
+                  {'form': form, 'title': 'Смена пароля'})

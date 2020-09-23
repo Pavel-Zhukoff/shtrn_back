@@ -14,3 +14,7 @@ class UserLoginForm(forms.Form):
     username = forms.CharField(label='Телефон', required=True, widget=forms.TextInput())
     password = forms.CharField(label='Пароль', required=True, widget=forms.PasswordInput())
 
+
+class PasswordChangeForm(forms.Form):
+    password = forms.CharField(label='Новый пароль', required=True, widget=forms.PasswordInput())
+    match_password = forms.CharField(label='Повтор пароля', required=True, widget=forms.PasswordInput())

@@ -1,1 +1,1 @@
-from .auth import UserRegisterForm, UserCodeConfirmForm, UserLoginForm
+from .auth import UserRegisterForm, UserCodeConfirmForm, UserLoginForm, PasswordChangeForm
