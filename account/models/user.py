@@ -21,10 +21,6 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     objects = UserManager()
 
-    class Meta:
-        verbose_name = 'пользователь'
-        verbose_name_plural = 'пользователи'
-
     def get_full_name(self):
         return self.phone
 
@@ -36,3 +32,7 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     def sms_user(self, message):
         send_sms(self.phone, message)
+
+    class Meta:
+        verbose_name = 'пользователь'
+        verbose_name_plural = 'пользователи'
