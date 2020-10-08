@@ -8,6 +8,7 @@ class NewsModel(models.Model):
     publish_date = models.DateTimeField('Дата и время публикации')
     create_date = models.DateTimeField('Дата создания', auto_now_add=True)
     slug = models.SlugField('Ссылка', unique=True)
+    thumbnail = models.ImageField('Изображение новости', upload_to='news/%Y/%m/%d/')
 
     def get_absolute_url(self):
         return '/news/{}/'.format(self.slug)
