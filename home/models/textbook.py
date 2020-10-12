@@ -9,5 +9,5 @@ class TextbookModel(models.Model):
     class Meta:
 
         db_table = 'textbooks'
-        verbose_name = 'пособие'
-        verbose_name_plural = 'пособия'
+        verbose_name = 'учебное пособие'
+        verbose_name_plural = 'учебные пособия'

@@ -5,6 +5,9 @@ def normalize_phone(phone):
     from re import sub
     return '7{}'.format(sub(r"[() +-]", '', phone)[1:])
 
+def normalize_email(email):
+    return email.lower().strip()
+
 def send_sms(phone, text):
     import requests
     import json

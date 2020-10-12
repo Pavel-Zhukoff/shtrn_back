@@ -1,5 +1,3 @@
-from re import sub
-
 from django.contrib.auth.base_user import BaseUserManager
 
 from account.utils import normalize_phone
