@@ -7,7 +7,6 @@ from django.urls import reverse
 from django.utils.html import format_html
 from django.utils.http import urlencode
 
-from account.filters import StudyYearFilter
 from account.models import ReviewModel, User, StudentModel
 from account.utils import normalize_phone, normalize_email
 
@@ -16,10 +15,9 @@ from account.utils import normalize_phone, normalize_email
 class CustomUserAdmin(UserAdmin):
 
     list_display = ('get_short_name', 'phone', 'email', 'show_children')
-
     fieldsets = (
         ('Пользователь', {
-            'fields': ('last_name', 'first_name', 'third_name',),
+            'fields': ('last_name', 'first_name', 'third_name', ),
             'classes': (),
         }),
         ('Контактная информация', {
@@ -31,18 +29,15 @@ class CustomUserAdmin(UserAdmin):
         ('Дополнительно', {
             'fields': ('is_active', 'password', 'groups', 'is_staff', 'is_superuser', 'last_login'),
             'classes': ('collapse',),
-        })
+        }),
     )
-
     readonly_fields = ('register_date', )
-
-    ordering = ('register_date', )
+    ordering = ('register_date', 'last_name', 'first_name', 'third_name', )
     search_fields = ('last_name', 'first_name', 'third_name', 'email', 'phone',)
-
     add_fieldsets = (
         ('Персональные данные', {
             'classes': ('wide',),
-            'fields': ('first_name', 'last_name', 'email',),
+            'fields': ('last_name', 'first_name', 'email',),
         }),
         ('Данные для входа', {
             'classes': ('wide',),
@@ -81,9 +76,7 @@ class CustomUserAdmin(UserAdmin):
 @admin.register(StudentModel)
 class StudentAdmin(admin.ModelAdmin):
     list_display = ('get_short_name', 'phone', 'year_of_study', 'get_parent', )
-
     search_fields = ('last_name', 'first_name', 'third_name', 'phone',)
-
     list_filter = (
         ('year_of_study', admin.ChoicesFieldListFilter),
     )
@@ -95,6 +88,7 @@ class StudentAdmin(admin.ModelAdmin):
                 + urlencode({'id': f'{obj.parent.id}'})
         )
         return format_html('<a href="{}">{}</a>', url, obj.parent.get_short_name())
+
     get_parent.short_description = 'Родитель'
 
     class StudentCreationForm(models.ModelForm):
@@ -111,6 +105,7 @@ class StudentAdmin(admin.ModelAdmin):
         class Meta:
             model = StudentModel
             fields = '__all__'
+
     form = StudentCreationForm
 
 

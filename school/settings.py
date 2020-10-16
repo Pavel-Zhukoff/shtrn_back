@@ -57,6 +57,13 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+AUTH_USER_MODEL = 'account.User'
+
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+    'account.backends.CustomAuthMiddleware',
+]
+
 ROOT_URLCONF = 'school.urls'
 
 TEMPLATES = [
@@ -127,8 +134,6 @@ STATICFILES_DIRS = [
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-
-AUTH_USER_MODEL = 'account.User'
 
 SMS_SENDER_NAME = 'SMS_TEST'
 DEFAULT_SMS_SENDER_API_KEY = 'Kl15f68999b561352b5e9ba6a75455e755d1ce784f548e1d'

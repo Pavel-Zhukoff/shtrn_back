@@ -2,12 +2,21 @@ from django.shortcuts import render
 
 from datetime import date
 
-from home.models import TeacherModel, AdviceModel, TextbookModel
+from account.models import ReviewModel
+from home.models import TeacherModel, AdviceModel, TextbookModel, NewsModel, EventModel, SchoolModel, SubjectModel
 from home.utils import get_referer_url, get_videos
 
 
 def home(request):
-    data = {}
+    data = {
+        'title': 'Главная',
+        'news': NewsModel.objects.all(),
+        'events': EventModel.objects.all(),
+        'reviews': ReviewModel.objects.filter(is_moderated=True),
+        'schools': SchoolModel.objects.all(),
+        'subjects': SubjectModel.objects.all(),
+        'year': date.today().year,
+    }
     return render(request,
                   'home/index.jhtml',
                   data)
