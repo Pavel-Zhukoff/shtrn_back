@@ -20,7 +20,7 @@ class ScheduleModel(models.Model):
     end_time = models.TimeField('Время окончания')
 
     subject = models.ForeignKey(SubjectModel, on_delete=models.CASCADE, verbose_name='Предмет')
-    teacher = models.ForeignKey(TeacherModel, on_delete=models.CASCADE, verbose_name='преподаватель')
+    teacher = models.ForeignKey(TeacherModel, on_delete=models.CASCADE, verbose_name='Преподаватель')
 
 
     class Meta:

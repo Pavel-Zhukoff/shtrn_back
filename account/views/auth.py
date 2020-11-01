@@ -6,7 +6,7 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse_lazy
 
-
+from account.business import create_user_verification
 from account.forms import UserRegisterForm, UserLoginForm, PasswordChangeForm
 from account.forms import UserCodeConfirmForm
 from account.models import User, VerificationModel
@@ -17,13 +17,8 @@ def register(request):
     if request.method == 'POST':
         form = UserRegisterForm(request.POST)
         if form.is_valid():
-            phone = normalize_phone(form.cleaned_data.get('phone'))
-            code = random.randint(10000000, 99999999) % 10000000
-            #send_sms(phone, 'Код подтверждения - {}'.format(code))
-            verify = VerificationModel()
-            verify.phone = phone
-            verify.code = code
-            verify.save()
+            phone, code = create_user_verification(form.cleaned_data)
+            # send_sms(phone, 'Код подтверждения - {}'.format(code))
             return HttpResponseRedirect(build_url('account:code_verification', params={'phone': phone}))
     else:
         form = UserRegisterForm()
@@ -36,18 +31,16 @@ def code_verification(request):
     phone = request.GET.get('phone', None)
     if phone is None:
         return HttpResponseRedirect(reverse_lazy('account:register'))
+    phone = normalize_phone(phone)
     form = UserCodeConfirmForm(initial={'phone': phone})
     if request.method == 'POST':
         form = UserCodeConfirmForm(request.POST)
-        verification = VerificationModel.objects.get(phone=phone)
         if form.is_valid():
-            confirm = form.cleaned_data
-            if confirm.get('code') == verification.code:
-                user = User.objects.create_user(phone, verification.code)
-                user.save()
+            user = verify_user(form.cleaned_data.get('code'), phone)
+            if user is not None:
                 auth.login(request, user)
-                verification.delete()
                 return HttpResponseRedirect(reverse_lazy('account:main-page'))
+            form.errors['code'] = ['Неверный код верификации']
 
     return render(request,
                   'account/form.jhtml',
@@ -83,8 +76,7 @@ def password_change(request):
         form = PasswordChangeForm(request.POST)
         if form.is_valid():
             if form.cleaned_data.get('password') == form.cleaned_data.get('match_password'):
-                request.user.set_password(form.cleaned_data.get('password'))
-                request.user.save()
+                change_password(request.user, form.cleaned_data.get('password'))
                 return HttpResponseRedirect(reverse_lazy('account:main-page'))
             else:
                 form.errors['password'] = ['Пароли не совпадают']
