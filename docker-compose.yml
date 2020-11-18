@@ -2,7 +2,6 @@ version: '3.8'
 services:
   app:
     build: .
-    container_name: django-gunicorn
     restart: always
     command: bash -c "python manage.py migrate && gunicorn -b 0.0.0.0:8000 -w 2 school.wsgi --log-file -"
     volumes:
@@ -15,7 +14,6 @@ services:
       - db
   nginx:
     image: nginx:stable-alpine
-    container_name: ngx
     restart: always
     ports:
       - "80:80"
