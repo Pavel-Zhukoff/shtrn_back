@@ -16,23 +16,34 @@ from pathlib import Path
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
-DEFAULT_SECRET_KEY = 'v1(#5%5s#fn&hied)-^fs&@=-#poD=o+okkjd(^9n1zo%=ms0)'
-SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', DEFAULT_SECRET_KEY)
+SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY')
 
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
-DEBUG = True
+DEBUG = int(os.environ.get('DJANGO_DEBUG', default=0))
 
+ALLOWED_HOSTS = os.environ.get('DJANGO_ALLOWED_HOSTS').split(' ')
+# Static files (CSS, JavaScript, Images)
+# https://docs.djangoproject.com/en/3.1/howto/static-files/
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
+
+# Static files (CSS, JavaScript, Images) and media
+# https://docs.djangoproject.com/en/3.1/howto/static-files/
+
+STATIC_URL = '/static/'
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': os.environ.get('SQL_ENGINE', 'django.db.backends.sqlite3'),
+        'NAME': os.environ.get('DJANGO_DATABASE', os.path.join(BASE_DIR, 'db.sqlite3')),
+        'USER': os.environ.get('DJANGO_DATABASE_USER', 'user'),
+        'PASSWORD': os.environ.get('DJANGO_DATABASE_PASSWORD', 'password'),
+        'HOST': os.environ.get('DJANGO_DATABASE_HOST', 'localhost'),
+        'PORT': os.environ.get('DJANGO_DATABASE_PORT', '5432'),
     }
 }
-
-
-ALLOWED_HOSTS = []
-
 
 # Application definition
 
@@ -49,6 +60,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -114,7 +126,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'ru-ru'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Europe/Moscow'
 
 USE_I18N = True
 
@@ -122,19 +134,5 @@ USE_L10N = True
 
 USE_TZ = True
 
-
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/3.1/howto/static-files/
-
-STATIC_URL = '/static/'
-
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'static'),
-]
-
-MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-
 SMS_SENDER_NAME = 'SMS_TEST'
-DEFAULT_SMS_SENDER_API_KEY = 'Kl15f68999b561352b5e9ba6a75455e755d1ce784f548e1d'
-SMS_SENDER_API_KEY = os.environ.get('SMS_SENDER_API_KEY', DEFAULT_SMS_SENDER_API_KEY)
+SMS_SENDER_API_KEY = os.environ.get('SMS_SENDER_API_KEY')

@@ -1,6 +1,6 @@
 from django.db import models
 
-from account.models import StudentModel
+import account.models
 
 
 class EventModel(models.Model):
@@ -11,7 +11,7 @@ class EventModel(models.Model):
     finish_date = models.DateTimeField('Дата и время окончания')
     slug = models.SlugField('Ссылка', unique=True)
 
-    students = models.ManyToManyField(StudentModel, verbose_name='Участники')
+    students = models.ManyToManyField(account.models.StudentModel, verbose_name='Участники')
 
     def get_absolute_url(self):
         return '/events/{}/'.format(self.slug)

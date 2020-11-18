@@ -109,3 +109,5 @@ media/
 
 
 .idea/
+.env.prod
+.env.example

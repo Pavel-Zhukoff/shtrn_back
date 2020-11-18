@@ -1,7 +1,7 @@
 from django.db import models
 
-from home.models import SubjectModel, TeacherModel
-
+from .subject import SubjectModel
+from .teacher import TeacherModel
 
 class ScheduleModel(models.Model):
 

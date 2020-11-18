@@ -1,6 +1,6 @@
 from django.db import models
 
-from home.models import TeacherModel
+from .teacher import TeacherModel
 
 
 class SubjectModel(models.Model):
