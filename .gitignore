@@ -110,4 +110,4 @@ media/
 
 .idea/
 .env.prod
-.env.example
+.env.dev

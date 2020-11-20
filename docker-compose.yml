@@ -3,7 +3,7 @@ services:
   app:
     build: .
     restart: always
-    command: bash -c "python manage.py migrate && gunicorn -b 0.0.0.0:8000 -w 2 school.wsgi --log-file -"
+    command: sh -c "python manage.py migrate && gunicorn -b 0.0.0.0:8000 -w 2 school.wsgi --log-file -"
     volumes:
       - .:/usr/src/app/
     ports:
@@ -23,7 +23,10 @@ services:
       - app
   db:
     image: postgres:12.0-alpine
+    restart: always
     environment:
       - POSTGRES_USER=hello_django
       - POSTGRES_PASSWORD=hello_django
       - POSTGRES_DB=hello_django_dev
+    volumes:
+      - ./pg_data:/var/lib/postgresql
