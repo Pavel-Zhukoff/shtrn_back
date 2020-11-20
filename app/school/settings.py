@@ -18,30 +18,26 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY')
 
-DEBUG = int(os.environ.get('DJANGO_DEBUG', default=0))
+DEBUG = int(os.environ.get('DJANGO_DEBUG'))
 
 ALLOWED_HOSTS = os.environ.get('DJANGO_ALLOWED_HOSTS').split(' ')
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-
-
-# Static files (CSS, JavaScript, Images) and media
-# https://docs.djangoproject.com/en/3.1/howto/static-files/
-
 STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
 DATABASES = {
     'default': {
-        'ENGINE': os.environ.get('SQL_ENGINE', 'django.db.backends.sqlite3'),
-        'NAME': os.environ.get('DJANGO_DATABASE', os.path.join(BASE_DIR, 'db.sqlite3')),
-        'USER': os.environ.get('DJANGO_DATABASE_USER', 'user'),
-        'PASSWORD': os.environ.get('DJANGO_DATABASE_PASSWORD', 'password'),
-        'HOST': os.environ.get('DJANGO_DATABASE_HOST', 'localhost'),
-        'PORT': os.environ.get('DJANGO_DATABASE_PORT', '5432'),
+        'ENGINE': os.environ.get('DJANGO_DATABASE_ENGINE'),
+        'NAME': os.environ.get('DJANGO_DATABASE_NAME'),
+        'USER': os.environ.get('DJANGO_DATABASE_USER'),
+        'PASSWORD': os.environ.get('DJANGO_DATABASE_PASSWORD'),
+        'HOST': os.environ.get('DJANGO_DATABASE_HOST'),
+        'PORT': os.environ.get('DJANGO_DATABASE_PORT'),
     }
 }
 

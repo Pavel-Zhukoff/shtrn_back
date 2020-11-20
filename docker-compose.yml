@@ -1,32 +1,54 @@
 version: '3.8'
 services:
   app:
-    build: .
+    container_name: app
     restart: always
-    command: sh -c "python manage.py migrate && gunicorn -b 0.0.0.0:8000 -w 2 school.wsgi --log-file -"
+    build: .
     volumes:
-      - .:/usr/src/app/
-    ports:
-      - 8000:8000
+      - ./app:/home/app/
+      - ./logs/gunicorn/:/home/logs/gunicorn/
+      - ./app/media:/home/app/media/
+      - ./app/static:/home/app/static/
     env_file:
-      - ./.env.dev
+      - ./env_vars/dev.env
+    environment:
+      - G_ACCESS_LOGS=/home/logs/gunicorn/access.log
+      - G_ERROR_LOGS=/home/logs/gunicorn/error.log
+    command: ["sh", "./start.sh"]
+    networks:
+      - db_network
+      - nginx_network
     depends_on:
       - db
   nginx:
+    container_name: nginx
     image: nginx:stable-alpine
     restart: always
     ports:
-      - "80:80"
+      - 8000:80
     volumes:
       - ./nginx:/etc/nginx/conf.d
+      - ./logs/nginx:/var/log/nginx
+      - ./app/media:/home/app/media/
+      - ./app/static:/home/app/static/
+    networks:
+      - nginx_network
     depends_on:
       - app
   db:
-    image: postgres:12.0-alpine
+    container_name: db
+    image: postgres:alpine
     restart: always
     environment:
       - POSTGRES_USER=hello_django
       - POSTGRES_PASSWORD=hello_django
       - POSTGRES_DB=hello_django_dev
+    networks:
+      - db_network
     volumes:
-      - ./pg_data:/var/lib/postgresql
+      - ./pg_data:/var/lib/postgresql/data/
+networks:
+  nginx_network:
+    driver: bridge
+  db_network:
+    driver: bridge
