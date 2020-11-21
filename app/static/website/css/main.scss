@@ -1,0 +1,86 @@
+@import "variables";
+
+html,body {
+  height: 100%;
+}
+body {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+
+.schedule__figure-1 {
+  position: absolute;
+  width: 8.85vw;
+  left: 13.4vw;
+  top: 3.35vh;
+
+  img {
+    width: 100%;
+  }
+}
+
+.schedule__figure-2 {
+  position: absolute;
+  width: 9.5vw;
+  top: 14vh;
+  right: 2vw;
+
+  img {
+    width: 100%;
+  }
+}
+
+.schedule__figure-3 {
+  position: absolute;
+  width: 8vw;
+  bottom: 14.5vh;
+  left: 5.85vw;
+  img {
+    width: 100%;
+  }
+}
+
+.schedule__figure-4 {
+  position: absolute;
+  width: 8vw;
+  bottom: 10vh;
+  right: 10.4vw;
+  img {
+    width: 100%;
+  }
+}
+
+
+.schedule {
+  background-color: $backgroundColor;
+  display: flex;
+  justify-content: center;
+  padding: 2.2vh 0 3.05vh 0;
+  height: 100%;
+  .schedule__item {
+    width: 62vw;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    .schedule__item__bg {
+      width: 100%;
+      position: absolute;
+    }
+    .schedule__item__buttons {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      z-index: 1;
+      .schedule__item__button {
+        display: block;
+        width: 100%;
+        padding: 0;
+        border: 0;
+      }
+    }
+  }
+}

@@ -116,5 +116,12 @@ logs/
 env_vars/dev.env
 env_vars/prod.env
 
-app/static/admin/
+app/static/admin
 hello_django_dev
+
+
+# node js packages
+node_modules/
+
+# css compiled source map files
+*.css.map
