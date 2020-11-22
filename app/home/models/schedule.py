@@ -1,7 +1,9 @@
 from django.db import models
 
+from .school import SchoolModel
 from .subject import SubjectModel
 from .teacher import TeacherModel
+from .study_group import StudyGroupModel
 
 class ScheduleModel(models.Model):
 
@@ -21,6 +23,8 @@ class ScheduleModel(models.Model):
 
     subject = models.ForeignKey(SubjectModel, on_delete=models.CASCADE, verbose_name='Предмет')
     teacher = models.ForeignKey(TeacherModel, on_delete=models.CASCADE, verbose_name='Преподаватель')
+    school = models.ForeignKey(SchoolModel, on_delete=models.CASCADE, verbose_name='Филиал', null=True)
+    study_group = models.ForeignKey(StudyGroupModel, on_delete=models.CASCADE, verbose_name='Учебная группа', null=True)
 
 
     class Meta:

@@ -1,6 +1,7 @@
 from django.db import models
 
 from account.models import User
+from .grade import GradeModel
 from account.utils import send_sms, normalize_phone
 
 
@@ -25,8 +26,8 @@ class StudentModel(models.Model):
     third_name = models.CharField('Отчество', max_length=30, blank=True)
     phone = models.CharField('Телефон', max_length=11, unique=True)
     school = models.CharField('Школа', max_length=100)
-    year_of_study = models.IntegerField('Класс', choices=SCHOOL_CLASSES)
 
+    year_of_study = models.ForeignKey(GradeModel, on_delete=models.CASCADE, verbose_name='Класс')
     parent = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='Родитель')
 
     def get_full_name(self):

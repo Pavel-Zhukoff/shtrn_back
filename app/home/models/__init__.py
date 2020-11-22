@@ -6,3 +6,4 @@ from .subject import SubjectModel
 from .textbook import TextbookModel
 from .teacher import TeacherModel
 from .schedule import ScheduleModel
+from .study_group import StudyGroupModel

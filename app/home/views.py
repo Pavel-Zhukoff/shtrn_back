@@ -34,7 +34,9 @@ def teachers(request):
                   data)
 
 def schedule(request):
-    pass
+    from django.http import HttpResponse
+    from home.service import get_schedule
+    return HttpResponse(get_schedule())
 
 def high_school(request):
     data = {
