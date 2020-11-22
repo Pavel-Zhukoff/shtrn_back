@@ -15,7 +15,7 @@ def get_schedule():
             subject = {
                 'name': subj.name,
                 'description': subj.description,
-                'schedule': [],
+                'schedule': {},
             }
             school['subjects'].append(subject)
             for w in range(7):
