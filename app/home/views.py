@@ -33,10 +33,12 @@ def teachers(request):
                   'home/teachers.jhtml',
                   data)
 
-def schedule(request):
+
+def schedule_data(request):
     from django.http import HttpResponse
     from home.service import get_schedule
     return HttpResponse(get_schedule())
+
 
 def high_school(request):
     data = {
