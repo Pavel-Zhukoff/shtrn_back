@@ -1,3 +1,307 @@
+@font-face {
+  font-family: "Urfa Light";
+  src: url("../fonts/Urfa-light.woff2") format("woff2"), url("../fonts/Urfa-light.woff") format("woff");
+}
+@font-face {
+  font-family: "Urfa Italic";
+  src: url("../fonts/Urfa-LightItalic.woff2") format("woff2"), url("../fonts/Urfa-LightItalic.woff") format("woff");
+}
+.schedule__item__button {
+  display: block;
+  width: 100%;
+  border: 0;
+  border-radius: 2.5rem;
+  font-family: "Urfa Light", sans-serif;
+  color: white;
+  padding: 0.5vh 1.6vw;
+  margin: 1.1vh 0;
+  font-size: 2rem;
+  transition: 0.2s linear all;
+}
+
+.schedule__item__button:first-of-type {
+  background: #2b8f8e;
+  background: linear-gradient(90deg, #2b8f8e 0%, #47dbda 100%);
+  -webkit-box-shadow: 5px 5px 25px 1px rgba(108, 196, 199, 0.5);
+  box-shadow: 5px 5px 25px 1px rgba(108, 196, 199, 0.5);
+}
+.schedule__item__button:first-of-type:hover {
+  -webkit-box-shadow: 5px 5px 25px 1px rgba(108, 196, 199, 0.75);
+  box-shadow: 5px 5px 25px 1px rgba(108, 196, 199, 0.75);
+}
+
+.schedule__item__button:last-of-type {
+  background: #f69698;
+  background: linear-gradient(90deg, #f69698 0%, #be3247 100%);
+  -webkit-box-shadow: 5px 5px 25px 1px rgba(190, 50, 71, 0.5);
+  box-shadow: 5px 5px 25px 1px rgba(190, 50, 71, 0.5);
+}
+.schedule__item__button:last-of-type:hover {
+  -webkit-box-shadow: 5px 5px 25px 1px rgba(190, 50, 71, 0.75);
+  box-shadow: 5px 5px 25px 1px rgba(190, 50, 71, 0.75);
+}
+
+.schedule__classes__button {
+  border: none;
+  outline: none;
+}
+
+.schedule__classes__button {
+  height: 75px;
+  width: 65px;
+  font-size: 2.75rem;
+  color: white;
+  border-radius: 32px;
+  margin: 8px;
+  font-family: "Urfa Italic", sans-serif;
+  transition: 0.2s linear all;
+}
+.schedule__classes__button:nth-of-type(1) {
+  -webkit-box-shadow: 5px 5px 25px 1px rgba(108, 196, 199, 0.75);
+  -o-box-shadow: 5px 5px 25px 1px rgba(108, 196, 199, 0.75);
+  -moz-box-shadow: 5px 5px 25px 1px rgba(108, 196, 199, 0.75);
+  box-shadow: 5px 5px 25px 1px rgba(108, 196, 199, 0.75);
+  background: #d74a94;
+  background: linear-gradient(180deg, #d74a94, #354a99);
+  background: -webkit-linear-gradient(180deg, #d74a94, #354a99);
+  /* Chrome 10+, Saf5.1+, iOS 5+ */
+  background: -moz-linear-gradient(180deg, #d74a94, #354a99);
+  /* FF3.6 */
+  background: -ms-linear-gradient(180deg, #d74a94, #354a99);
+  /* IE10 */
+  background: -o-linear-gradient(180deg, #d74a94, #354a99);
+  /* Opera 11.10+ */
+}
+.schedule__classes__button:nth-of-type(1):hover {
+  -webkit-box-shadow: 5px 5px 25px 1px #6cc4c7;
+  -o-box-shadow: 5px 5px 25px 1px #6cc4c7;
+  -moz-box-shadow: 5px 5px 25px 1px #6cc4c7;
+  box-shadow: 5px 5px 25px 1px #6cc4c7;
+}
+.schedule__classes__button:nth-of-type(2) {
+  -webkit-box-shadow: 5px 5px 25px 1px rgba(232, 55, 124, 0.75);
+  -o-box-shadow: 5px 5px 25px 1px rgba(232, 55, 124, 0.75);
+  -moz-box-shadow: 5px 5px 25px 1px rgba(232, 55, 124, 0.75);
+  box-shadow: 5px 5px 25px 1px rgba(232, 55, 124, 0.75);
+  background: #e8377c;
+  background: linear-gradient(180deg, #e8377c, #881811);
+  background: -webkit-linear-gradient(180deg, #e8377c, #881811);
+  /* Chrome 10+, Saf5.1+, iOS 5+ */
+  background: -moz-linear-gradient(180deg, #e8377c, #881811);
+  /* FF3.6 */
+  background: -ms-linear-gradient(180deg, #e8377c, #881811);
+  /* IE10 */
+  background: -o-linear-gradient(180deg, #e8377c, #881811);
+  /* Opera 11.10+ */
+}
+.schedule__classes__button:nth-of-type(2):hover {
+  -webkit-box-shadow: 5px 5px 25px 1px #e8377c;
+  -o-box-shadow: 5px 5px 25px 1px #e8377c;
+  -moz-box-shadow: 5px 5px 25px 1px #e8377c;
+  box-shadow: 5px 5px 25px 1px #e8377c;
+}
+.schedule__classes__button:nth-of-type(3) {
+  -webkit-box-shadow: 5px 5px 25px 1px rgba(234, 87, 53, 0.75);
+  -o-box-shadow: 5px 5px 25px 1px rgba(234, 87, 53, 0.75);
+  -moz-box-shadow: 5px 5px 25px 1px rgba(234, 87, 53, 0.75);
+  box-shadow: 5px 5px 25px 1px rgba(234, 87, 53, 0.75);
+  background: #ee7633;
+  background: linear-gradient(180deg, #ee7633, #ea5735);
+  background: -webkit-linear-gradient(180deg, #ee7633, #ea5735);
+  /* Chrome 10+, Saf5.1+, iOS 5+ */
+  background: -moz-linear-gradient(180deg, #ee7633, #ea5735);
+  /* FF3.6 */
+  background: -ms-linear-gradient(180deg, #ee7633, #ea5735);
+  /* IE10 */
+  background: -o-linear-gradient(180deg, #ee7633, #ea5735);
+  /* Opera 11.10+ */
+}
+.schedule__classes__button:nth-of-type(3):hover {
+  -webkit-box-shadow: 5px 5px 25px 1px #ea5735;
+  -o-box-shadow: 5px 5px 25px 1px #ea5735;
+  -moz-box-shadow: 5px 5px 25px 1px #ea5735;
+  box-shadow: 5px 5px 25px 1px #ea5735;
+}
+.schedule__classes__button:nth-of-type(4) {
+  -webkit-box-shadow: 5px 5px 25px 1px rgba(108, 196, 199, 0.75);
+  -o-box-shadow: 5px 5px 25px 1px rgba(108, 196, 199, 0.75);
+  -moz-box-shadow: 5px 5px 25px 1px rgba(108, 196, 199, 0.75);
+  box-shadow: 5px 5px 25px 1px rgba(108, 196, 199, 0.75);
+  background: #2b8f8e;
+  background: linear-gradient(180deg, #2b8f8e, #47dbda);
+  background: -webkit-linear-gradient(180deg, #2b8f8e, #47dbda);
+  /* Chrome 10+, Saf5.1+, iOS 5+ */
+  background: -moz-linear-gradient(180deg, #2b8f8e, #47dbda);
+  /* FF3.6 */
+  background: -ms-linear-gradient(180deg, #2b8f8e, #47dbda);
+  /* IE10 */
+  background: -o-linear-gradient(180deg, #2b8f8e, #47dbda);
+  /* Opera 11.10+ */
+}
+.schedule__classes__button:nth-of-type(4):hover {
+  -webkit-box-shadow: 5px 5px 25px 1px #6cc4c7;
+  -o-box-shadow: 5px 5px 25px 1px #6cc4c7;
+  -moz-box-shadow: 5px 5px 25px 1px #6cc4c7;
+  box-shadow: 5px 5px 25px 1px #6cc4c7;
+}
+.schedule__classes__button:nth-of-type(5) {
+  -webkit-box-shadow: 5px 5px 25px 1px rgba(254, 235, 33, 0.75);
+  -o-box-shadow: 5px 5px 25px 1px rgba(254, 235, 33, 0.75);
+  -moz-box-shadow: 5px 5px 25px 1px rgba(254, 235, 33, 0.75);
+  box-shadow: 5px 5px 25px 1px rgba(254, 235, 33, 0.75);
+  background: #feeb21;
+  background: linear-gradient(180deg, #feeb21, #c56465);
+  background: -webkit-linear-gradient(180deg, #feeb21, #c56465);
+  /* Chrome 10+, Saf5.1+, iOS 5+ */
+  background: -moz-linear-gradient(180deg, #feeb21, #c56465);
+  /* FF3.6 */
+  background: -ms-linear-gradient(180deg, #feeb21, #c56465);
+  /* IE10 */
+  background: -o-linear-gradient(180deg, #feeb21, #c56465);
+  /* Opera 11.10+ */
+}
+.schedule__classes__button:nth-of-type(5):hover {
+  -webkit-box-shadow: 5px 5px 25px 1px #feeb21;
+  -o-box-shadow: 5px 5px 25px 1px #feeb21;
+  -moz-box-shadow: 5px 5px 25px 1px #feeb21;
+  box-shadow: 5px 5px 25px 1px #feeb21;
+}
+.schedule__classes__button:nth-of-type(6) {
+  -webkit-box-shadow: 5px 5px 25px 1px rgba(215, 74, 148, 0.75);
+  -o-box-shadow: 5px 5px 25px 1px rgba(215, 74, 148, 0.75);
+  -moz-box-shadow: 5px 5px 25px 1px rgba(215, 74, 148, 0.75);
+  box-shadow: 5px 5px 25px 1px rgba(215, 74, 148, 0.75);
+  background: #354a99;
+  background: radial-gradient(circle, #354a99, #d74a94);
+  background: -webkit-radial-gradient(circle, #354a99, #d74a94);
+  /* Chrome 10+, Saf5.1+, iOS 5+ */
+  background: -moz-radial-gradient(circle, #354a99, #d74a94);
+  /* FF3.6 */
+  background: -ms-radial-gradient(circle, #354a99, #d74a94);
+  /* IE10 */
+  background: -o-radial-gradient(circle, #354a99, #d74a94);
+  /* Opera 11.10+ */
+}
+.schedule__classes__button:nth-of-type(6):hover {
+  -webkit-box-shadow: 5px 5px 25px 1px #d74a94;
+  -o-box-shadow: 5px 5px 25px 1px #d74a94;
+  -moz-box-shadow: 5px 5px 25px 1px #d74a94;
+  box-shadow: 5px 5px 25px 1px #d74a94;
+}
+.schedule__classes__button:nth-of-type(7) {
+  -webkit-box-shadow: 5px 5px 25px 1px rgba(232, 55, 124, 0.75);
+  -o-box-shadow: 5px 5px 25px 1px rgba(232, 55, 124, 0.75);
+  -moz-box-shadow: 5px 5px 25px 1px rgba(232, 55, 124, 0.75);
+  box-shadow: 5px 5px 25px 1px rgba(232, 55, 124, 0.75);
+  background: #e8377c;
+  background: linear-gradient(180deg, #e8377c, #881811);
+  background: -webkit-linear-gradient(180deg, #e8377c, #881811);
+  /* Chrome 10+, Saf5.1+, iOS 5+ */
+  background: -moz-linear-gradient(180deg, #e8377c, #881811);
+  /* FF3.6 */
+  background: -ms-linear-gradient(180deg, #e8377c, #881811);
+  /* IE10 */
+  background: -o-linear-gradient(180deg, #e8377c, #881811);
+  /* Opera 11.10+ */
+}
+.schedule__classes__button:nth-of-type(7):hover {
+  -webkit-box-shadow: 5px 5px 25px 1px #e8377c;
+  -o-box-shadow: 5px 5px 25px 1px #e8377c;
+  -moz-box-shadow: 5px 5px 25px 1px #e8377c;
+  box-shadow: 5px 5px 25px 1px #e8377c;
+}
+.schedule__classes__button:nth-of-type(8) {
+  -webkit-box-shadow: 5px 5px 25px 1px rgba(254, 235, 33, 0.75);
+  -o-box-shadow: 5px 5px 25px 1px rgba(254, 235, 33, 0.75);
+  -moz-box-shadow: 5px 5px 25px 1px rgba(254, 235, 33, 0.75);
+  box-shadow: 5px 5px 25px 1px rgba(254, 235, 33, 0.75);
+  background: #feeb21;
+  background: linear-gradient(180deg, #feeb21, #c56465);
+  background: -webkit-linear-gradient(180deg, #feeb21, #c56465);
+  /* Chrome 10+, Saf5.1+, iOS 5+ */
+  background: -moz-linear-gradient(180deg, #feeb21, #c56465);
+  /* FF3.6 */
+  background: -ms-linear-gradient(180deg, #feeb21, #c56465);
+  /* IE10 */
+  background: -o-linear-gradient(180deg, #feeb21, #c56465);
+  /* Opera 11.10+ */
+}
+.schedule__classes__button:nth-of-type(8):hover {
+  -webkit-box-shadow: 5px 5px 25px 1px #feeb21;
+  -o-box-shadow: 5px 5px 25px 1px #feeb21;
+  -moz-box-shadow: 5px 5px 25px 1px #feeb21;
+  box-shadow: 5px 5px 25px 1px #feeb21;
+}
+.schedule__classes__button:nth-of-type(9) {
+  -webkit-box-shadow: 5px 5px 25px 1px rgba(254, 235, 33, 0.75);
+  -o-box-shadow: 5px 5px 25px 1px rgba(254, 235, 33, 0.75);
+  -moz-box-shadow: 5px 5px 25px 1px rgba(254, 235, 33, 0.75);
+  box-shadow: 5px 5px 25px 1px rgba(254, 235, 33, 0.75);
+  background: #c56465;
+  background: radial-gradient(circle, #c56465, #feeb21);
+  background: -webkit-radial-gradient(circle, #c56465, #feeb21);
+  /* Chrome 10+, Saf5.1+, iOS 5+ */
+  background: -moz-radial-gradient(circle, #c56465, #feeb21);
+  /* FF3.6 */
+  background: -ms-radial-gradient(circle, #c56465, #feeb21);
+  /* IE10 */
+  background: -o-radial-gradient(circle, #c56465, #feeb21);
+  /* Opera 11.10+ */
+}
+.schedule__classes__button:nth-of-type(9):hover {
+  -webkit-box-shadow: 5px 5px 25px 1px #feeb21;
+  -o-box-shadow: 5px 5px 25px 1px #feeb21;
+  -moz-box-shadow: 5px 5px 25px 1px #feeb21;
+  box-shadow: 5px 5px 25px 1px #feeb21;
+}
+.schedule__classes__button:nth-of-type(10) {
+  -webkit-box-shadow: 5px 5px 25px 1px rgba(108, 196, 199, 0.75);
+  -o-box-shadow: 5px 5px 25px 1px rgba(108, 196, 199, 0.75);
+  -moz-box-shadow: 5px 5px 25px 1px rgba(108, 196, 199, 0.75);
+  box-shadow: 5px 5px 25px 1px rgba(108, 196, 199, 0.75);
+  background: #2b8f8e;
+  background: linear-gradient(180deg, #2b8f8e, #47dbda);
+  background: -webkit-linear-gradient(180deg, #2b8f8e, #47dbda);
+  /* Chrome 10+, Saf5.1+, iOS 5+ */
+  background: -moz-linear-gradient(180deg, #2b8f8e, #47dbda);
+  /* FF3.6 */
+  background: -ms-linear-gradient(180deg, #2b8f8e, #47dbda);
+  /* IE10 */
+  background: -o-linear-gradient(180deg, #2b8f8e, #47dbda);
+  /* Opera 11.10+ */
+}
+.schedule__classes__button:nth-of-type(10):hover {
+  -webkit-box-shadow: 5px 5px 25px 1px #6cc4c7;
+  -o-box-shadow: 5px 5px 25px 1px #6cc4c7;
+  -moz-box-shadow: 5px 5px 25px 1px #6cc4c7;
+  box-shadow: 5px 5px 25px 1px #6cc4c7;
+}
+.schedule__classes__button:nth-of-type(11) {
+  -webkit-box-shadow: 5px 5px 25px 1px rgba(234, 87, 53, 0.75);
+  -o-box-shadow: 5px 5px 25px 1px rgba(234, 87, 53, 0.75);
+  -moz-box-shadow: 5px 5px 25px 1px rgba(234, 87, 53, 0.75);
+  box-shadow: 5px 5px 25px 1px rgba(234, 87, 53, 0.75);
+  background: #ee7633;
+  background: linear-gradient(180deg, #ee7633, #ea5735);
+  background: -webkit-linear-gradient(180deg, #ee7633, #ea5735);
+  /* Chrome 10+, Saf5.1+, iOS 5+ */
+  background: -moz-linear-gradient(180deg, #ee7633, #ea5735);
+  /* FF3.6 */
+  background: -ms-linear-gradient(180deg, #ee7633, #ea5735);
+  /* IE10 */
+  background: -o-linear-gradient(180deg, #ee7633, #ea5735);
+  /* Opera 11.10+ */
+}
+.schedule__classes__button:nth-of-type(11):hover {
+  -webkit-box-shadow: 5px 5px 25px 1px #ea5735;
+  -o-box-shadow: 5px 5px 25px 1px #ea5735;
+  -moz-box-shadow: 5px 5px 25px 1px #ea5735;
+  box-shadow: 5px 5px 25px 1px #ea5735;
+}
+.schedule__classes__button:hover {
+  transition: 0.2s linear all;
+}
+
 html, body {
   height: 100%;
 }
@@ -54,6 +358,7 @@ body {
   justify-content: center;
   padding: 2.2vh 0 3.05vh 0;
   height: 100%;
+  padding-right: 5vw;
 }
 .schedule .schedule__item {
   width: 62vw;
@@ -66,18 +371,29 @@ body {
   width: 100%;
   position: absolute;
 }
-.schedule .schedule__item .schedule__item__buttons {
+.schedule .schedule__item .schedule__item__locations {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   z-index: 1;
 }
-.schedule .schedule__item .schedule__item__buttons .schedule__item__button {
+.schedule .schedule__item .schedule__classes__title {
+  text-align: center;
   display: block;
   width: 100%;
-  padding: 0;
-  border: 0;
+  font-size: 2.625rem;
+  font-family: "Urfa Light", sans-serif;
+  margin-bottom: 28px;
+}
+.schedule .schedule__item .schedule__item__classes {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  z-index: 1;
+  width: 100%;
+  justify-content: flex-start;
+  max-width: 340px;
 }
 
 /*# sourceMappingURL=main.css.map */

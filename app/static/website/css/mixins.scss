@@ -1,0 +1,30 @@
+@mixin classButtonLinear($direction, $firstColorRed,$firstColorGreen,$firstColorBlue,$firstColorAlpha,$secondColorRed,$secondColorGreen,$secondColorBlue,$secondColorAlpha) {
+  background: rgba($firstColorRed, $firstColorGreen, $firstColorBlue, $firstColorAlpha);
+  background: linear-gradient($direction, rgba($firstColorRed, $firstColorGreen, $firstColorBlue, $firstColorAlpha), rgba($secondColorRed, $secondColorGreen, $secondColorBlue, $secondColorAlpha));
+  background: -webkit-linear-gradient($direction, rgba($firstColorRed, $firstColorGreen, $firstColorBlue, $firstColorAlpha), rgba($secondColorRed, $secondColorGreen, $secondColorBlue, $secondColorAlpha)); /* Chrome 10+, Saf5.1+, iOS 5+ */
+  background: -moz-linear-gradient($direction, rgba($firstColorRed, $firstColorGreen, $firstColorBlue, $firstColorAlpha), rgba($secondColorRed, $secondColorGreen, $secondColorBlue, $secondColorAlpha)); /* FF3.6 */
+  background: -ms-linear-gradient($direction, rgba($firstColorRed, $firstColorGreen, $firstColorBlue, $firstColorAlpha), rgba($secondColorRed, $secondColorGreen, $secondColorBlue, $secondColorAlpha)); /* IE10 */
+  background: -o-linear-gradient($direction, rgba($firstColorRed, $firstColorGreen, $firstColorBlue, $firstColorAlpha), rgba($secondColorRed, $secondColorGreen, $secondColorBlue, $secondColorAlpha)); /* Opera 11.10+ */
+}
+
+@mixin classButtonRadial($direction, $firstColorRed,$firstColorGreen,$firstColorBlue,$firstColorAlpha,$secondColorRed,$secondColorGreen,$secondColorBlue,$secondColorAlpha) {
+  background: rgba($firstColorRed, $firstColorGreen, $firstColorBlue, $firstColorAlpha);
+  background: radial-gradient($direction, rgba($firstColorRed, $firstColorGreen, $firstColorBlue, $firstColorAlpha), rgba($secondColorRed, $secondColorGreen, $secondColorBlue, $secondColorAlpha));
+  background: -webkit-radial-gradient($direction, rgba($firstColorRed, $firstColorGreen, $firstColorBlue, $firstColorAlpha), rgba($secondColorRed, $secondColorGreen, $secondColorBlue, $secondColorAlpha)); /* Chrome 10+, Saf5.1+, iOS 5+ */
+  background: -moz-radial-gradient($direction, rgba($firstColorRed, $firstColorGreen, $firstColorBlue, $firstColorAlpha), rgba($secondColorRed, $secondColorGreen, $secondColorBlue, $secondColorAlpha)); /* FF3.6 */
+  background: -ms-radial-gradient($direction, rgba($firstColorRed, $firstColorGreen, $firstColorBlue, $firstColorAlpha), rgba($secondColorRed, $secondColorGreen, $secondColorBlue, $secondColorAlpha)); /* IE10 */
+  background: -o-radial-gradient($direction, rgba($firstColorRed, $firstColorGreen, $firstColorBlue, $firstColorAlpha), rgba($secondColorRed, $secondColorGreen, $secondColorBlue, $secondColorAlpha)); /* Opera 11.10+ */
+}
+
+@mixin classButtonShadow($top, $left, $blur, $spread, $ColorRed, $ColorGreen, $ColorBlue, $ColorAlpha) {
+  -webkit-box-shadow: $top $left $blur $spread rgba($ColorRed, $ColorGreen, $ColorBlue, $ColorAlpha);
+  -o-box-shadow: $top $left $blur $spread rgba($ColorRed, $ColorGreen, $ColorBlue, $ColorAlpha);
+  -moz-box-shadow: $top $left $blur $spread rgba($ColorRed, $ColorGreen, $ColorBlue, $ColorAlpha);
+  box-shadow: $top $left $blur $spread rgba($ColorRed, $ColorGreen, $ColorBlue, $ColorAlpha);
+  &:hover {
+    -webkit-box-shadow: $top $left $blur $spread rgba($ColorRed, $ColorGreen, $ColorBlue, $ColorAlpha+0.25);
+    -o-box-shadow: $top $left $blur $spread rgba($ColorRed, $ColorGreen, $ColorBlue, $ColorAlpha+0.25);
+    -moz-box-shadow: $top $left $blur $spread rgba($ColorRed, $ColorGreen, $ColorBlue, $ColorAlpha+0.25);
+    box-shadow: $top $left $blur $spread rgba($ColorRed, $ColorGreen, $ColorBlue, $ColorAlpha+0.25);
+  }
+}

@@ -1,4 +1,7 @@
 @import "variables";
+@import "mixins";
+@import "fonts";
+@import "buttons";
 
 html,body {
   height: 100%;
@@ -59,6 +62,7 @@ body {
   justify-content: center;
   padding: 2.2vh 0 3.05vh 0;
   height: 100%;
+  padding-right: 5vw;
   .schedule__item {
     width: 62vw;
     position: relative;
@@ -69,18 +73,29 @@ body {
       width: 100%;
       position: absolute;
     }
-    .schedule__item__buttons {
+    .schedule__item__locations {
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
       z-index: 1;
-      .schedule__item__button {
-        display: block;
-        width: 100%;
-        padding: 0;
-        border: 0;
-      }
+    }
+    .schedule__classes__title {
+      text-align: center;
+      display: block;
+      width: 100%;
+      font-size: 2.625rem;
+      font-family: $lightFont;
+      margin-bottom: 28px;
+    }
+    .schedule__item__classes {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      z-index: 1;
+      width: 100%;
+      justify-content: flex-start;
+      max-width: 340px;
     }
   }
 }
