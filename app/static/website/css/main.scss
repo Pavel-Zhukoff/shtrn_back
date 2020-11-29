@@ -1,11 +1,13 @@
 @import "variables";
+@import "keyframes";
 @import "mixins";
 @import "fonts";
 @import "buttons";
 
-html,body {
+html, body {
   height: 100%;
 }
+
 body {
   width: 100%;
   display: flex;
@@ -40,6 +42,7 @@ body {
   width: 8vw;
   bottom: 14.5vh;
   left: 5.85vw;
+
   img {
     width: 100%;
   }
@@ -50,6 +53,7 @@ body {
   width: 8vw;
   bottom: 10vh;
   right: 10.4vw;
+
   img {
     width: 100%;
   }
@@ -63,23 +67,43 @@ body {
   padding: 2.2vh 0 3.05vh 0;
   height: 100%;
   padding-right: 5vw;
+
   .schedule__item {
     width: 62vw;
     position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
+
     .schedule__item__bg {
       width: 100%;
       position: absolute;
     }
+
     .schedule__item__locations {
-      display: flex;
+      display: none;
       flex-direction: column;
       justify-content: center;
       align-items: center;
       z-index: 1;
+
+      &.active {
+        display: flex;
+      }
+
+      &.slide {
+        .schedule__item__button {
+          position: relative;
+        }
+
+        .schedule__item__button:nth-of-type(1) {
+        }
+
+        .schedule__item__button:nth-of-type(2) {
+        }
+      }
     }
+
     .schedule__classes__title {
       text-align: center;
       display: block;
@@ -88,14 +112,111 @@ body {
       font-family: $lightFont;
       margin-bottom: 28px;
     }
+
     .schedule__item__classes {
-      display: flex;
+      display: none;
       flex-wrap: wrap;
       align-items: center;
       z-index: 1;
       width: 100%;
       justify-content: flex-start;
       max-width: 340px;
+
+      &.active {
+        display: flex;
+      }
+
+      .schedule__classes__button {
+        position: relative;
+
+        &:nth-of-type(1) {
+          left: 138px;
+          top: 100px;
+        }
+
+        &:nth-of-type(2) {
+          left: 54px;
+          top: 100px;
+        }
+
+        &:nth-of-type(3) {
+          right: 32px;
+          top: 100px;
+        }
+
+        &:nth-of-type(4) {
+          top: 100px;
+          right: 117px;
+        }
+
+        &:nth-of-type(5) {
+          top: 9px;
+          left: 138px;
+        }
+
+        &:nth-of-type(6) {
+          top: 9px;
+          left: 54px;
+        }
+
+        &:nth-of-type(7) {
+          top: 9px;
+          right: 30px;
+        }
+
+        &:nth-of-type(8) {
+          top: 9px;
+          right: 116px;
+        }
+
+        &:nth-of-type(9) {
+          bottom: 82px;
+          left: 139px;
+        }
+
+        &:nth-of-type(10) {
+          bottom: 82px;
+          left: 54px;
+        }
+
+        &:nth-of-type(11) {
+          bottom: 82px;
+          right: 31px;
+        }
+      }
+    }
+
+    .schedule__item__subjects {
+      display: none;
+      flex-direction: column;
+      z-index: 2;
+      width: 100%;
+      max-width: 300px;
+
+      &.active {
+        display: flex;
+      }
     }
   }
+
+  .schedule__item__days {
+    z-index: 1;
+    display: none;
+    .schedule__days__wrapper {
+      z-index: 2;
+      width: 100%;
+      max-width: 300px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+
+    }
+    &.active {
+      display: block;
+    }
+  }
+}
+
+.schedule-rotate-text {
+  animation: rotate 60s linear infinite;
 }

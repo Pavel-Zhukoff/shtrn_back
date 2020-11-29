@@ -1,3 +1,11 @@
+@keyframes rotate {
+  0% {
+    transform: rotate(0);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
 @font-face {
   font-family: "Urfa Light";
   src: url("../fonts/Urfa-light.woff2") format("woff2"), url("../fonts/Urfa-light.woff") format("woff");
@@ -5,6 +13,10 @@
 @font-face {
   font-family: "Urfa Italic";
   src: url("../fonts/Urfa-LightItalic.woff2") format("woff2"), url("../fonts/Urfa-LightItalic.woff") format("woff");
+}
+@font-face {
+  font-family: "Urfa Book";
+  src: url("../fonts/Urfa-Book.woff2") format("woff2"), url("../fonts/Urfa-Book.woff") format("woff");
 }
 .schedule__item__button {
   display: block;
@@ -42,13 +54,10 @@
 }
 
 .schedule__classes__button {
-  border: none;
-  outline: none;
-}
-
-.schedule__classes__button {
   height: 75px;
   width: 65px;
+  border: none;
+  outline: none;
   font-size: 2.75rem;
   color: white;
   border-radius: 32px;
@@ -301,6 +310,372 @@
 .schedule__classes__button:hover {
   transition: 0.2s linear all;
 }
+.schedule__classes__button:disabled {
+  background: gray;
+  box-shadow: none;
+}
+.schedule__classes__button:disabled:hover {
+  box-shadow: none;
+}
+
+.subject__button {
+  border: none;
+  outline: none;
+  border-radius: 2.5rem;
+  color: white;
+  font-size: 2rem;
+  font-family: "Urfa Light", sans-serif;
+  padding: 0.5vh 1.6vw;
+  margin: 1.1vh 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: 0.2s linear all;
+  position: relative;
+  width: 100%;
+  max-width: 300px;
+}
+
+.subject__button__wrapper {
+  display: flex;
+  position: relative;
+}
+.subject__button__wrapper svg {
+  width: 24px;
+  position: absolute;
+  right: 5%;
+  top: 40%;
+}
+.subject__button__wrapper:nth-of-type(1) {
+  top: 175px;
+}
+.subject__button__wrapper:nth-of-type(1) .subject__button {
+  -webkit-box-shadow: 5px 5px 25px 1px rgba(108, 196, 199, 0.75);
+  -o-box-shadow: 5px 5px 25px 1px rgba(108, 196, 199, 0.75);
+  -moz-box-shadow: 5px 5px 25px 1px rgba(108, 196, 199, 0.75);
+  box-shadow: 5px 5px 25px 1px rgba(108, 196, 199, 0.75);
+  background: #2b8f8e;
+  background: linear-gradient(180deg, #2b8f8e, #47dbda);
+  background: -webkit-linear-gradient(180deg, #2b8f8e, #47dbda);
+  /* Chrome 10+, Saf5.1+, iOS 5+ */
+  background: -moz-linear-gradient(180deg, #2b8f8e, #47dbda);
+  /* FF3.6 */
+  background: -ms-linear-gradient(180deg, #2b8f8e, #47dbda);
+  /* IE10 */
+  background: -o-linear-gradient(180deg, #2b8f8e, #47dbda);
+  /* Opera 11.10+ */
+}
+.subject__button__wrapper:nth-of-type(1) .subject__button:hover {
+  -webkit-box-shadow: 5px 5px 25px 1px #6cc4c7;
+  -o-box-shadow: 5px 5px 25px 1px #6cc4c7;
+  -moz-box-shadow: 5px 5px 25px 1px #6cc4c7;
+  box-shadow: 5px 5px 25px 1px #6cc4c7;
+}
+.subject__button__wrapper:nth-of-type(2) {
+  top: 100px;
+}
+.subject__button__wrapper:nth-of-type(2) .subject__button {
+  -webkit-box-shadow: 5px 5px 25px 1px rgba(234, 87, 53, 0.75);
+  -o-box-shadow: 5px 5px 25px 1px rgba(234, 87, 53, 0.75);
+  -moz-box-shadow: 5px 5px 25px 1px rgba(234, 87, 53, 0.75);
+  box-shadow: 5px 5px 25px 1px rgba(234, 87, 53, 0.75);
+  background: #ee7633;
+  background: linear-gradient(180deg, #ee7633, #ea5735);
+  background: -webkit-linear-gradient(180deg, #ee7633, #ea5735);
+  /* Chrome 10+, Saf5.1+, iOS 5+ */
+  background: -moz-linear-gradient(180deg, #ee7633, #ea5735);
+  /* FF3.6 */
+  background: -ms-linear-gradient(180deg, #ee7633, #ea5735);
+  /* IE10 */
+  background: -o-linear-gradient(180deg, #ee7633, #ea5735);
+  /* Opera 11.10+ */
+}
+.subject__button__wrapper:nth-of-type(2) .subject__button:hover {
+  -webkit-box-shadow: 5px 5px 25px 1px #ea5735;
+  -o-box-shadow: 5px 5px 25px 1px #ea5735;
+  -moz-box-shadow: 5px 5px 25px 1px #ea5735;
+  box-shadow: 5px 5px 25px 1px #ea5735;
+}
+.subject__button__wrapper:nth-of-type(3) {
+  top: 35px;
+}
+.subject__button__wrapper:nth-of-type(3) .subject__button {
+  -webkit-box-shadow: 5px 5px 25px 1px rgba(215, 74, 148, 0.75);
+  -o-box-shadow: 5px 5px 25px 1px rgba(215, 74, 148, 0.75);
+  -moz-box-shadow: 5px 5px 25px 1px rgba(215, 74, 148, 0.75);
+  box-shadow: 5px 5px 25px 1px rgba(215, 74, 148, 0.75);
+  background: #fab412;
+  background: linear-gradient(180deg, #fab412, #d74a94);
+  background: -webkit-linear-gradient(180deg, #fab412, #d74a94);
+  /* Chrome 10+, Saf5.1+, iOS 5+ */
+  background: -moz-linear-gradient(180deg, #fab412, #d74a94);
+  /* FF3.6 */
+  background: -ms-linear-gradient(180deg, #fab412, #d74a94);
+  /* IE10 */
+  background: -o-linear-gradient(180deg, #fab412, #d74a94);
+  /* Opera 11.10+ */
+}
+.subject__button__wrapper:nth-of-type(3) .subject__button:hover {
+  -webkit-box-shadow: 5px 5px 25px 1px #d74a94;
+  -o-box-shadow: 5px 5px 25px 1px #d74a94;
+  -moz-box-shadow: 5px 5px 25px 1px #d74a94;
+  box-shadow: 5px 5px 25px 1px #d74a94;
+}
+.subject__button__wrapper:nth-of-type(4) {
+  bottom: 40px;
+}
+.subject__button__wrapper:nth-of-type(4) .subject__button {
+  -webkit-box-shadow: 5px 5px 25px 1px rgba(254, 235, 33, 0.75);
+  -o-box-shadow: 5px 5px 25px 1px rgba(254, 235, 33, 0.75);
+  -moz-box-shadow: 5px 5px 25px 1px rgba(254, 235, 33, 0.75);
+  box-shadow: 5px 5px 25px 1px rgba(254, 235, 33, 0.75);
+  background: #feeb21;
+  background: linear-gradient(180deg, #feeb21, #c56465);
+  background: -webkit-linear-gradient(180deg, #feeb21, #c56465);
+  /* Chrome 10+, Saf5.1+, iOS 5+ */
+  background: -moz-linear-gradient(180deg, #feeb21, #c56465);
+  /* FF3.6 */
+  background: -ms-linear-gradient(180deg, #feeb21, #c56465);
+  /* IE10 */
+  background: -o-linear-gradient(180deg, #feeb21, #c56465);
+  /* Opera 11.10+ */
+}
+.subject__button__wrapper:nth-of-type(4) .subject__button:hover {
+  -webkit-box-shadow: 5px 5px 25px 1px #feeb21;
+  -o-box-shadow: 5px 5px 25px 1px #feeb21;
+  -moz-box-shadow: 5px 5px 25px 1px #feeb21;
+  box-shadow: 5px 5px 25px 1px #feeb21;
+}
+.subject__button__wrapper:nth-of-type(5) {
+  bottom: 115px;
+}
+.subject__button__wrapper:nth-of-type(5) .subject__button {
+  -webkit-box-shadow: 5px 5px 25px 1px rgba(232, 55, 124, 0.75);
+  -o-box-shadow: 5px 5px 25px 1px rgba(232, 55, 124, 0.75);
+  -moz-box-shadow: 5px 5px 25px 1px rgba(232, 55, 124, 0.75);
+  box-shadow: 5px 5px 25px 1px rgba(232, 55, 124, 0.75);
+  background: #e8377c;
+  background: linear-gradient(180deg, #e8377c, #881811);
+  background: -webkit-linear-gradient(180deg, #e8377c, #881811);
+  /* Chrome 10+, Saf5.1+, iOS 5+ */
+  background: -moz-linear-gradient(180deg, #e8377c, #881811);
+  /* FF3.6 */
+  background: -ms-linear-gradient(180deg, #e8377c, #881811);
+  /* IE10 */
+  background: -o-linear-gradient(180deg, #e8377c, #881811);
+  /* Opera 11.10+ */
+}
+.subject__button__wrapper:nth-of-type(5) .subject__button:hover {
+  -webkit-box-shadow: 5px 5px 25px 1px #e8377c;
+  -o-box-shadow: 5px 5px 25px 1px #e8377c;
+  -moz-box-shadow: 5px 5px 25px 1px #e8377c;
+  box-shadow: 5px 5px 25px 1px #e8377c;
+}
+.subject__button__wrapper:nth-of-type(6) {
+  bottom: 190px;
+}
+.subject__button__wrapper:nth-of-type(6) .subject__button {
+  -webkit-box-shadow: 5px 5px 25px 1px rgba(108, 196, 199, 0.75);
+  -o-box-shadow: 5px 5px 25px 1px rgba(108, 196, 199, 0.75);
+  -moz-box-shadow: 5px 5px 25px 1px rgba(108, 196, 199, 0.75);
+  box-shadow: 5px 5px 25px 1px rgba(108, 196, 199, 0.75);
+  background: #d74a94;
+  background: linear-gradient(180deg, #d74a94, #354a99);
+  background: -webkit-linear-gradient(180deg, #d74a94, #354a99);
+  /* Chrome 10+, Saf5.1+, iOS 5+ */
+  background: -moz-linear-gradient(180deg, #d74a94, #354a99);
+  /* FF3.6 */
+  background: -ms-linear-gradient(180deg, #d74a94, #354a99);
+  /* IE10 */
+  background: -o-linear-gradient(180deg, #d74a94, #354a99);
+  /* Opera 11.10+ */
+}
+.subject__button__wrapper:nth-of-type(6) .subject__button:hover {
+  -webkit-box-shadow: 5px 5px 25px 1px #6cc4c7;
+  -o-box-shadow: 5px 5px 25px 1px #6cc4c7;
+  -moz-box-shadow: 5px 5px 25px 1px #6cc4c7;
+  box-shadow: 5px 5px 25px 1px #6cc4c7;
+}
+
+.subject__button {
+  transition: 0.2s linear;
+}
+
+.schedule__days__button {
+  color: white;
+  margin: 14px;
+  border: none;
+  height: 75px;
+  width: 65px;
+  outline: none;
+  font-size: 2.75rem;
+  border-radius: 32px;
+  font-family: "Urfa Italic", sans-serif;
+  transition: 0.2s linear all;
+  position: relative;
+}
+.schedule__days__button:nth-of-type(1) {
+  top: 105px;
+  left: 90px;
+  -webkit-box-shadow: 5px 5px 25px 1px rgba(234, 87, 53, 0.75);
+  -o-box-shadow: 5px 5px 25px 1px rgba(234, 87, 53, 0.75);
+  -moz-box-shadow: 5px 5px 25px 1px rgba(234, 87, 53, 0.75);
+  box-shadow: 5px 5px 25px 1px rgba(234, 87, 53, 0.75);
+  background: #ee7633;
+  background: linear-gradient(180deg, #ee7633, #ea5735);
+  background: -webkit-linear-gradient(180deg, #ee7633, #ea5735);
+  /* Chrome 10+, Saf5.1+, iOS 5+ */
+  background: -moz-linear-gradient(180deg, #ee7633, #ea5735);
+  /* FF3.6 */
+  background: -ms-linear-gradient(180deg, #ee7633, #ea5735);
+  /* IE10 */
+  background: -o-linear-gradient(180deg, #ee7633, #ea5735);
+  /* Opera 11.10+ */
+}
+.schedule__days__button:nth-of-type(1):hover {
+  -webkit-box-shadow: 5px 5px 25px 1px #ea5735;
+  -o-box-shadow: 5px 5px 25px 1px #ea5735;
+  -moz-box-shadow: 5px 5px 25px 1px #ea5735;
+  box-shadow: 5px 5px 25px 1px #ea5735;
+}
+.schedule__days__button:nth-of-type(2) {
+  top: 105px;
+  -webkit-box-shadow: 5px 5px 25px 1px rgba(254, 235, 33, 0.75);
+  -o-box-shadow: 5px 5px 25px 1px rgba(254, 235, 33, 0.75);
+  -moz-box-shadow: 5px 5px 25px 1px rgba(254, 235, 33, 0.75);
+  box-shadow: 5px 5px 25px 1px rgba(254, 235, 33, 0.75);
+  background: #feeb21;
+  background: linear-gradient(180deg, #feeb21, #c56465);
+  background: -webkit-linear-gradient(180deg, #feeb21, #c56465);
+  /* Chrome 10+, Saf5.1+, iOS 5+ */
+  background: -moz-linear-gradient(180deg, #feeb21, #c56465);
+  /* FF3.6 */
+  background: -ms-linear-gradient(180deg, #feeb21, #c56465);
+  /* IE10 */
+  background: -o-linear-gradient(180deg, #feeb21, #c56465);
+  /* Opera 11.10+ */
+}
+.schedule__days__button:nth-of-type(2):hover {
+  -webkit-box-shadow: 5px 5px 25px 1px #feeb21;
+  -o-box-shadow: 5px 5px 25px 1px #feeb21;
+  -moz-box-shadow: 5px 5px 25px 1px #feeb21;
+  box-shadow: 5px 5px 25px 1px #feeb21;
+}
+.schedule__days__button:nth-of-type(3) {
+  top: 105px;
+  right: 90px;
+  -webkit-box-shadow: 5px 5px 25px 1px rgba(108, 196, 199, 0.75);
+  -o-box-shadow: 5px 5px 25px 1px rgba(108, 196, 199, 0.75);
+  -moz-box-shadow: 5px 5px 25px 1px rgba(108, 196, 199, 0.75);
+  box-shadow: 5px 5px 25px 1px rgba(108, 196, 199, 0.75);
+  background: #2b8f8e;
+  background: linear-gradient(180deg, #2b8f8e, #47dbda);
+  background: -webkit-linear-gradient(180deg, #2b8f8e, #47dbda);
+  /* Chrome 10+, Saf5.1+, iOS 5+ */
+  background: -moz-linear-gradient(180deg, #2b8f8e, #47dbda);
+  /* FF3.6 */
+  background: -ms-linear-gradient(180deg, #2b8f8e, #47dbda);
+  /* IE10 */
+  background: -o-linear-gradient(180deg, #2b8f8e, #47dbda);
+  /* Opera 11.10+ */
+}
+.schedule__days__button:nth-of-type(3):hover {
+  -webkit-box-shadow: 5px 5px 25px 1px #6cc4c7;
+  -o-box-shadow: 5px 5px 25px 1px #6cc4c7;
+  -moz-box-shadow: 5px 5px 25px 1px #6cc4c7;
+  box-shadow: 5px 5px 25px 1px #6cc4c7;
+}
+.schedule__days__button:nth-of-type(4) {
+  left: 90px;
+  -webkit-box-shadow: 5px 5px 25px 1px rgba(108, 196, 199, 0.75);
+  -o-box-shadow: 5px 5px 25px 1px rgba(108, 196, 199, 0.75);
+  -moz-box-shadow: 5px 5px 25px 1px rgba(108, 196, 199, 0.75);
+  box-shadow: 5px 5px 25px 1px rgba(108, 196, 199, 0.75);
+  background: #d74a94;
+  background: linear-gradient(180deg, #d74a94, #354a99);
+  background: -webkit-linear-gradient(180deg, #d74a94, #354a99);
+  /* Chrome 10+, Saf5.1+, iOS 5+ */
+  background: -moz-linear-gradient(180deg, #d74a94, #354a99);
+  /* FF3.6 */
+  background: -ms-linear-gradient(180deg, #d74a94, #354a99);
+  /* IE10 */
+  background: -o-linear-gradient(180deg, #d74a94, #354a99);
+  /* Opera 11.10+ */
+}
+.schedule__days__button:nth-of-type(4):hover {
+  -webkit-box-shadow: 5px 5px 25px 1px #6cc4c7;
+  -o-box-shadow: 5px 5px 25px 1px #6cc4c7;
+  -moz-box-shadow: 5px 5px 25px 1px #6cc4c7;
+  box-shadow: 5px 5px 25px 1px #6cc4c7;
+}
+.schedule__days__button:nth-of-type(5) {
+  -webkit-box-shadow: 5px 5px 25px 1px rgba(232, 55, 124, 0.75);
+  -o-box-shadow: 5px 5px 25px 1px rgba(232, 55, 124, 0.75);
+  -moz-box-shadow: 5px 5px 25px 1px rgba(232, 55, 124, 0.75);
+  box-shadow: 5px 5px 25px 1px rgba(232, 55, 124, 0.75);
+  background: #e8377c;
+  background: linear-gradient(180deg, #e8377c, #881811);
+  background: -webkit-linear-gradient(180deg, #e8377c, #881811);
+  /* Chrome 10+, Saf5.1+, iOS 5+ */
+  background: -moz-linear-gradient(180deg, #e8377c, #881811);
+  /* FF3.6 */
+  background: -ms-linear-gradient(180deg, #e8377c, #881811);
+  /* IE10 */
+  background: -o-linear-gradient(180deg, #e8377c, #881811);
+  /* Opera 11.10+ */
+}
+.schedule__days__button:nth-of-type(5):hover {
+  -webkit-box-shadow: 5px 5px 25px 1px #e8377c;
+  -o-box-shadow: 5px 5px 25px 1px #e8377c;
+  -moz-box-shadow: 5px 5px 25px 1px #e8377c;
+  box-shadow: 5px 5px 25px 1px #e8377c;
+}
+.schedule__days__button:nth-of-type(6) {
+  right: 90px;
+  -webkit-box-shadow: 5px 5px 25px 1px rgba(234, 87, 53, 0.75);
+  -o-box-shadow: 5px 5px 25px 1px rgba(234, 87, 53, 0.75);
+  -moz-box-shadow: 5px 5px 25px 1px rgba(234, 87, 53, 0.75);
+  box-shadow: 5px 5px 25px 1px rgba(234, 87, 53, 0.75);
+  background: #ee7633;
+  background: linear-gradient(180deg, #ee7633, #ea5735);
+  background: -webkit-linear-gradient(180deg, #ee7633, #ea5735);
+  /* Chrome 10+, Saf5.1+, iOS 5+ */
+  background: -moz-linear-gradient(180deg, #ee7633, #ea5735);
+  /* FF3.6 */
+  background: -ms-linear-gradient(180deg, #ee7633, #ea5735);
+  /* IE10 */
+  background: -o-linear-gradient(180deg, #ee7633, #ea5735);
+  /* Opera 11.10+ */
+}
+.schedule__days__button:nth-of-type(6):hover {
+  -webkit-box-shadow: 5px 5px 25px 1px #ea5735;
+  -o-box-shadow: 5px 5px 25px 1px #ea5735;
+  -moz-box-shadow: 5px 5px 25px 1px #ea5735;
+  box-shadow: 5px 5px 25px 1px #ea5735;
+}
+.schedule__days__button:nth-of-type(7) {
+  bottom: 105px;
+  -webkit-box-shadow: 5px 5px 25px 1px rgba(254, 235, 33, 0.75);
+  -o-box-shadow: 5px 5px 25px 1px rgba(254, 235, 33, 0.75);
+  -moz-box-shadow: 5px 5px 25px 1px rgba(254, 235, 33, 0.75);
+  box-shadow: 5px 5px 25px 1px rgba(254, 235, 33, 0.75);
+  background: #feeb21;
+  background: linear-gradient(180deg, #feeb21, #c56465);
+  background: -webkit-linear-gradient(180deg, #feeb21, #c56465);
+  /* Chrome 10+, Saf5.1+, iOS 5+ */
+  background: -moz-linear-gradient(180deg, #feeb21, #c56465);
+  /* FF3.6 */
+  background: -ms-linear-gradient(180deg, #feeb21, #c56465);
+  /* IE10 */
+  background: -o-linear-gradient(180deg, #feeb21, #c56465);
+  /* Opera 11.10+ */
+}
+.schedule__days__button:nth-of-type(7):hover {
+  -webkit-box-shadow: 5px 5px 25px 1px #feeb21;
+  -o-box-shadow: 5px 5px 25px 1px #feeb21;
+  -moz-box-shadow: 5px 5px 25px 1px #feeb21;
+  box-shadow: 5px 5px 25px 1px #feeb21;
+}
 
 html, body {
   height: 100%;
@@ -372,11 +747,17 @@ body {
   position: absolute;
 }
 .schedule .schedule__item .schedule__item__locations {
-  display: flex;
+  display: none;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   z-index: 1;
+}
+.schedule .schedule__item .schedule__item__locations.active {
+  display: flex;
+}
+.schedule .schedule__item .schedule__item__locations.slide .schedule__item__button {
+  position: relative;
 }
 .schedule .schedule__item .schedule__classes__title {
   text-align: center;
@@ -387,13 +768,92 @@ body {
   margin-bottom: 28px;
 }
 .schedule .schedule__item .schedule__item__classes {
-  display: flex;
+  display: none;
   flex-wrap: wrap;
   align-items: center;
   z-index: 1;
   width: 100%;
   justify-content: flex-start;
   max-width: 340px;
+}
+.schedule .schedule__item .schedule__item__classes.active {
+  display: flex;
+}
+.schedule .schedule__item .schedule__item__classes .schedule__classes__button {
+  position: relative;
+}
+.schedule .schedule__item .schedule__item__classes .schedule__classes__button:nth-of-type(1) {
+  left: 138px;
+  top: 100px;
+}
+.schedule .schedule__item .schedule__item__classes .schedule__classes__button:nth-of-type(2) {
+  left: 54px;
+  top: 100px;
+}
+.schedule .schedule__item .schedule__item__classes .schedule__classes__button:nth-of-type(3) {
+  right: 32px;
+  top: 100px;
+}
+.schedule .schedule__item .schedule__item__classes .schedule__classes__button:nth-of-type(4) {
+  top: 100px;
+  right: 117px;
+}
+.schedule .schedule__item .schedule__item__classes .schedule__classes__button:nth-of-type(5) {
+  top: 9px;
+  left: 138px;
+}
+.schedule .schedule__item .schedule__item__classes .schedule__classes__button:nth-of-type(6) {
+  top: 9px;
+  left: 54px;
+}
+.schedule .schedule__item .schedule__item__classes .schedule__classes__button:nth-of-type(7) {
+  top: 9px;
+  right: 30px;
+}
+.schedule .schedule__item .schedule__item__classes .schedule__classes__button:nth-of-type(8) {
+  top: 9px;
+  right: 116px;
+}
+.schedule .schedule__item .schedule__item__classes .schedule__classes__button:nth-of-type(9) {
+  bottom: 82px;
+  left: 139px;
+}
+.schedule .schedule__item .schedule__item__classes .schedule__classes__button:nth-of-type(10) {
+  bottom: 82px;
+  left: 54px;
+}
+.schedule .schedule__item .schedule__item__classes .schedule__classes__button:nth-of-type(11) {
+  bottom: 82px;
+  right: 31px;
+}
+.schedule .schedule__item .schedule__item__subjects {
+  display: none;
+  flex-direction: column;
+  z-index: 2;
+  width: 100%;
+  max-width: 300px;
+}
+.schedule .schedule__item .schedule__item__subjects.active {
+  display: flex;
+}
+.schedule .schedule__item__days {
+  z-index: 1;
+  display: none;
+}
+.schedule .schedule__item__days .schedule__days__wrapper {
+  z-index: 2;
+  width: 100%;
+  max-width: 300px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.schedule .schedule__item__days.active {
+  display: block;
+}
+
+.schedule-rotate-text {
+  animation: rotate 60s linear infinite;
 }
 
 /*# sourceMappingURL=main.css.map */

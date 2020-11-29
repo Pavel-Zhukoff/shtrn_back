@@ -34,13 +34,10 @@
 
 
 .schedule__classes__button {
-  border:none;
-  outline: none;
-}
-
-.schedule__classes__button {
   height: 75px;
   width: 65px;
+  border:none;
+  outline: none;
   font-size: 2.75rem;
   color:white;
   border-radius: 32px;
@@ -94,5 +91,139 @@
 
   &:hover {
     transition: .2s linear all;
+  }
+  &:disabled {
+    background: gray;
+    box-shadow: none;
+    &:hover {
+      box-shadow: none;
+    }
+  }
+}
+
+
+.subject__button {
+  border:none;
+  outline: none;
+  border-radius: 2.5rem;
+  color:white;
+  font-size: 2rem;
+  font-family: $lightFont;
+  padding: 0.5vh 1.6vw;
+  margin:1.1vh 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: .2s linear all;
+  position: relative;
+  width: 100%;
+  max-width: 300px;
+}
+
+.subject__button__wrapper {
+  display: flex;
+  position: relative;
+  svg {
+    width: 24px;
+    position: absolute;
+    right: 5%;
+    top: 40%;
+    &:hover {
+
+    }
+  }
+  &:nth-of-type(1) {
+    top: 175px;
+    .subject__button {
+      @include classButtonShadow(5px, 5px, 25px, 1px,108,196,199,0.75);
+      @include classButtonLinear(180deg,43, 143, 142, 1,71, 219, 218, 1);
+    }
+  }
+  &:nth-of-type(2) {
+    top: 100px;
+    .subject__button {
+      @include classButtonShadow(5px, 5px, 25px, 1px,234, 87, 53,0.75);
+      @include classButtonLinear(180deg,238, 118, 51, 1,234, 87, 53, 1);
+    }
+  }
+  &:nth-of-type(3) {
+    top: 35px;
+    .subject__button {
+      @include classButtonShadow(5px, 5px, 25px, 1px,215, 74, 148,0.75);
+      @include classButtonLinear(180deg,250, 180, 18, 1,215, 74, 148, 1);
+    }
+  }
+  &:nth-of-type(4) {
+    bottom: 40px;
+    .subject__button {
+      @include classButtonShadow(5px, 5px, 25px, 1px,254, 235, 33,0.75);
+      @include classButtonLinear(180deg,254, 235, 33, 1,197, 100, 101, 1);
+    }
+  }
+  &:nth-of-type(5) {
+    bottom: 115px;
+    .subject__button {
+      @include classButtonShadow(5px, 5px, 25px, 1px,232, 55, 124,0.75);
+      @include classButtonLinear(180deg,232, 55, 124, 1,136, 24, 17, 1);
+    }
+  }
+  &:nth-of-type(6) {
+    bottom: 190px;
+    .subject__button {
+      @include classButtonShadow(5px, 5px, 25px, 1px,108,196,199,0.75);
+      @include classButtonLinear(180deg,215, 74, 148, 1,53, 74, 153, 1);
+    }
+  }
+}
+.subject__button {
+  transition: .2s linear;
+}
+.schedule__days__button {
+  color:white;
+  margin: 14px;
+  border:none;
+  height: 75px;
+  width: 65px;
+  outline: none;
+  font-size: 2.75rem;
+  border-radius: 32px;
+  font-family: $italicFont;
+  transition: .2s linear all;
+  position: relative;
+  &:nth-of-type(1) {
+    top: 105px;
+    left: 90px;
+    @include classButtonShadow(5px, 5px, 25px, 1px,234, 87, 53,0.75);
+    @include classButtonLinear(180deg,238, 118, 51, 1,234, 87, 53, 1);
+  }
+  &:nth-of-type(2) {
+    top: 105px;
+    @include classButtonShadow(5px, 5px, 25px, 1px,254, 235, 33,0.75);
+    @include classButtonLinear(180deg,254, 235, 33, 1,197, 100, 101, 1);
+  }
+  &:nth-of-type(3) {
+    top: 105px;
+    right: 90px;
+    @include classButtonShadow(5px, 5px, 25px, 1px,108,196,199,0.75);
+    @include classButtonLinear(180deg,43, 143, 142, 1,71, 219, 218, 1);
+  }
+  &:nth-of-type(4) {
+    left: 90px;
+    @include classButtonShadow(5px, 5px, 25px, 1px,108,196,199,0.75);
+    @include classButtonLinear(180deg,215, 74, 148, 1,53, 74, 153, 1);
+  }
+  &:nth-of-type(5) {
+    @include classButtonShadow(5px, 5px, 25px, 1px,232, 55, 124,0.75);
+    @include classButtonLinear(180deg,232, 55, 124, 1,136, 24, 17, 1);
+  }
+  &:nth-of-type(6) {
+    right: 90px;
+    @include classButtonShadow(5px, 5px, 25px, 1px,234, 87, 53,0.75);
+    @include classButtonLinear(180deg,238, 118, 51, 1,234, 87, 53, 1);
+  }
+  &:nth-of-type(7) {
+    bottom: 105px;
+    @include classButtonShadow(5px, 5px, 25px, 1px,254, 235, 33,0.75);
+    @include classButtonLinear(180deg,254, 235, 33, 1,197, 100, 101, 1);
   }
 }
