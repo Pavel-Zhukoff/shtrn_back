@@ -122,9 +122,20 @@
                 </button>
             </div>
         </div>
+        <div class="schedule__modal modal disabled" data-target="schedule-modal">
+            <div class="schedule__modal__top">
+                <div class="schedule__modal__title"></div>
+                <div class="schedule__modal__subtitle"></div>
+            </div>
+            <div class="schedule__modal__bottom">
+                <button class="modal__close__button" data-target="schedule-modal">
+                    <img src="{% static 'website/img/modal-close.svg' %}" alt="">
+                </button>
+            </div>
+        </div>
     </div>
-</section>
 
+</section>
 <script src="{% static 'website/js/jquery-3.5.1.min.js' %}"></script>
 <script src="{% static 'website/js/jquery.maskedinput.js' %}"></script>
 <script src="{% static 'website/js/schedule.js' %}"></script>

@@ -697,6 +697,49 @@
   height: 85px;
 }
 
+.modal__close__button {
+  width: 36px;
+  height: 36px;
+  border: none;
+  background-color: transparent;
+  outline: none;
+  transition: 0.4s linear all;
+}
+.modal__close__button:hover {
+  transition: 0.4s linear all;
+  transform: rotate(360deg);
+}
+.modal__close__button:focus {
+  transform: rotate(-360deg);
+}
+
+.schedule__modal {
+  background: #d74a94;
+  background: linear-gradient(bottom, #d74a94, #354a99);
+  background: -webkit-linear-gradient(bottom, #d74a94, #354a99);
+  /* Chrome 10+, Saf5.1+, iOS 5+ */
+  background: -moz-linear-gradient(bottom, #d74a94, #354a99);
+  /* FF3.6 */
+  background: -ms-linear-gradient(bottom, #d74a94, #354a99);
+  /* IE10 */
+  background: -o-linear-gradient(bottom, #d74a94, #354a99);
+  /* Opera 11.10+ */
+  color: white;
+  width: 100%;
+  position: absolute;
+  max-width: 50%;
+  height: 100%;
+  max-height: 50%;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  align-items: center;
+  z-index: 2;
+}
+.schedule__modal.disabled {
+  display: none;
+}
+
 html, body {
   height: 100%;
 }
@@ -704,6 +747,7 @@ html, body {
 body {
   width: 100%;
   display: flex;
+  overflow-y: hidden;
   flex-direction: column;
 }
 

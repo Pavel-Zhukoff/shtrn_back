@@ -3,6 +3,7 @@
 @import "mixins";
 @import "fonts";
 @import "buttons";
+@import "modals";
 
 html, body {
   height: 100%;
@@ -11,6 +12,7 @@ html, body {
 body {
   width: 100%;
   display: flex;
+  overflow-y: hidden;
   flex-direction: column;
 }
 

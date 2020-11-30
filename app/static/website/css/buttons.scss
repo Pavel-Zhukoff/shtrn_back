@@ -246,3 +246,20 @@
     height: 85px;
   }
 }
+
+
+.modal__close__button {
+  width: 36px;
+  height: 36px;
+  border:none;
+  background-color: transparent;
+  outline: none;
+  transition: .4s linear all;
+  &:hover{
+    transition: .4s linear all;
+    transform: rotate(360deg);
+  }
+  &:focus {
+    transform: rotate(-360deg);
+  }
+}
