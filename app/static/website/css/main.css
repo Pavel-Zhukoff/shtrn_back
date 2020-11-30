@@ -677,6 +677,26 @@
   box-shadow: 5px 5px 25px 1px #feeb21;
 }
 
+.schedule__return__btn {
+  position: absolute;
+  cursor: pointer;
+  top: 35%;
+  left: 10%;
+  display: block;
+  z-index: 1;
+  opacity: 1;
+  transition: 0.2s linear all;
+}
+.schedule__return__btn.disabled {
+  z-index: -1;
+  opacity: 0;
+  transition: 0.2s linear all;
+}
+.schedule__return__btn svg {
+  width: 85px;
+  height: 85px;
+}
+
 html, body {
   height: 100%;
 }
@@ -692,6 +712,7 @@ body {
   width: 8.85vw;
   left: 13.4vw;
   top: 3.35vh;
+  z-index: 3;
 }
 .schedule__figure-1 img {
   width: 100%;
@@ -702,6 +723,7 @@ body {
   width: 9.5vw;
   top: 14vh;
   right: 2vw;
+  z-index: 3;
 }
 .schedule__figure-2 img {
   width: 100%;
@@ -712,6 +734,7 @@ body {
   width: 8vw;
   bottom: 14.5vh;
   left: 5.85vw;
+  z-index: 3;
 }
 .schedule__figure-3 img {
   width: 100%;
@@ -722,6 +745,7 @@ body {
   width: 8vw;
   bottom: 10vh;
   right: 10.4vw;
+  z-index: 3;
 }
 .schedule__figure-4 img {
   width: 100%;
@@ -734,6 +758,7 @@ body {
   padding: 2.2vh 0 3.05vh 0;
   height: 100%;
   padding-right: 5vw;
+  position: relative;
 }
 .schedule .schedule__item {
   width: 62vw;
@@ -853,6 +878,10 @@ body {
 }
 
 .schedule-rotate-text {
+  width: calc(48vw);
+  left: 13.5%;
+  z-index: 1;
+  position: absolute;
   animation: rotate 60s linear infinite;
 }
 

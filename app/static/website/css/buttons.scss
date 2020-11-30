@@ -227,3 +227,22 @@
     @include classButtonLinear(180deg,254, 235, 33, 1,197, 100, 101, 1);
   }
 }
+.schedule__return__btn {
+  position: absolute;
+  cursor: pointer;
+  top: 35%;
+  left: 10%;
+  display: block;
+  z-index: 1;
+  opacity: 1;
+  transition: .2s linear all;
+  &.disabled {
+    z-index: -1;
+    opacity: 0;
+    transition: .2s linear all;
+  }
+  svg {
+    width: 85px;
+    height: 85px;
+  }
+}

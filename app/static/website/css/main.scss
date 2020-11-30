@@ -20,6 +20,7 @@ body {
   width: 8.85vw;
   left: 13.4vw;
   top: 3.35vh;
+  z-index: 3;
 
   img {
     width: 100%;
@@ -31,6 +32,7 @@ body {
   width: 9.5vw;
   top: 14vh;
   right: 2vw;
+  z-index: 3;
 
   img {
     width: 100%;
@@ -42,6 +44,7 @@ body {
   width: 8vw;
   bottom: 14.5vh;
   left: 5.85vw;
+  z-index: 3;
 
   img {
     width: 100%;
@@ -53,6 +56,7 @@ body {
   width: 8vw;
   bottom: 10vh;
   right: 10.4vw;
+  z-index: 3;
 
   img {
     width: 100%;
@@ -67,6 +71,7 @@ body {
   padding: 2.2vh 0 3.05vh 0;
   height: 100%;
   padding-right: 5vw;
+  position: relative;
 
   .schedule__item {
     width: 62vw;
@@ -94,12 +99,6 @@ body {
       &.slide {
         .schedule__item__button {
           position: relative;
-        }
-
-        .schedule__item__button:nth-of-type(1) {
-        }
-
-        .schedule__item__button:nth-of-type(2) {
         }
       }
     }
@@ -218,5 +217,9 @@ body {
 }
 
 .schedule-rotate-text {
+  width: calc(48vw);
+  left: 13.5%;
+  z-index: 1;
+  position: absolute;
   animation: rotate 60s linear infinite;
 }
