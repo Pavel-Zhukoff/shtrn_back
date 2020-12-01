@@ -273,14 +273,7 @@ $(document).ready(function () {
             console.log(scheduleData)
         }
     })
-
-
-
-
-
     $('.modal__close__button').click(function () {$('.modal').attr('data-target',$(this).attr('data-target')).addClass('disabled')})
     $('.schedule__days__button').click(function () {$('.schedule__modal').removeClass('disabled')})
     $('.subject__button__wrapper svg').click(function () {$('.schedule__modal').removeClass('disabled')})
-
-
 })
