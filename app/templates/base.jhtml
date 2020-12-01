@@ -7,7 +7,9 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>{{ title }}</title>
-    <link rel="stylesheet" href="{% static '/css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'website/css/reset.css' %}">
+    <link rel="stylesheet" href="{% static 'website/css/main.css' %}">
+    <link rel="stylesheet" href="{% static 'website/css/media.css' %}">
 </head>
 <body>
     {% include 'includes/header.jhtml' %}
@@ -15,6 +17,8 @@
         No content
     {% endblock %}
     {% include 'includes/footer.jhtml' %}
-    <script src="{% static '/js/scripts.js' %}"></script>
+    <script src="{% static 'website/js/jquery-3.5.1.js' %}"></script>
+    <script src="{% static 'website/js/jquery.maskedinput.js' %}"></script>
+    <script src="{% static 'website/js/main.js' %}"></script>
 </body>
 </html>

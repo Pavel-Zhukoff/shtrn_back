@@ -1,0 +1,40 @@
+{
+  "name": "shtrn_back",
+  "version": "1.0.0",
+  "description": "big stern",
+  "main": "index.js",
+  "scripts": {
+    "dev": "webpack-dev-server --open --mode development ",
+    "build": "webpack --mode production"
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Pavel-Zhukoff/shtrn_back.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Pavel-Zhukoff/shtrn_back/issues"
+  },
+  "homepage": "https://github.com/Pavel-Zhukoff/shtrn_back#readme",
+  "devDependencies": {
+    "@babel/core": "^7.12.9",
+    "@babel/preset-env": "^7.12.7",
+    "del": "^6.0.0",
+    "gulp": "^4.0.2",
+    "gulp-autoprefixer": "^7.0.1",
+    "gulp-babel": "^8.0.0",
+    "gulp-clean-css": "^4.3.0",
+    "gulp-concat": "^2.6.1",
+    "gulp-csso": "^4.0.1",
+    "gulp-file-include": "^2.2.2",
+    "gulp-imagemin": "^7.1.0",
+    "gulp-sass": "^4.1.0",
+    "gulp-uglify": "^3.0.2"
+  },
+  "dependencies": {}
+}
