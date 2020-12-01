@@ -7,6 +7,10 @@
     "dev": "webpack-dev-server --open --mode development ",
     "build": "webpack --mode production"
   },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Pavel-Zhukoff/shtrn_back.git"
@@ -18,16 +22,19 @@
   },
   "homepage": "https://github.com/Pavel-Zhukoff/shtrn_back#readme",
   "devDependencies": {
-    "@babel/cli": "^7.12.8",
     "@babel/core": "^7.12.9",
     "@babel/preset-env": "^7.12.7",
-    "eslint": "^7.14.0",
-    "eslint-config-htmlacademy": "^0.6.0",
-    "eslint-config-standard": "^16.0.2",
-    "eslint-plugin-import": "^2.22.1",
-    "eslint-plugin-node": "^11.1.0",
-    "eslint-plugin-promise": "^4.2.1",
-    "eslint-plugin-standard": "^5.0.0"
+    "del": "^6.0.0",
+    "gulp": "^4.0.2",
+    "gulp-autoprefixer": "^7.0.1",
+    "gulp-babel": "^8.0.0",
+    "gulp-clean-css": "^4.3.0",
+    "gulp-concat": "^2.6.1",
+    "gulp-csso": "^4.0.1",
+    "gulp-file-include": "^2.2.2",
+    "gulp-imagemin": "^7.1.0",
+    "gulp-sass": "^4.1.0",
+    "gulp-uglify": "^3.0.2"
   },
   "dependencies": {}
 }

@@ -7,33 +7,32 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>{{ title }}</title>
-    <link rel="stylesheet" href="{% static 'website/css/reset.css' %}">
-    <link rel="stylesheet" href="{% static 'website/css/main.css' %}">
-    <link rel="stylesheet" href="{% static 'website/css/media.css' %}">
+    <link rel="stylesheet" href="{% static 'website/src/css/reset.css' %}">
+    <link rel="stylesheet" href="{% static 'website/src/css/main.css' %}">
 </head>
 <body>
 
 <div class="schedule__figure-1">
-    <img src="{% static 'website/img/figure_1.svg' %}" alt="">
+    <img src="{% static 'website/src/img/figure_1.svg' %}" alt="">
 </div>
 <div class="schedule__figure-2">
-    <img src="{% static 'website/img/figure_2.svg' %}" alt="">
+    <img src="{% static 'website/src/img/figure_2.svg' %}" alt="">
 </div>
 <div class="schedule__figure-3">
-    <img src="{% static 'website/img/figure_3.svg' %}" alt="">
+    <img src="{% static 'website/src/img/figure_3.svg' %}" alt="">
 </div>
 <div class="schedule__figure-4">
-    <img src="{% static 'website/img/figure_4.svg' %}" alt="">
+    <img src="{% static 'website/src/img/figure_4.svg' %}" alt="">
 </div>
 
 <section class="schedule">
 
     <div class="schedule__item">
-        <img class="schedule-rotate-text" src="{% static 'website/img/schedule-rotate-text.svg' %}" alt="">
+        <img class="schedule-rotate-text" src="{% static 'website/src/img/schedule-rotate-text.svg' %}" alt="">
         <div class="schedule__return__btn disabled" data-state="location">
             <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 86 86"><defs><style>.cls-1{fill:url(#linear-gradient);}</style><linearGradient id="linear-gradient" y1="43" x2="86" y2="43" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#b2dfed"/><stop offset="0.51" stop-color="#41c5ee"/><stop offset="0.61" stop-color="#45c6ee"/><stop offset="0.7" stop-color="#50c8ee"/><stop offset="0.79" stop-color="#62cdee"/><stop offset="0.87" stop-color="#7cd3ed"/><stop offset="0.96" stop-color="#9edaed"/><stop offset="1" stop-color="#b2dfed"/></linearGradient></defs><g id="Слой_2" data-name="Слой 2"><g id="Слой_7" data-name="Слой 7"><path id="Arrow" class="cls-1" d="M43,86A43,43,0,1,0,0,43,43,43,0,0,0,43,86ZM67.52,22l-14,21,14,21h-15l-14-21,14-21Zm-39,0h15l-14,21,14,21h-15l-14-21Z"/></g></g></svg>
         </div>
-        <img class="schedule__item__bg" src="{% static 'website/img/schedule_item_bg.svg' %}" alt="">
+        <img class="schedule__item__bg" src="{% static 'website/src/img/schedule_item_bg.svg' %}" alt="">
         <div class="schedule__item__locations active">
             <button class="schedule__item__button" data-location="1">
                 Бауманская
@@ -130,15 +129,15 @@
             </div>
             <div class="schedule__modal__bottom">
                 <button class="modal__close__button" data-target="schedule-modal">
-                    <img src="{% static 'website/img/modal-close.svg' %}" alt="">
+                    <img src="{% static 'website/src/img/modal-close.svg' %}" alt="">
                 </button>
             </div>
         </div>
     </div>
 
 </section>
-<script src="{% static 'website/js/jquery-3.5.1.min.js' %}"></script>
-<script src="{% static 'website/js/jquery.maskedinput.js' %}"></script>
-<script src="{% static 'website/js/schedule.js' %}"></script>
+<script src="{% static 'website/src/js/jquery-3.5.1.min.js' %}"></script>
+<script src="{% static 'website/src/js/jquery.maskedinput.js' %}"></script>
+<script src="{% static 'website/dist/js/app.min.js' %}"></script>
 </body>
 </html>

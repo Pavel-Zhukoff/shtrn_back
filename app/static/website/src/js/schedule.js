@@ -214,10 +214,11 @@ $(document).ready(function () {
             }, 250)
             setTimeout(function () {
                 $('.schedule__item__locations').addClass('active')
-                $('.schedule__item__button').animate({
-                    'left': 0,
-                    'right': 0,
+                $('.schedule__item__button').eq(0).animate({
                     'top': 0,
+                    'opacity':1,
+                }, 100)
+                $('.schedule__item__button').eq(1).animate({
                     'bottom': 0,
                     'opacity':1,
                 }, 100)
