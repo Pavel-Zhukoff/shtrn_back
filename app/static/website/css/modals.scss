@@ -11,6 +11,23 @@
   flex-direction: column;
   align-items: center;
   z-index: 2;
+  padding: 24px 0;
+  .schedule__modal__title {
+    text-align: center;
+    font-size: 2.75rem;
+    font-family: $bookFont;
+    margin-bottom: 8.5px;
+  }
+  .schedule__modal__subtitle {
+    font-family: $bookItalicFont;
+    font-size: 2rem;
+    text-align: center;
+    margin-bottom: 52px;
+  }
+  .schedule__modal__content {
+    font-family: $lightFont;
+    font-size: .9rem;
+  }
   &.disabled {
     display: none;
   }
