@@ -1,0 +1,18 @@
+@font-face {
+  font-family: "Urfa Light";
+  src: url("../fonts/Urfa-Light.woff2") format("woff2"), url("../fonts/Urfa-Light.woff") format("woff");
+}
+@font-face {
+  font-family: "Urfa Italic";
+  src: url("../fonts/Urfa-LightItalic.woff2") format("woff2"), url("../fonts/Urfa-LightItalic.woff") format("woff");
+}
+@font-face {
+  font-family: "Urfa Book";
+  src: url("../fonts/Urfa-Book.woff2") format("woff2"), url("../fonts/Urfa-Book.woff") format("woff");
+}
+@font-face {
+  font-family: "Urfa BookItalic";
+  src: url("../fonts/Urfa-BookItalic.woff2") format("woff2"), url("../fonts/Urfa-BookItalic.woff") format("woff");
+}
+
+/*# sourceMappingURL=fonts.css.map */
