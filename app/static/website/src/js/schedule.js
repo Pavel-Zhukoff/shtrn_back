@@ -272,9 +272,57 @@ $(document).ready(function () {
             scheduleData.day = '';
             scheduleData.subject = '';
             console.log(scheduleData)
+            $('.schedule__days__button').eq(0).css({
+                'left': '90px',
+                'top': '105px',
+            })
+            $('.schedule__days__button').eq(1).css({
+                'top': '105px',
+            })
+            $('.schedule__days__button').eq(2).css({
+                'left': '-95px',
+                'right':'0',
+                'bottom':'0',
+                'top': '105px',
+            })
+            $('.schedule__days__button').eq(3).css({
+                'left': '90px',
+            })
+            $('.schedule__days__button').eq(4).css({
+                'right': '90px',
+            })
+            $('.schedule__days__button').eq(5).css({
+                'top': '-',
+                'left': '-95px',
+            })
+            $('.schedule__days__button').eq(6).css({
+                'top': '-103px',
+            })
+            setTimeout(function () {
+                $('.schedule__item__days  ').removeClass('active')
+            }, 200)
+            setTimeout(function () {
+                $('.schedule__item__subjects').addClass('active')
+            }, 200)
+            setTimeout(function () {
+                $('.schedule__item__subjects').css({
+                    'opacity': '1',
+                })
+            })
+            setTimeout(function () {
+                $('.subject__button__wrapper').animate({
+                    'left': 0,
+                    'right': 0,
+                    'top': 0,
+                    'bottom': 0,
+                    'opacity':1,
+                }, 100)
+            }, 250)
+            $('.schedule__return__btn').attr('data-state','subject')
         }
     })
     $('.modal__close__button').click(function () {$('.modal').attr('data-target',$(this).attr('data-target')).addClass('disabled')})
     $('.schedule__days__button').click(function () {$('.schedule__modal').removeClass('disabled')})
     $('.subject__button__wrapper svg').click(function () {$('.schedule__modal').removeClass('disabled')})
+
 })
