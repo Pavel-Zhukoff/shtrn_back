@@ -1,5 +1,7 @@
 import json
 
+from django.core.serializers.json import DjangoJSONEncoder
+
 from home.models import SchoolModel, SubjectModel, ScheduleModel
 
 
@@ -19,7 +21,8 @@ def get_schedule():
             }
             school['subjects'].append(subject)
             for w in range(7):
-                school['subjects'][-1]['schedule'].update(str(w), [])
+                w = str(w)
+                school['subjects'][-1]['schedule'].update([(w, [])])
                 for sched in ScheduleModel.objects.filter(school=sch, subject=subj, weekday=w).order_by('start_time'):
                     schedule = {
                         'time': sched.start_time,
@@ -27,4 +30,4 @@ def get_schedule():
                     }
                     school['subjects'][-1]['schedule'][w].append(schedule)
         answ.append(school)
-    return json.dumps(answ)
+    return json.dumps(answ, cls=DjangoJSONEncoder)
