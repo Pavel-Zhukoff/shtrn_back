@@ -13,6 +13,9 @@ class SubjectModel(models.Model):
     def get_absolute_url(self):
         return '/subject/{}/'.format(self.slug)
 
+    def __str__(self):
+        return self.name
+
     class Meta:
         db_table = 'subjects'
         verbose_name = 'дисциплина'
