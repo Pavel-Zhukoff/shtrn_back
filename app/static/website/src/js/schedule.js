@@ -10,7 +10,6 @@ $(document).ready(function () {
             return data
         }
     }).done(function () {
-        console.log(scheduleResult)
         $.each(scheduleResult,function (index) {
             $(`<button class="schedule__item__button" data-location="${index}">${scheduleResult[index].name}</button>`).appendTo('.schedule__item__locations')
         })
@@ -29,14 +28,20 @@ $(document).ready(function () {
             $('.schedule__return__btn').attr('data-state', 'location') ? $('.schedule__return__btn').removeClass('disabled') : $('.schedule__return__btn').addClass('disabled');
         }
         $('.schedule__item__button').click(function () {
-            console.log(scheduleResult[$(this).attr('data-location')].name)
             $('.schedule__item__classes').css({
                 'opacity': '1',
             })
             getButtonState()
             $('.schedule__return__btn').attr('data-state', 'class')
             scheduleData.location = $(this).attr('data-location')
-            console.log(scheduleData)
+            $('.schedule__classes__wrapper').empty();
+            for(let i = 0;i< scheduleResult[scheduleData.location].grades.length; i++) {
+                if (scheduleResult[scheduleData.location].grades[i].subjects.length !== 0) {
+                    $(`<button class="schedule__classes__button" data-class="${i+1}">${i+1}</button>`).appendTo('.schedule__classes__wrapper')
+                } else {
+                    $(`<button class="schedule__classes__button" data-class="${i+1}" disabled>${i+1}</button>`).appendTo('.schedule__classes__wrapper')
+                }
+            }
             $(this).parent().addClass('slide');
             $('.schedule__item__button').eq(0).animate({
                 'top': '36px',
