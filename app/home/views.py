@@ -18,7 +18,7 @@ def home(request):
         'year': date.today().year,
     }
     return render(request,
-                  'home/schedule.html',
+                  'study/module.html',
                   data)
 
 
