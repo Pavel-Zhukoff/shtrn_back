@@ -1,4 +1,4 @@
-from school.settings import SMS_SENDER_NAME, SMS_SENDER_API_KEY
+from config.settings import SMS_SENDER_NAME, SMS_SENDER_API_KEY
 
 
 def normalize_phone(phone):
