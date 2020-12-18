@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.http import HttpResponse
 
 from datetime import date
 
@@ -25,17 +26,18 @@ def home(request):
 def teachers(request):
     data = {
         'title': 'Преподаватели',
-        'teachers': TeacherModel.objects.all(),
         'prev': get_referer_url(request),
         'year': date.today().year,
         }
     return render(request,
-                  'home/teachers.jhtml',
+                  'home/teachers.html',
                   data)
 
 
+def teachers_data(request):
+    return HttpResponse()
+
 def schedule_data(request):
-    from django.http import HttpResponse
     from home.service import get_schedule
     return HttpResponse(get_schedule())
 
