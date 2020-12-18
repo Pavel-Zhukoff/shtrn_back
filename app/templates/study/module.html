@@ -9,29 +9,40 @@
     <title>{{ title }}</title>
     <link rel="stylesheet" href="{% static 'module/src/css/reset.css' %}">
     <link rel="stylesheet" href="{% static 'module/src/css/main.css' %}">
+
 </head>
-<body id="module">
-
-
-
-
-<canvas id="layout" width="100vw" height="100vh"></canvas>
-
-<input id="text-input"></input>
-<div class="tools">
-    <div class="tools__list">
-        <button id="setText">
-            Текст
-        </button>
-        <button id="circle">
-            Круг
-        </button>
+<body>
+<div id="container"></div>
+<div id="drag-figures">
+    <img src="{% static 'module/src/img/sphere.png' %}" draggable="true" />
+    <img src="{% static 'module/src/img/pentagon.png' %}" draggable="true" />
+    <img src="{% static 'module/src/img/rhombus.png' %}" draggable="true" />
+</div>
+<div id="menu">
+    <div>
+        <button id="resize-button">Маштаб</button>
+        <button id="delete-button">Удалить</button>
     </div>
 </div>
+<button id="save">PDF</button>
+<button id="cell">Клетка</button>
+<button id="eraser" value="eraser">Ластик</button>
+<button id="brush" value="brush">Рисовалка</button>
 <script src="{% static 'module/src/js/jquery-3.5.1.min.js' %}"></script>
-<!--<script src="{% static 'module/src/js/jquery.maskedinput.js' %}"></script>-->
-<script src="{% static 'module/src/js/setText.js' %}"></script>
-<script src="{% static 'module/src/js/setCircle.js' %}"></script>
+<script src="{% static 'module/src/js/conva.min.js' %}"></script>
+<script src="{% static 'module/src/js/jspdf.min.js' %}"></script>
+<script src="{% static 'module/src/js/save.js' %}"></script>
+<script src="{% static 'module/src/js/background.js' %}"></script>
+<script src="{% static 'module/src/js/contextmenu.js' %}"></script>
+<script src="{% static 'module/src/js/resize.js' %}"></script>
+<script src="{% static 'module/src/js/figures.js' %}"></script>
+<script src="{% static 'module/src/js/coord.js' %}"></script>
 <script src="{% static 'module/src/js/module.js' %}"></script>
+<script src="{% static 'module/src/js/text.js' %}"></script>
+<script src="{% static 'module/src/js/cellbg.js' %}"></script>
+<script src="{% static 'module/src/js/brush.js' %}"></script>
+
+
+
 </body>
 </html>

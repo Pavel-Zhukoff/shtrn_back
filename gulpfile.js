@@ -20,7 +20,7 @@ const assets = {
         'app/static/website/src/css/main.css',
     ],
     js: [
-       'app/static/website/src/js/schedule.js',
+        'app/static/website/src/js/schedule.js',
     ],
     images: [
         'app/static/website/src/img/**/*.{jpg,jpeg,png,svg}',
@@ -31,14 +31,14 @@ const assets = {
 }
 
 function scss() {
-     return src(assets.css)
+    return src(assets.css)
         .pipe(sass())
         .pipe(autoprefixer({
 
         }))
         .pipe(csso())
         .pipe(concat('app.min.css'))
-         .pipe(cleanCSS({compatibility: 'ie8'}))
+        .pipe(cleanCSS({compatibility: 'ie8'}))
         .pipe(dest('app/static/website/dist/css/'))
 }
 function js() {
