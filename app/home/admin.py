@@ -1,7 +1,7 @@
 from django.contrib import admin
 
 from home.models import AdviceModel, EventModel, NewsModel, SchoolModel, ScheduleModel, SubjectModel, TeacherModel, \
-    TextbookModel
+    TextbookModel, StudyGroupModel
 
 
 @admin.register(AdviceModel)
@@ -43,5 +43,9 @@ class TeacherAdmin(admin.ModelAdmin):
 class ATextbookAdmin(admin.ModelAdmin):
     pass
 
+
+@admin.register(StudyGroupModel)
+class StudyGroupAdmin(admin.ModelAdmin):
+    pass
 
 admin.site.site_header = 'Админпанель сайта школы Штерн'

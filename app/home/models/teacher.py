@@ -3,11 +3,14 @@ from django.db import models
 
 class TeacherModel(models.Model):
 
-    name = models.CharField('Название', max_length=100)
+    name = models.CharField('Имя', max_length=100)
     job = models.CharField('Должность', max_length=250)
     experience = models.TextField('Стаж')
     education = models.TextField('Образование')
     photo = models.ImageField('Фото', upload_to=r'teachers/%Y/%m/%d/')
+
+    def __str__(self):
+        return self.name
 
     class Meta:
 
