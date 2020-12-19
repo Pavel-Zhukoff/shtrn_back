@@ -41,5 +41,5 @@ def get_schedule():
 
 def get_teachers():
     """ Возвращает json представление списка учителей """
-    teachers = TeacherModel.objects.all()
+    teachers = TeacherModel.objects.all().values()
     return json.dumps(teachers, cls=DjangoJSONEncoder)

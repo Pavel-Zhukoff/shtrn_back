@@ -20,7 +20,7 @@ def home(request):
         'year': date.today().year,
     }
     return render(request,
-                  'home/schedule.html',
+                  'home/teachers.html',
                   data)
 
 
