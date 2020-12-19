@@ -8,7 +8,7 @@ class TeacherModel(models.Model):
     experience = models.TextField('Стаж')
     education = models.TextField('Образование')
     photo = models.ImageField('Фото', upload_to=r'teachers/%Y/%m/%d/')
-    sex = models.CharField('Пол', max_length=1, choices=(('f', 'Жен.'), ('m', 'Муж.'),))
+    sex = models.CharField('Пол', max_length=1, choices=(('f', 'Жен.'), ('m', 'Муж.'),), default='f')
 
     def __str__(self):
         return self.name
