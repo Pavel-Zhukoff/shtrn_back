@@ -229,12 +229,9 @@ body {
   padding-top: 6.5vh;
   justify-content: center;
   &.woman {
-    background: rgb(174,75,191);
-    background: radial-gradient(circle, rgba(174,75,191,0.6) 0%, rgba(77,171,226,0.9) 100%);
+    background-color: rgba(78,171,225,0.9);
   }
   &.man {
-    background: rgb(146,82,156);
-    background: radial-gradient(circle, rgba(146,82,156,0.6) 40%, rgba(78,171,225,0.9) 100%);
   }
   &__container {
     height: 85%;
@@ -280,6 +277,7 @@ body {
         .teachers__slider__image {
           border-radius: 100%;
           margin-bottom: 10px;
+
           img {
             width: 100%;
             border-radius: 100%;
@@ -325,6 +323,8 @@ body {
         border-radius: 100%;
         margin-top: 56px;
         img {
+          -webkit-box-shadow: 0 0 1000px 550px rgba(146,82,156,1);
+          box-shadow: 0 0 1000px 550px rgba(146,82,156,1);
           width: 100%;
           height: 100%;
           border-radius: 100%;
