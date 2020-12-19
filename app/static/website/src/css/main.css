@@ -961,17 +961,17 @@ body {
   justify-content: center;
 }
 .teachers.woman {
-  background: #92529c;
-  background: radial-gradient(circle, rgba(146, 82, 156, 0.6) 40%, rgba(78, 171, 225, 0.9) 100%);
+  background: #ae4bbf;
+  background: radial-gradient(circle, rgba(174, 75, 191, 0.6) 0%, rgba(77, 171, 226, 0.9) 100%);
 }
 .teachers.man {
-  background: #4eabe1;
-  background: radial-gradient(circle, rgba(78, 171, 225, 0.6) 0%, rgba(146, 82, 156, 0.9) 100%);
+  background: #92529c;
+  background: radial-gradient(circle, rgba(146, 82, 156, 0.6) 40%, rgba(78, 171, 225, 0.9) 100%);
 }
 .teachers__container {
   height: 85%;
   width: 100%;
-  max-width: 65vw;
+  max-width: 1250px;
   margin: 0 auto;
 }
 .teachers__container__title {
