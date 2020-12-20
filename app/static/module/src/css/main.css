@@ -15,11 +15,11 @@ body {
   background-color: transparent;
   border: none;
   resize: none;
-
-  &.active {
-    display: block;
-  }
 }
+#text-input.active {
+  display: block;
+}
+
 #brush {
   position: absolute;
   top: 5px;
@@ -29,21 +29,21 @@ body {
 #c {
   border: black 1px solid;
 }
-.colors {
-  .color {
-    border: solid 1px black;
-    height: 32px;
-    width: 32px;
-    margin:  4px;
-    cursor: pointer;
-  }
+
+.colors .color {
+  border: solid 1px black;
+  height: 32px;
+  width: 32px;
+  margin: 4px;
+  cursor: pointer;
 }
-.text-colors {
-  .color {
-    border: solid 1px black;
-    height: 32px;
-    width: 32px;
-    margin:  4px;
-    cursor: pointer;
-  }
+
+.text-colors .color {
+  border: solid 1px black;
+  height: 32px;
+  width: 32px;
+  margin: 4px;
+  cursor: pointer;
 }
+
+/*# sourceMappingURL=main.css.map */

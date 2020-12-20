@@ -1,24 +1,8 @@
-function text(x,y) {
-    $('#text-input').addClass('active').css({
-        'top': y,
-        'left': x,
-    }).focus()
-    // $('#text-input').keypress(function (e) {
-    //    if (e.which == 13) {
-    //        $('#text-input').removeClass('active')
-    //        let text = new Konva.Text({
-    //            x: x,
-    //            y: y,
-    //            text: $('#text-input').val(),
-    //            fontSize: 30,
-    //            fontFamily: 'Calibri',
-    //            fill: 'red'
-    //        });
-    //        layer.add(text);
-    //        stage.add(layer);
-    //        layer.draw();
-    //        $('#text-input').val('')
-    //    }
-    // })
-    
-}
+$('#text').click(function () {
+    canvas.isDrawingMode = false;
+    let text = new fabric.IText('Hello Hello Hello Hello\n Hello Hello Hello Hello ',{
+        fill: TEXT_COLOR,
+        fontSize: TEXT_SIZE,
+    })
+    canvas.add(text)
+})
