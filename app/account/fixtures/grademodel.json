@@ -1,0 +1,79 @@
+[
+  {
+    "model": "account.grademodel",
+    "pk": 1,
+    "fields": {
+      "name": "Первый класс"
+    }
+  },
+  {
+    "model": "account.grademodel",
+    "pk": 2,
+    "fields": {
+      "name": "Второй класс"
+    }
+  },
+  {
+    "model": "account.grademodel",
+    "pk": 3,
+    "fields": {
+      "name": "Третий класс"
+    }
+  },
+  {
+    "model": "account.grademodel",
+    "pk": 4,
+    "fields": {
+      "name": "Четвертый класс"
+    }
+  },
+  {
+    "model": "account.grademodel",
+    "pk": 5,
+    "fields": {
+      "name": "Пятый класс"
+    }
+  },
+  {
+    "model": "account.grademodel",
+    "pk": 6,
+    "fields": {
+      "name": "Шестой класс"
+    }
+  },
+  {
+    "model": "account.grademodel",
+    "pk": 7,
+    "fields": {
+      "name": "Седьмой класс"
+    }
+  },
+  {
+    "model": "account.grademodel",
+    "pk": 8,
+    "fields": {
+      "name": "Восьмой класс"
+    }
+  },
+  {
+    "model": "account.grademodel",
+    "pk": 9,
+    "fields": {
+      "name": "Девятый класс"
+    }
+  },
+  {
+    "model": "account.grademodel",
+    "pk": 10,
+    "fields": {
+      "name": "Десятый класс"
+    }
+  },
+  {
+    "model": "account.grademodel",
+    "pk": 11,
+    "fields": {
+      "name": "Одиннадцатый класс"
+    }
+  }
+]
