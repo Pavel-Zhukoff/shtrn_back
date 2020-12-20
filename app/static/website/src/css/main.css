@@ -22,6 +22,10 @@
   font-family: "Urfa BookItalic";
   src: url("../fonts/Urfa-BookItalic.woff2") format("woff2"), url("../fonts/Urfa-BookItalic.woff") format("woff");
 }
+@font-face {
+  font-family: "Urfa Regular";
+  src: url("../fonts/Urfa-Regular.woff2") format("woff2"), url("../fonts/Urfa-Regular.woff") format("woff");
+}
 .schedule__item__button {
   display: block;
   width: 100%;
@@ -948,6 +952,136 @@ body {
   z-index: 1;
   position: absolute;
   animation: rotate 60s linear infinite;
+}
+
+.teachers {
+  height: 100%;
+  display: flex;
+  padding-top: 6.5vh;
+  justify-content: center;
+}
+.teachers.woman {
+  background-color: rgba(78, 171, 225, 0.9);
+}
+.teachers__container {
+  height: 85%;
+  width: 100%;
+  max-width: 1250px;
+  margin: 0 auto;
+}
+.teachers__container__title {
+  font-family: "Urfa Italic", sans-serif;
+  font-size: 2rem;
+  margin-bottom: 30px;
+  padding-left: 4vw;
+  letter-spacing: 0.4px;
+}
+.teachers__container__wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  height: 100%;
+  padding: 0 22px;
+}
+.teachers__container .teachers__wrapper__slider {
+  flex-basis: 350px;
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  flex-direction: row-reverse;
+  direction: rtl;
+  overflow-y: auto;
+  padding-top: 3px;
+  scrollbar-color: rgba(50, 50, 50, 0.69) rgba(50, 50, 50, 0.69);
+  scrollbar-width: thin;
+}
+.teachers__container .teachers__wrapper__slider .teachers__slider__card {
+  height: 50px;
+  margin-left: 20px;
+  width: 38%;
+  border-radius: 100%;
+  margin-bottom: 28px;
+}
+.teachers__container .teachers__wrapper__slider .teachers__slider__card:nth-of-type(2n) {
+  margin-left: 24px;
+}
+.teachers__container .teachers__wrapper__slider .teachers__slider__card .teachers__slider__image {
+  border-radius: 100%;
+  margin-bottom: 10px;
+}
+.teachers__container .teachers__wrapper__slider .teachers__slider__card .teachers__slider__image img {
+  width: 100%;
+  border-radius: 100%;
+  transition: 0.2s linear;
+  cursor: pointer;
+}
+.teachers__container .teachers__wrapper__slider .teachers__slider__card .teachers__slider__image img.active {
+  -webkit-box-shadow: 0 0 0 3px #93278F;
+  box-shadow: 0 0 0 3px #93278F;
+  transition: 0.2s linear;
+}
+.teachers__container .teachers__wrapper__slider .teachers__slider__card .teachers__slider__image img:hover {
+  -webkit-box-shadow: 0 0 0 3px #93278F;
+  box-shadow: 0 0 0 3px #93278F;
+  transition: 0.2s linear;
+}
+.teachers__container .teachers__wrapper__slider .teachers__slider__card .teachers__slider__title {
+  text-align: center;
+  font-size: 12px;
+  font-family: "Urfa Regular", sans-serif;
+}
+.teachers__container .teachers__wrapper__content {
+  flex-basis: 482px;
+  margin-left: 10px;
+}
+.teachers__container .teachers__wrapper__content .teachers__content__position {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  margin: 0 auto;
+  font-family: "Urfa Regular", sans-serif;
+  font-size: 1.4rem;
+}
+.teachers__container .teachers__wrapper__content .teachers__content__position h2 {
+  font-weight: 700;
+  text-align: center;
+  margin-top: 22px;
+}
+.teachers__container .teachers__wrapper__content .teachers__content__info {
+  border-radius: 100%;
+  margin-top: 56px;
+}
+.teachers__container .teachers__wrapper__content .teachers__content__info img {
+  -webkit-box-shadow: 0 0 1000px 550px #92529c;
+  box-shadow: 0 0 1000px 550px #92529c;
+  width: 100%;
+  height: 100%;
+  border-radius: 100%;
+}
+.teachers__container .teachers__wrapper__content .teachers__content__name {
+  width: 100%;
+  margin: 22px auto 0;
+  font-size: 2.4rem;
+}
+.teachers__container .teachers__wrapper__content .teachers__content__name h3 {
+  text-align: center;
+}
+.teachers__container .teachers__content__description {
+  padding-left: 2.4rem;
+  flex-basis: 320px;
+  display: flex;
+  font-family: "Urfa Regular", sans-serif;
+  padding-top: 4.5vh;
+  flex-direction: column;
+}
+.teachers__container .teachers__content__description .content__description__item {
+  margin-bottom: 23px;
+  font-size: 1.3rem;
+  line-height: 22.5px;
+  letter-spacing: -1px;
+}
+.teachers__container .teachers__content__description .content__description__item .description__item__title {
+  text-transform: uppercase;
 }
 
 /*# sourceMappingURL=main.css.map */

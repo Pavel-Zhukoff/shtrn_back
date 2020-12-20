@@ -1,3 +1,4 @@
+
 $(document).ready(function () {
     let scheduleResult = ''
     $.ajax({

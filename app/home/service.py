@@ -3,7 +3,7 @@ import json
 from django.core.serializers.json import DjangoJSONEncoder
 
 from account.models import GradeModel
-from home.models import SchoolModel, SubjectModel, ScheduleModel
+from home.models import SchoolModel, SubjectModel, ScheduleModel, TeacherModel
 
 
 def get_schedule():
@@ -37,3 +37,9 @@ def get_schedule():
                         school['grades'][-1]['subjects'][-1]['schedule'][w].append(schedule)
         answ.append(school)
     return json.dumps(answ, cls=DjangoJSONEncoder)
+
+
+def get_teachers():
+    """ Возвращает json представление списка учителей """
+    teachers = list(TeacherModel.objects.values())
+    return json.dumps(teachers, cls=DjangoJSONEncoder)
