@@ -21,6 +21,10 @@ SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY')
 DEBUG = int(os.environ.get('DJANGO_DEBUG'))
 
 ALLOWED_HOSTS = os.environ.get('DJANGO_ALLOWED_HOSTS').split(' ')
+
+PEERJS_SERVER = os.environ.get('PEERJS_SERVER')
+PEERJS_PORT = os.environ.get('PEERJS_PORT')
+
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 

@@ -20,6 +20,7 @@ services:
       - nginx_network
     depends_on:
       - db
+      - peer_server
   nginx:
     container_name: nginx
     image: nginx:stable-alpine
@@ -47,6 +48,11 @@ services:
       - db_network
     volumes:
       - ./pg_data:/var/lib/postgresql/data/
+  peer_server:
+    image: peerjs/peerjs-server:latest
+    command: peerjs --port 9000 --key peerjs --path /peerjs
+    ports:
+      - 9000:9000
 networks:
   nginx_network:
     driver: bridge
