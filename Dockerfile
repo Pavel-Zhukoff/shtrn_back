@@ -1,7 +1,7 @@
 # Цепляем рабочий образок
-FROM python:alpine
+FROM python:3.8-alpine
 RUN apk update \
-    && apk add postgresql-dev gcc python3-dev musl-dev jpeg-dev zlib-dev libjpeg
+    && apk add postgresql-dev gcc python3-dev musl-dev jpeg-dev zlib-dev libjpeg libffi-dev make
 # Установили рабочую дирректорию образа
 WORKDIR /home/app
 # Скопировали из корня проекта в корень рабочей дирректории

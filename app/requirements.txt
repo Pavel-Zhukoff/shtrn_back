@@ -3,3 +3,5 @@ gunicorn
 psycopg2-binary
 whitenoise
 Pillow
+python-socketio
+gevent
