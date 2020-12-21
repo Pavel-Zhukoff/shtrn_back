@@ -125,3 +125,8 @@ node_modules/
 
 # css compiled source map files
 *.css.map
+
+# Only for Development only
+app/**/migrations/**
+!app/**/migrations
+!app/**/migrations/__init__.py
