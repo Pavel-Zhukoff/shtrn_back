@@ -1,8 +1,10 @@
 import json
 
 from django.core.serializers.json import DjangoJSONEncoder
+from django.db.models import Value, F, Func
+from django.db.models.functions import Concat
 
-from account.models import GradeModel
+from account.models import GradeModel, User
 from home.models import SchoolModel, SubjectModel, ScheduleModel, TeacherModel
 
 
@@ -41,5 +43,9 @@ def get_schedule():
 
 def get_teachers():
     """ Возвращает json представление списка учителей """
-    teachers = list(TeacherModel.objects.values())
+    teachers = list(TeacherModel.objects
+                    .annotate(name=Func(F('user__last_name'),Value(' '),
+                                   F('user__first_name'),Value(' '),
+                                    F('user__third_name'), function='CONCAT'))
+                    .values())
     return json.dumps(teachers, cls=DjangoJSONEncoder)
