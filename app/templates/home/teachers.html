@@ -1,0 +1,51 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>{{ title }}</title>
+    <link rel="stylesheet" href="{% static 'website/src/css/reset.css' %}">
+    <link rel="stylesheet" href="{% static 'website/src/css/main.css' %}">
+</head>
+<body>
+
+<div class="teachers woman">
+    <div class="teachers__container">
+        <h1 class="teachers__container__title">
+            Преподаватели
+        </h1>
+        <div class="teachers__container__wrapper">
+            <div class="teachers__wrapper__slider">
+            </div>
+            <div class="teachers__wrapper__content">
+                <div class="teachers__content__position">
+                    <h2>
+                    </h2>
+                    <div class="teachers__content__info">
+                        <img src=""
+                             alt="">
+                    </div>
+                    <div class="teachers__content__name">
+                        <h3>
+                        </h3>
+                    </div>
+                </div>
+            </div>
+            <div class="teachers__content__description">
+                <div class="content__description__item education">
+                </div>
+                <div class="content__description__item experience">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="{% static 'website/src/js/jquery-3.5.1.min.js' %}"></script>
+<script src="{% static 'website/src/js/jquery.maskedinput.js' %}"></script>
+<script src="{% static 'website/src/js/teachers.js' %}"></script>
+</body>
+</html>

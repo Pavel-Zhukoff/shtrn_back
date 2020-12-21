@@ -1,0 +1,91 @@
+html, body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #f0f0f0;
+}
+
+#text-input {
+  position: absolute;
+  top: 0;
+  display: none;
+  background-color: transparent;
+  border: none;
+  resize: none;
+}
+#text-input.active {
+  display: block;
+}
+
+canvas.cell {
+  background-image: url("../img/cell__bg.jpg") !important;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+#drag-figures {
+  position: absolute;
+  bottom: 0;
+  display: flex;
+  background-color: red;
+  width: 100%;
+  align-items: flex-end;
+  padding: 1vh 10vw;
+}
+#drag-figures img {
+  height: 50px;
+  transition: 0.2s linear;
+}
+#drag-figures img:hover {
+  transition: 0.2s linear;
+  transform: scale(1.25);
+  cursor: pointer;
+}
+
+#menu {
+  display: none;
+  position: absolute;
+  background-color: white;
+  box-shadow: 0 0 5px grey;
+  border-radius: 3px;
+}
+#menu button {
+  width: 100%;
+  background-color: white;
+  border: none;
+  margin: 0;
+  padding: 10px;
+}
+#menu button:hover {
+  background-color: lightgray;
+}
+
+#save {
+  position: absolute;
+  top: 5px;
+  left: 5px;
+}
+
+#cell {
+  position: absolute;
+  top: 5px;
+  left: 59px;
+}
+
+#eraser {
+  position: absolute;
+  top: 5px;
+  left: 100px;
+}
+
+#brush {
+  position: absolute;
+  top: 5px;
+  left: 150px;
+}
+
+/*# sourceMappingURL=main.css.map */

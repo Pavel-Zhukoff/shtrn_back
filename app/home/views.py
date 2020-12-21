@@ -1,10 +1,12 @@
 from django.shortcuts import render
+from django.http import HttpResponse
 
 from datetime import date
 
 from account.models import ReviewModel
 from home.models import TeacherModel, AdviceModel, TextbookModel, NewsModel, EventModel, SchoolModel, SubjectModel
 from home.utils import get_referer_url, get_videos
+from home.service import get_schedule, get_teachers
 
 
 def home(request):
@@ -18,25 +20,25 @@ def home(request):
         'year': date.today().year,
     }
     return render(request,
-                  'home/schedule.html',
+                  'home/teachers.html',
                   data)
 
 
 def teachers(request):
     data = {
         'title': 'Преподаватели',
-        'teachers': TeacherModel.objects.all(),
         'prev': get_referer_url(request),
         'year': date.today().year,
         }
     return render(request,
-                  'home/teachers.jhtml',
+                  'home/teachers.html',
                   data)
 
 
+def teachers_data(request):
+    return HttpResponse(get_teachers())
+
 def schedule_data(request):
-    from django.http import HttpResponse
-    from home.service import get_schedule
     return HttpResponse(get_schedule())
 
 

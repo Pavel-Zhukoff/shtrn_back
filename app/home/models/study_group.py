@@ -8,7 +8,10 @@ class StudyGroupModel(models.Model):
 
     classes = models.ManyToManyField(account.models.GradeModel, verbose_name='Классы')
 
+    def __str__(self):
+        return self.name
+
     class Meta:
         db_table = 'study_groups'
-        verbose_name = 'учебная группа'
-        verbose_name_plural = 'учебной группы'
+        verbose_name = 'учебную группу'
+        verbose_name_plural = 'учебные группы'
