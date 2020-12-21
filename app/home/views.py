@@ -35,8 +35,20 @@ def teachers(request):
                   data)
 
 
+def schedule(request):
+    data = {
+        'title': 'Расписание',
+        'prev': get_referer_url(request),
+        'year': date.today().year,
+        }
+    return render(request,
+                  'home/schedule.html',
+                  data)
+
+
 def teachers_data(request):
     return HttpResponse(get_teachers())
+
 
 def schedule_data(request):
     return HttpResponse(get_schedule())
