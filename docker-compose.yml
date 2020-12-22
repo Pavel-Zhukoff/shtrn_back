@@ -52,7 +52,7 @@ services:
       - ./pg_data:/var/lib/postgresql/data/
   peer_server:
     image: peerjs/peerjs-server:latest
-    command: peerjs --port 9000 --key peerjs --path /peerjs
+    command: peerjs --port 9000 --key peerjs
     ports:
       - 9000:9000
   redis:
