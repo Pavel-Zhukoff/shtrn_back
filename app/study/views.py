@@ -1,3 +1,4 @@
+import redis
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse, HttpResponseNotFound, HttpResponseForbidden
 from django.shortcuts import render
@@ -6,6 +7,8 @@ from config import settings
 from config.wsgi import sio
 from study.models import RoomModel
 
+REDIS_INSTANCE = redis.StrictRedis(host=settings.REDIS_HOST,
+                                  port=settings.REDIS_PORT, db=0)
 
 @sio.event
 def connect(sid, environ):
@@ -30,6 +33,7 @@ def disconnect(sid):
 @login_required
 def room(request, room_slug):
     room = RoomModel.objects.get(slug=room_slug)
+    print(REDIS_INSTANCE)
     if room is None:
         return HttpResponseNotFound('Комната не найдена!')
     if request.user not in room.speakers.all():

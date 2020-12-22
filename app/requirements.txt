@@ -5,3 +5,4 @@ whitenoise
 Pillow
 python-socketio
 gevent
+redis

@@ -18,9 +18,11 @@ services:
     networks:
       - db_network
       - nginx_network
+      - redis_network
     depends_on:
       - db
       - peer_server
+      - redis
   nginx:
     container_name: nginx
     image: nginx:stable-alpine
@@ -53,8 +55,15 @@ services:
     command: peerjs --port 9000 --key peerjs --path /peerjs
     ports:
       - 9000:9000
+  redis:
+    image: redis:alpine
+    restart: always
+    networks:
+      - redis_network
 networks:
   nginx_network:
     driver: bridge
   db_network:
+    driver: bridge
+  redis_network:
     driver: bridge

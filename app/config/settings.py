@@ -25,6 +25,9 @@ ALLOWED_HOSTS = os.environ.get('DJANGO_ALLOWED_HOSTS').split(' ')
 PEERJS_SERVER = os.environ.get('PEERJS_SERVER')
 PEERJS_PORT = os.environ.get('PEERJS_PORT')
 
+REDIS_HOST = os.environ.get('REDIS_HOST')
+REDIS_PORT = os.environ.get('REDIS_PORT')
+
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
@@ -43,9 +46,6 @@ DATABASES = {
         'HOST': os.environ.get('DJANGO_DATABASE_HOST'),
         'PORT': os.environ.get('DJANGO_DATABASE_PORT'),
     },
-    'redis': {
-
-    }
 }
 
 # Application definition
