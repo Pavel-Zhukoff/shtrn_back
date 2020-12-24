@@ -12,13 +12,18 @@ class RoomModel(models.Model):
 
     name = models.CharField('Название комнаты', max_length=100, null=False)
 
-    slug = models.SlugField('Ярлык комнаты', null=True, blank=True, unique=True)
+    slug = models.SlugField('Ярлык комнаты',
+                            null=True,
+                            blank=True,
+                            unique=True,
+                            help_text='Используется для доступа к занятию по ссылке.'
+                                      + ' Разрешены символы a-z, 0-9, подчеркивание и тире.')
 
     start_date = models.DateTimeField('Время старта')
-    finish_date = models.DateTimeField('Время окончания')
+    is_finished = models.BooleanField('Занятие окончено', default=False)
 
     speakers = models.ManyToManyField(home.models.TeacherModel, verbose_name='Докладчики', related_name='speaker')
-    users = models.ManyToManyField(account.models.User, verbose_name='Участники', related_name='visitor')
+    users = models.ManyToManyField(account.models.User, verbose_name='Зрители', related_name='visitor')
 
     def clean(self):
         super().clean()

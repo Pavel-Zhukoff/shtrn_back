@@ -1,25 +1,35 @@
-const socket = io('/');
-console.log(socket);
-const videoGrid = document.getElementById('video-grid');
-const myPeer = new Peer(null, {
-  host: peerjs_host,
-  port: peerjs_port,
-  debug: 3
-});
 const myVideo = document.createElement('video');
-myVideo.muted = true;
-const peers = {};
-navigator.mediaDevices.getUserMedia({
+const STATE = {};
+navigator.getUserMedia = navigator.getUserMedia
+    || navigator.webkitGetUserMedia
+    || navigator.mozGetUserMedia;
+const userMedia = navigator.mediaDevices.getUserMedia({
+  audio: true,
   video: true,
-  audio: true
-}).then(stream => {
+});
+
+const videoGrid = document.getElementById('video-grid');
+socket.on('user-state-update', state => {
+  Object.assign(STATE, {...state});
+  console.log(STATE);
+  userMedia.then(stream => {
+    stream.getAudioTracks().forEach(track => {
+      track.enabled = STATE.audio;
+    });
+    stream.getVideoTracks().forEach(track => {
+      track.enabled = STATE.video;
+    });
+  });
+});
+
+userMedia.then(stream => {
+
   addVideoStream(myVideo, stream);
 
   myPeer.on('call', call => {
     call.answer(stream);
     const video = document.createElement('video');
     call.on('stream', userVideoStream => {
-      console.log(userVideoStream);
       addVideoStream(video, userVideoStream);
     });
   });
@@ -29,12 +39,12 @@ navigator.mediaDevices.getUserMedia({
   });
 });
 
-socket.on('user-disconnected', userId => {
-  if (peers[userId]) peers[userId].close();
+myPeer.on('open', id => {
+  socket.emit('join-room', room_id, id, user);
 });
 
-myPeer.on('open', id => {
-  socket.emit('join-room', room_id, id);
+socket.on('user-disconnected', userId => {
+  if (peers[userId]) peers[userId].close();
 });
 
 function connectToNewUser(userId, stream) {
@@ -49,11 +59,31 @@ function connectToNewUser(userId, stream) {
 
   peers[userId] = call;
 }
-
+// Добавляет видео в сетку
 function addVideoStream(video, stream) {
   video.srcObject = stream;
   video.addEventListener('loadedmetadata', () => {
     video.play();
   });
   videoGrid.append(video);
+}
+
+function toggleLogic(a, b) {
+  return a && !b;
+}
+
+function toggleAudio() {
+  userMedia.then(stream => {
+    stream.getAudioTracks().forEach(track => {
+      track.enabled = toggleLogic(STATE.audio, track.enabled);
+    });
+  });
+}
+
+function toggleVideo() {
+  userMedia.then(stream => {
+    stream.getVideoTracks().forEach(track => {
+      track.enabled = toggleLogic(STATE.video, track.enabled);
+    });
+  });
 }
