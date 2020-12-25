@@ -6,7 +6,7 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse_lazy
 
-from account.business import create_user_verification
+from account.service import create_user_verification, verify_user, change_password
 from account.forms import UserRegisterForm, UserLoginForm, PasswordChangeForm
 from account.forms import UserCodeConfirmForm
 from account.models import User, VerificationModel
@@ -17,6 +17,12 @@ def register(request):
     if request.method == 'POST':
         form = UserRegisterForm(request.POST)
         if form.is_valid():
+            print(form.cleaned_data)
+            if User.objects.filter(phone=form.cleaned_data.get('phone')).exists():
+                form.errors['phone'] = ['Пользователь с таким номером уже зарегистрирован!']
+                return render(request,
+                              'account/form.jhtml',
+                              {'form': form, 'title': 'Регистрация'})
             phone, code = create_user_verification(form.cleaned_data)
             # send_sms(phone, 'Код подтверждения - {}'.format(code))
             return HttpResponseRedirect(build_url('account:code_verification', params={'phone': phone}))
@@ -38,7 +44,7 @@ def code_verification(request):
         if form.is_valid():
             user = verify_user(form.cleaned_data.get('code'), phone)
             if user is not None:
-                auth.login(request, user)
+                auth.login(request, user, backend='django.contrib.auth.backends.ModelBackend')
                 return HttpResponseRedirect(reverse_lazy('account:main-page'))
             form.errors['code'] = ['Неверный код верификации']
 
@@ -54,7 +60,8 @@ def login(request):
             username = normalize_phone(form.cleaned_data.get('username'))
             user = auth.authenticate(request, username=username, password=form.cleaned_data.get('password'))
             if user is not None:
-                auth.login(request, user)
+                auth.login(request, user, backend='django.contrib.auth.backends.ModelBackend')
+
                 return HttpResponseRedirect(reverse_lazy('account:main-page'))
             form.errors['username'] = ['Неправильный логин или пароль']
     else:

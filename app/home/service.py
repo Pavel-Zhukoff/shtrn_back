@@ -44,8 +44,8 @@ def get_schedule():
 def get_teachers():
     """ Возвращает json представление списка учителей """
     teachers = list(TeacherModel.objects
-                    .annotate(name=Func(F('user__last_name'),Value(' '),
-                                   F('user__first_name'),Value(' '),
-                                    F('user__third_name'), function='CONCAT'))
-                    .values())
+                    .annotate(name=Func(F('user__last_name'), Value(' '),
+                                        F('user__first_name'), Value(' '),
+                                        F('user__third_name'), function='CONCAT'))
+                    .values('name', 'job', 'experience', 'education', 'photo', 'sex'))
     return json.dumps(teachers, cls=DjangoJSONEncoder)

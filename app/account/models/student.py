@@ -1,8 +1,8 @@
 from django.db import models
 
 from account.models import User
+from account.models.parent import ParentModel
 from .grade import GradeModel
-from account.utils import send_sms, normalize_phone
 
 
 class StudentModel(models.Model):
@@ -21,36 +21,54 @@ class StudentModel(models.Model):
         (11, 'Одиннадцатый'),
     ]
 
-    last_name = models.CharField('Фамилия', max_length=30)
-    first_name = models.CharField('Имя', max_length=30)
-    third_name = models.CharField('Отчество', max_length=30, blank=True)
-    phone = models.CharField('Телефон', max_length=11, unique=True)
     school = models.CharField('Школа', max_length=100)
 
-    year_of_study = models.ForeignKey(GradeModel, on_delete=models.CASCADE, verbose_name='Класс')
-    parent = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='Родитель')
+    year_of_study = models.ForeignKey(GradeModel, on_delete=models.RESTRICT, verbose_name='Класс')
+    parent = models.ForeignKey(ParentModel, on_delete=models.RESTRICT, verbose_name='Родитель')
+
+    user = models.OneToOneField(User, on_delete=models.RESTRICT, verbose_name='Пользователь')
+
+    @property
+    def first_name(self):
+        return self.user.first_name
+
+    @first_name.setter
+    def first_name(self, value):
+        self.user.first_name = str(value).strip().capitalize()
+
+    @property
+    def last_name(self):
+        return self.user.last_name
+
+    @last_name.setter
+    def last_name(self, value):
+        self.user.last_name = str(value).strip().capitalize()
+
+    @property
+    def third_name(self):
+        return self.user.third_name
+
+    @third_name.setter
+    def third_name(self, value):
+        self.user.third_name = str(value).strip().capitalize()
+
+    @property
+    def phone(self):
+        return self.user.phone
+
+    @property
+    def email(self):
+        return self.user.email
 
     def get_full_name(self):
-        return '{} {} {}'.format(self.last_name, self.first_name, self.third_name)
-    get_full_name.short_description = 'ФИО'
+        return self.user.get_full_name()
 
     def get_short_name(self):
-        return '{} {}'.format(self.last_name, self.first_name)
-    get_short_name.short_description = 'Имя'
+        return self.user.get_short_name()
 
     def get_school_info(self):
         return '{}, {} класс'.format(self.school, self.phone)
     get_school_info.short_description = 'Класс'
-
-    def sms_user(self, message):
-        send_sms(self.phone, message)
-
-    def __str__(self):
-        return self.get_short_name()
-
-    def save(self, *args, **kwargs):
-        self.phone = normalize_phone(self.phone)
-        super(StudentModel, self).save(*args, **kwargs)
 
     class Meta:
         db_table = 'students'

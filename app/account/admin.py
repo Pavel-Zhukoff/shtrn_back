@@ -14,7 +14,7 @@ from account.utils import normalize_phone, normalize_email
 @admin.register(User)
 class CustomUserAdmin(UserAdmin):
 
-    list_display = ('get_short_name', 'phone', 'email', 'show_children')
+    list_display = ('get_short_name', 'phone', 'email')
     fieldsets = (
         ('Пользователь', {
             'fields': ('last_name', 'first_name', 'third_name', ),
@@ -45,16 +45,6 @@ class CustomUserAdmin(UserAdmin):
         }),
     )
 
-    def show_children(self, obj):
-        count = obj.studentmodel_set.count()
-        url = (
-            reverse('admin:account_studentmodel_changelist')
-            + '?'
-            + urlencode({'parent_id': f'{obj.id}'})
-        )
-        return format_html('<a href="{}">{} детей</a>', url, count)
-
-    show_children.short_description = 'Дети'
 
     class CreationForm(UserCreationForm):
 

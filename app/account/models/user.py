@@ -24,6 +24,8 @@ class User(AbstractBaseUser, PermissionsMixin):
     USERNAME_FIELD = 'phone'
     REQUIRED_FIELDS = []
 
+    backend = 'account.backends.CustomAuthMiddleware'
+
     objects = UserManager()
 
     def get_full_name(self):

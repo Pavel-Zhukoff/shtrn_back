@@ -10,10 +10,10 @@ class CustomAuthMiddleware(ModelBackend):
 
     def authenticate(self, *args, **kwargs):
         user_model = get_user_model()
-        username = normalize_phone(kwargs.get('username'))
+        phone = normalize_phone(kwargs.get('username'))
         password = kwargs.get('password')
         try:
-            user = user_model._default_manager.get_by_natural_key(username)
+            user = user_model.objects.get(phone=phone)
         except user_model.DoesNotExist:
             # Run the default password hasher once to reduce the timing
             # difference between an existing and a non-existing user (#20760).

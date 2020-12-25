@@ -1,6 +1,6 @@
 import random
 
-from account.models import VerificationModel
+from account.models import VerificationModel, User
 from account.utils import normalize_phone, send_sms
 
 
