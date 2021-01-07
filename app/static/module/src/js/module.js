@@ -5,8 +5,8 @@ const canvas = new fabric.Canvas("c", {
 });
 
 let ctx = canvas.getContext('2d');
-console.log(canvas.freeDrawingBrush)
-$('#background').click(function () {
-    cellBg()
-})
 
+
+$('#ctxClear').click(function () {
+    canvas.clear()
+})

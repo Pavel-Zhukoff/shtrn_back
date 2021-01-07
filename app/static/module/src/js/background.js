@@ -1,3 +1,6 @@
+$('#background').click(function () {
+    cellBg()
+})
 function cellBg() {
     console.log(BACKGROUND_FLAG)
     console.log(canvas.backgroundImage)

@@ -8,6 +8,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>{{ title }}</title>
     <link rel="stylesheet" href="{% static 'module/src/css/reset.css' %}">
+    <link rel="stylesheet" href="{% static 'module/src/css/slick.css' %}">
     <link rel="stylesheet" href="{% static 'module/src/css/main.css' %}">
 
 </head>
@@ -15,71 +16,391 @@
 
 
 <canvas id="c" width="1900" height="850"></canvas>
-<input type="color" id="color">
-<button id="text">text</button>
-<div class="colors">
-    <div class="color" data-color="#214515">
+<div id="toolbar">
+    <div class="tools">
+        <div id="pen" class="tool">
+            <img src="{% static 'module/src/img/pen.svg' %}" alt="">
+        </div>
+        <div id="feltTipPen" class="tool">
+            <img src="{% static 'module/src/img/feltTipPen.svg' %}" alt="">
+        </div>
+        <div id="eraser" class="tool">
+            <img src="{% static 'module/src/img/eraser.svg' %}" alt="">
+        </div>
+        <div id="text" class="tool">
+            <img src="{% static 'module/src/img/text.svg' %}" alt="">
+        </div>
+        <div id="" class="tool">
 
-    </div>
-    <div class="color" data-color="#595124">
+        </div>
+        <div id="background" class="tool">
+<!--            <img src="{% static 'module/src/img/text.svg' %}" alt="">-->
+        </div>
+        <div id="formula" class="tool">
+            <img src="{% static 'module/src/img/formula.svg' %}" alt="">
+        </div>
+        <div id="" class="tool">
 
-    </div>
-    <div class="color" data-color="#451666">
+        </div>
+        <div id="" class="tool">
+            <img src="{% static 'module/src/img/hand.svg' %}" alt="">
+        </div>
+        <div id="fullscreen" class="tool">
+            <img src="{% static 'module/src/img/fullscreen.svg' %}" alt="">
+        </div>
+        <div id="" class="tool">
+            <img src="{% static 'module/src/img/image.svg' %}" alt="">
+        </div>
+        <div id="" class="tool">
+            <img src="{% static 'module/src/img/pdf.svg' %}" alt="">
+        </div>
+        <div id="ctxClear" class="tool">
 
-    </div>
-    <div class="color" data-color="#FF2634">
-
+        </div>
     </div>
 </div>
-<div class="text-colors">
-    <div class="color" data-color="#214515">
-
-    </div>
-    <div class="color" data-color="#595124">
-
-    </div>
-    <div class="color" data-color="#451666">
-
-    </div>
-    <div class="color" data-color="#FF2634">
-
-    </div>
-</div>
-<div class="text-sizes">
-    <button class="size" data-size="12">
-
-    </button>
-    <button class="size" data-size="18">
-
-    </button>
-    <button class="size" data-size="24">
-
-    </button>
-    <button class="size" data-size="30">
-
-    </button>
-    <button class="size" data-size="36">
-
-    </button>
-</div>
-<button id="eraser">eraser</button>
-<button id="background">background</button>
-<div id="drag-figures">
-    <img src="{% static 'module/src/img/sphere.png' %}" draggable="true" />
-    <img src="{% static 'module/src/img/pentagon.png' %}" draggable="true" />
-    <img src="{% static 'module/src/img/rhombus.png' %}" draggable="true" />
+<div class="toolbar toggles">
+    <img src="{% static 'module/src/img/toolbar-arrow.svg' %}" alt="">
 </div>
 
-<button id="brush" value="brush">Рисовалка</button>
+
+<div id="calc">
+    <div class="wrapper">
+        <div>
+            <button id="calcClear" name="operator"" >
+                CE
+            </button>
+            <input type="text" id="calcInput" readonly/>
+        </div>
+        <div>
+            <button>Ans</button>
+            <button >&#960;</button>
+            <button>e</button>
+            <button class="count">(</button>
+            <button class="count">)</button>
+            <button class="count">%</button>
+            <button onclick="set('/')">&#247;</button>
+        </div>
+        <div>
+            <button>rad</button>
+            <button>deg</button>
+            <button>x!</button>
+            <button class="darken count">7</button>
+            <button class="darken count">8</button>
+            <button class="darken count">9</button>
+            <button onclick="set('*')">&#215;</button>
+        </div>
+        <div>
+            <button>asin</button>
+            <button>sin</button>
+            <button>ln</button>
+            <button class="darken count">4</button>
+            <button class="darken count">5</button>
+            <button class="darken count">6</button>
+            <button class="count">-</button>
+        </div>
+        <div>
+            <button>acos</button>
+            <button id="btnCos" type="button" name="operator" onclick="cosine()" >cos</button>
+            <button>log</button>
+            <button class="darken count">1</button>
+            <button class="darken count">2</button>
+            <button class="darken count">3</button>
+            <button class="count">+</button>
+        </div>
+        <div>
+            <button>atan</button>
+            <button>tan</button>
+            <button>&#8730;</button>
+            <button class="darken count">0</button>
+            <button class="darken count">.</button>
+            <button id="answer">=</button>
+        </div>
+    </div>
+</div>
+
+<div id="options">
+    <div class="option__title">
+        <span class="tool">Инструмент: </span>
+        <span class="tool__name">Фломастер</span>
+    </div>
+    <div class="option__params">
+        <div class="feltTipPen">
+            <div class="colors">
+                <div class="color active" data-color="#000000">
+
+                </div>
+                <div class="color " data-color="#FF0000">
+
+                </div>
+                <div class="color" data-color="#0013F9">
+
+                </div>
+                <div class="color" data-color="#32FF00">
+
+                </div>
+            </div>
+            <div class="sizes">
+                <div class="size sm active" data-size="1">
+                    <div class="dot">
+
+                    </div>
+                </div>
+                <div class="size md " data-size="3">
+                    <div class="dot">
+
+                    </div>
+                </div>
+                <div class="size lg" data-size="5">
+                    <div class="dot">
+
+                    </div>
+                </div>
+                <div class="size xl" data-size="7">
+                    <div class="dot">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="eraser">
+            <div class="sizes">
+                <div class="size sm active" data-size="1">
+                    <div class="dot">
+
+                    </div>
+                </div>
+                <div class="size md " data-size="3">
+                    <div class="dot">
+
+                    </div>
+                </div>
+                <div class="size lg" data-size="5">
+                    <div class="dot">
+
+                    </div>
+                </div>
+                <div class="size xl" data-size="7">
+                    <div class="dot">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="services">
+
+
+    <div id="cameras">
+        <div class="wrapper">
+            <div class="display">
+                <div class="main">
+                    <img src="https://images.unsplash.com/photo-1608962210314-16d3b9c479fe?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1489&q=80" alt="">
+
+                </div>
+                <div class="minor">
+                    <img src="https://images.unsplash.com/photo-1608962210314-16d3b9c479fe?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1489&q=80" alt="">
+                    <img src="https://images.unsplash.com/photo-1608962210314-16d3b9c479fe?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1489&q=80" alt="">
+                    <img src="https://images.unsplash.com/photo-1608962210314-16d3b9c479fe?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1489&q=80" alt="">
+                </div>
+                <div class="minor">
+                    <img src="https://images.unsplash.com/photo-1608962210314-16d3b9c479fe?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1489&q=80" alt="">
+                    <img src="https://images.unsplash.com/photo-1608962210314-16d3b9c479fe?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1489&q=80" alt="">
+                    <img src="https://images.unsplash.com/photo-1608962210314-16d3b9c479fe?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1489&q=80" alt="">
+                </div>
+                <div class="minor">
+                    <div class="item">
+                        <img src="https://images.unsplash.com/photo-1608962210314-16d3b9c479fe?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1489&q=80" alt="">
+                        <div class="controls">
+                            <button>123</button>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <img src="https://images.unsplash.com/photo-1608962210314-16d3b9c479fe?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1489&q=80" alt="">
+                        <div class="controls">
+                            <button>123</button>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <img src="https://images.unsplash.com/photo-1608962210314-16d3b9c479fe?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1489&q=80" alt="">
+                        <div class="controls">
+                            <button>123</button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="display">
+                <div class="main">
+                    <img src="https://images.unsplash.com/photo-1608962210314-16d3b9c479fe?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1489&q=80" alt="">
+
+                </div>
+                <div class="minor">
+                    <img src="https://images.unsplash.com/photo-1608962210314-16d3b9c479fe?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1489&q=80" alt="">
+                    <img src="https://images.unsplash.com/photo-1608962210314-16d3b9c479fe?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1489&q=80" alt="">
+                    <img src="https://images.unsplash.com/photo-1608962210314-16d3b9c479fe?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1489&q=80" alt="">
+                </div>
+                <div class="minor">
+                    <img src="https://images.unsplash.com/photo-1608962210314-16d3b9c479fe?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1489&q=80" alt="">
+                    <img src="https://images.unsplash.com/photo-1608962210314-16d3b9c479fe?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1489&q=80" alt="">
+                    <img src="https://images.unsplash.com/photo-1608962210314-16d3b9c479fe?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1489&q=80" alt="">
+                </div>
+                <div class="minor">
+                    <img src="https://images.unsplash.com/photo-1608962210314-16d3b9c479fe?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1489&q=80" alt="">
+                    <img src="https://images.unsplash.com/photo-1608962210314-16d3b9c479fe?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1489&q=80" alt="">
+                    <div class="controlls">
+                        asd
+                    </div>
+                </div>
+            </div>
+            <div class="display">
+                <div class="main">
+                    <img src="https://images.unsplash.com/photo-1608962210314-16d3b9c479fe?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1489&q=80" alt="">
+
+                </div>
+                <div class="minor">
+                    <img src="https://images.unsplash.com/photo-1608962210314-16d3b9c479fe?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1489&q=80" alt="">
+                    <img src="https://images.unsplash.com/photo-1608962210314-16d3b9c479fe?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1489&q=80" alt="">
+                    <img src="https://images.unsplash.com/photo-1608962210314-16d3b9c479fe?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1489&q=80" alt="">
+                </div>
+                <div class="minor">
+                    <img src="https://images.unsplash.com/photo-1608962210314-16d3b9c479fe?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1489&q=80" alt="">
+                    <img src="https://images.unsplash.com/photo-1608962210314-16d3b9c479fe?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1489&q=80" alt="">
+                    <img src="https://images.unsplash.com/photo-1608962210314-16d3b9c479fe?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1489&q=80" alt="">
+                </div>
+                <div class="minor">
+                    <img src="https://images.unsplash.com/photo-1608962210314-16d3b9c479fe?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1489&q=80" alt="">
+                    <img src="https://images.unsplash.com/photo-1608962210314-16d3b9c479fe?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1489&q=80" alt="">
+                    <div class="controlls">
+                        asd
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="cameras__dots">
+
+        </div>
+    </div>
+
+
+    <div id="chat">
+        <div class="lesson-end">
+            <div class="timer">
+                до конца
+                1: 30
+            </div>
+
+            <button class="finish__button">
+                <img src="{% static 'module/src/img/end-times.svg' %}" alt="">
+            </button>
+        </div>
+
+        <div class="chat-messages">
+
+        </div>
+        <div class="chat-input">
+            <label for="chat-file-input">+</label>
+            <input type="file" id="chat-file-input">
+            <div class="input">
+                <input type="text" placeholder="Aa">
+                <button class="send__button">
+                    <img src="{% static 'module/src/img/send.svg' %}" alt="">
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="finishLesson">
+    <div class="wrapper">
+        <div class="text">
+            Вы уверены,<br>что хотите закончить занятие?
+        </div>
+        <div class="buttons">
+            <button id="accept__finish">Да</button>
+            <button id="cancel__finish">Нет</button>
+        </div>
+    </div>
+</div>
+
+<!--<div class="services toggles">-->
+
+<!--</div>-->
+<div class="calc toggles">
+    <img src="{% static 'module/src/img/calc.svg' %}" alt="">
+</div>
+<!--<input type="color" id="color">-->
+<!--<button id="text">text</button>-->
+<!--<div class="colors">-->
+<!--    <div class="color" data-color="#214515">-->
+
+<!--    </div>-->
+<!--    <div class="color" data-color="#595124">-->
+
+<!--    </div>-->
+<!--    <div class="color" data-color="#451666">-->
+
+<!--    </div>-->
+<!--    <div class="color" data-color="#FF2634">-->
+
+<!--    </div>-->
+<!--</div>-->
+<!--<div class="text-colors">-->
+<!--    <div class="color" data-color="#214515">-->
+
+<!--    </div>-->
+<!--    <div class="color" data-color="#595124">-->
+
+<!--    </div>-->
+<!--    <div class="color" data-color="#451666">-->
+
+<!--    </div>-->
+<!--    <div class="color" data-color="#FF2634">-->
+
+<!--    </div>-->
+<!--</div>-->
+<!--<div class="text-sizes">-->
+<!--    <button class="size" data-size="12">-->
+
+<!--    </button>-->
+<!--    <button class="size" data-size="18">-->
+
+<!--    </button>-->
+<!--    <button class="size" data-size="24">-->
+
+<!--    </button>-->
+<!--    <button class="size" data-size="30">-->
+
+<!--    </button>-->
+<!--    <button class="size" data-size="36">-->
+
+<!--    </button>-->
+<!--</div>-->
+<!--<button id="eraser">eraser</button>-->
+<!--<button id="background">background</button>-->
+<!--<div id="drag-figures">-->
+<!--    <img src="{% static 'module/src/img/sphere.png' %}" draggable="true" />-->
+<!--    <img src="{% static 'module/src/img/pentagon.png' %}" draggable="true" />-->
+<!--    <img src="{% static 'module/src/img/rhombus.png' %}" draggable="true" />-->
+<!--</div>-->
+
+<!--<button id="brush" value="brush">Рисовалка</button>-->
 <script src="{% static 'module/src/js/jquery-3.5.1.min.js' %}"></script>
+<script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script src="{% static 'module/src/js/fabric.min.js' %}"></script>
+<script src="{% static 'module/src/js/slick.min.js' %}"></script>
 <script src="{% static 'module/src/js/module.js' %}"></script>
+<script src="{% static 'module/src/js/calc.js' %}"></script>
+<script src="{% static 'module/src/js/cameras.js' %}"></script>
 <script src="{% static 'module/src/js/userParams.js' %}"></script>
 <script src="{% static 'module/src/js/text.js' %}"></script>
-<script src="{% static 'module/src/js/text.js' %}"></script>
 <script src="{% static 'module/src/js/background.js' %}"></script>
+<script src="{% static 'module/src/js/toggles.js' %}"></script>
 <!--<script src="{% static 'module/src/js/figures.js' %}"></script>-->
 <script src="{% static 'module/src/js/brush.js' %}"></script>
+<script src="{% static 'module/src/js/delete.js' %}"></script>
 
 
 
