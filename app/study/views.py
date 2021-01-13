@@ -1,17 +1,19 @@
-import redis
 from django.contrib.auth.decorators import login_required
-from django.http import HttpResponse, HttpResponseNotFound, HttpResponseForbidden
+from django.http import HttpResponseNotFound, HttpResponseForbidden
 from django.shortcuts import render
 from django.utils import timezone
 
 from config import settings
 from config.wsgi import sio
-from home.models import TeacherModel
 from study.models import RoomModel
+from study.service import get_user_instance_by_id
+from study.utils import set_user_state, user_state_exists, get_user_state
 
-REDIS_INSTANCE = redis.StrictRedis(host=settings.REDIS_HOST,
-                                  port=settings.REDIS_PORT, db=0)
 
+def find_watcher(user_id):
+    pass
+
+# SocketIO events
 @sio.event
 def connect(sid, environ):
     pass
@@ -19,32 +21,46 @@ def connect(sid, environ):
 
 @sio.on('join-room')
 def join_room(sid, room_id, user_peer_id, user_id):
+    print(sid)
     room = RoomModel.objects.filter(id=room_id, start_date__lte=timezone.now(), is_finished=False)
     if room.exists():
         room = room.get()
-        user = TeacherModel.objects.get(pk=user_id)
+        user = get_user_instance_by_id(user_id)
         if user not in room.speakers.all() or user not in room.users.all():
             sio.emit('user-disconnected', user_peer_id, room=room_id, skip_sid=sid)
         is_speaker = user in room.speakers.all()
-        default_state = { # Состояния блокировки видео-аудио-чата-доски
-                        # по умолчанию все в муте, кроме чата  и спикера
+        default_state = {  # Состояния блокировки видео-аудио-чата-доски
+                           # по умолчанию все в муте, кроме чата  и спикера
                         'audio': is_speaker,
                         'video': is_speaker,
                         'chat': True,
                         'board': is_speaker,
                     }
-        sid_date = {'room_id': room_id,
+        sid_data = {'room_id': room_id,
                     'peer_id': user_peer_id,
                     'user': user,
                     'is_speaker': is_speaker,
                     'state': default_state,
                     }
         sio.enter_room(sid, room_id)
-        sio.save_session(sid , sid_date)
+        sio.save_session(sid , sid_data)
+        set_user_state(user_peer_id, {'sid': sid, 'state': default_state})
         sio.emit('user-connected', user_peer_id, room=room_id, skip_sid=sid)
         sio.emit('user-state-update', default_state, to=sid)
     else:
         sio.close_room(room_id)
+
+
+@sio.on('user-state-update')
+def user_state_update(sid, user_id, new_state):
+    if user_state_exists(user_id):
+        current_state = get_user_state(user_id)
+        updated_state = {**current_state, 'state': {**current_state['state'], **new_state}}
+        sio.emit('user-state-update', updated_state['state'], to=updated_state['sid'])
+        set_user_state(user_id, updated_state)
+
+
+
 
 
 @sio.event
@@ -52,6 +68,7 @@ def disconnect(sid):
     session = sio.get_session(sid)
     sio.emit('user-disconnected', session['peer_id'], room=session['room_id'], skip_sid=sid)
 
+#django views
 @login_required
 def room(request, room_slug):
     room = RoomModel.objects.get(slug=room_slug)

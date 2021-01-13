@@ -1,4 +1,5 @@
 const myVideo = document.createElement('video');
+myVideo.style = 'border: 2px solid red';
 const STATE = {};
 navigator.getUserMedia = navigator.getUserMedia
     || navigator.webkitGetUserMedia
@@ -30,6 +31,7 @@ userMedia.then(stream => {
     call.answer(stream);
     const video = document.createElement('video');
     call.on('stream', userVideoStream => {
+      video.id = call.peer;
       addVideoStream(video, userVideoStream);
     });
   });
@@ -41,6 +43,7 @@ userMedia.then(stream => {
 
 myPeer.on('open', id => {
   socket.emit('join-room', room_id, id, user);
+  myVideo.id = id;
 });
 
 socket.on('user-disconnected', userId => {
@@ -51,6 +54,7 @@ function connectToNewUser(userId, stream) {
   const call = myPeer.call(userId, stream);
   const video = document.createElement('video');
   call.on('stream', userVideoStream => {
+    video.id = call.peer;
     addVideoStream(video, userVideoStream);
   });
   call.on('close', () => {

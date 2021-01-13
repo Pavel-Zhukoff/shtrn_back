@@ -1,6 +1,13 @@
+import json
+
+import redis
+from django.core.serializers.json import DjangoJSONEncoder
 from django.template.defaultfilters import slugify as django_slugify
 
+from config import settings
 
+REDIS_INSTANCE = redis.StrictRedis(host=settings.REDIS_HOST,
+                                   port=settings.REDIS_PORT, db=0)
 
 
 def slugify(s):
@@ -13,3 +20,23 @@ def slugify(s):
                 'ю': 'yu',
                 'я': 'ya'}
     return django_slugify(''.join(alphabet.get(w, w) for w in s.lower()))
+
+
+def user_state_exists(user_id):
+    return REDIS_INSTANCE.exists(user_id)
+
+
+def get_user_state(user_id):
+    if user_state_exists(user_id):
+        return json.loads(REDIS_INSTANCE.get(user_id), cls=DjangoJSONEncoder)
+    return None
+
+
+def set_user_state(user_id, state):
+    return REDIS_INSTANCE.set(user_id, json.dumps(state, cls=DjangoJSONEncoder))
+
+
+def delete_user_state(user_id):
+    if user_state_exists(user_id):
+        return REDIS_INSTANCE.delete(user_id)
+    return False

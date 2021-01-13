@@ -8,6 +8,7 @@ from django.utils.html import format_html
 from django.utils.http import urlencode
 
 from account.models import ReviewModel, User, StudentModel
+from account.models.parent import ParentModel
 from account.utils import normalize_phone, normalize_email
 
 
@@ -81,27 +82,12 @@ class StudentAdmin(admin.ModelAdmin):
 
     get_parent.short_description = 'Родитель'
 
-    class StudentCreationForm(models.ModelForm):
-
-        def clean(self):
-            cleaned_data = self.cleaned_data
-            phone = normalize_phone(cleaned_data['phone'])
-
-            if phone and User.objects.filter(phone=phone):
-                self.add_error('phone', 'Пользователь с данным номером телефона уже зарегистрирован')
-
-            return cleaned_data
-
-        class Meta:
-            model = StudentModel
-            fields = '__all__'
-
-    form = StudentCreationForm
-
 
 @admin.register(ReviewModel)
 class ReviewAdmin(admin.ModelAdmin):
     pass
 
+
+admin.site.register(ParentModel)
 
 admin.site.unregister(Group)
