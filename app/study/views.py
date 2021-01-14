@@ -60,9 +60,6 @@ def user_state_update(sid, user_id, new_state):
         set_user_state(user_id, updated_state)
 
 
-
-
-
 @sio.event
 def disconnect(sid):
     session = sio.get_session(sid)
@@ -74,9 +71,12 @@ def room(request, room_slug):
     room = RoomModel.objects.get(slug=room_slug)
     if room is None:
         return HttpResponseNotFound('Комната не найдена!')
-    if request.user not in room.speakers.all():
+    speakers = list(map(lambda x: x.user, room.speakers.all()))
+    watchers = list(map(lambda x: x.user, room.users.all()))
+    print(speakers)
+    if request.user in speakers:
         view_name = 'room_speaker.html'
-    elif request.user not in room.users.all():
+    elif request.user in watchers:
         view_name = 'room.html'
     else:
         return HttpResponseForbidden('У вас нет доступа к этой комнате!')

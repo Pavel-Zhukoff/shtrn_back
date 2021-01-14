@@ -29,7 +29,10 @@ userMedia.then(stream => {
 
   myPeer.on('call', call => {
     call.answer(stream);
+    const parent = document.createElement('div');
+    parent.className = "watcher-item";
     const video = document.createElement('video');
+    parent.appendChild(video);
     call.on('stream', userVideoStream => {
       video.id = call.peer;
       addVideoStream(video, userVideoStream);
@@ -52,7 +55,10 @@ socket.on('user-disconnected', userId => {
 
 function connectToNewUser(userId, stream) {
   const call = myPeer.call(userId, stream);
+  const parent = document.createElement('div');
+  parent.className = "watcher-item";
   const video = document.createElement('video');
+  parent.appendChild(video);
   call.on('stream', userVideoStream => {
     video.id = call.peer;
     addVideoStream(video, userVideoStream);

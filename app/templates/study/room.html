@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,6 +6,21 @@
     <title>Комната</title>
 </head>
 <body>
+<h1>{{ room }}</h1>
+    <div id="video-grid"></div>
 
+    <button onclick="toggleAudio()">Вкл./Выкл. аудио</button>
+    <button onclick="toggleVideo()">Вкл./Выкл. видео</button>
+    <script src="https://unpkg.com/peerjs@1.3.1/dist/peerjs.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/3.0.4/socket.io.min.js" defer></script>
+    <script>
+        const room_id = '{{ room.id }}';
+        const user = {{ user.id }};
+        const csrf_token = '{{ csrf_token }}';
+        const peerjs_host = '{{ peerjs_host }}';
+        const peerjs_port = {{ peerjs_port }};
+    </script>
+    <script src="{% static 'module/src/js/config.js' %}" defer></script>
+    <script src="{% static 'module/src/js/base_call.js' %}" defer></script>
 </body>
 </html>
