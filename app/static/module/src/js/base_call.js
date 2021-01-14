@@ -1,5 +1,6 @@
-const myVideo = document.createElement('video');
+const myVideo = document.createElement('div');
 myVideo.style = 'border: 2px solid red';
+myVideo.append(document.createElement('video'));
 const STATE = {};
 navigator.getUserMedia = navigator.getUserMedia
     || navigator.webkitGetUserMedia
@@ -29,13 +30,13 @@ userMedia.then(stream => {
 
   myPeer.on('call', call => {
     call.answer(stream);
-    const parent = document.createElement('div');
+    let parent = document.createElement('div');
     parent.className = "watcher-item";
-    const video = document.createElement('video');
+    let video = document.createElement('video');
     parent.appendChild(video);
     call.on('stream', userVideoStream => {
-      video.id = call.peer;
-      addVideoStream(video, userVideoStream);
+      parent.id = call.peer;
+      addVideoStream(parent, userVideoStream);
     });
   });
 
@@ -51,17 +52,18 @@ myPeer.on('open', id => {
 
 socket.on('user-disconnected', userId => {
   if (peers[userId]) peers[userId].close();
+  document.getElementById(userId).remove();
 });
 
 function connectToNewUser(userId, stream) {
   const call = myPeer.call(userId, stream);
-  const parent = document.createElement('div');
+  let parent = document.createElement('div');
   parent.className = "watcher-item";
-  const video = document.createElement('video');
+  let video = document.createElement('video');
   parent.appendChild(video);
   call.on('stream', userVideoStream => {
-    video.id = call.peer;
-    addVideoStream(video, userVideoStream);
+    parent.id = call.peer;
+    addVideoStream(parent, userVideoStream);
   });
   call.on('close', () => {
     video.remove();
@@ -70,12 +72,13 @@ function connectToNewUser(userId, stream) {
   peers[userId] = call;
 }
 // Добавляет видео в сетку
-function addVideoStream(video, stream) {
+function addVideoStream(el, stream) {
+  let video = el.getElementsByTagName('video')[0];
   video.srcObject = stream;
   video.addEventListener('loadedmetadata', () => {
     video.play();
   });
-  videoGrid.append(video);
+  videoGrid.append(el);
 }
 
 function toggleLogic(a, b) {
