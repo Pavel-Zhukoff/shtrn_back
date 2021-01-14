@@ -2,11 +2,19 @@ videoGrid.childNodes.forEach((el, i) => {
     if (i !== 0) {
         const toggleAudioBtn = document.createElement('button');
         const toggleVideoBtn = document.createElement('button');
+        const toggleChatBtn = document.createElement('button');
+        const toggleBoardBtn = document.createElement('button');
         const kickBtn = document.createElement('button');
         toggleAudioBtn.textContent = 'Вкл\\Выкл аудио';
         toggleVideoBtn.textContent = 'Вкл\\Выкл видео';
+        toggleChatBtn.textContent = 'Вкл\\Выкл чат';
+        toggleBoardBtn.textContent = 'Вкл\\Выкл доску';
         kickBtn.textContent = 'Отключить пользователя';
-
+        toggleAudioBtn.onclick = socket.emit('user-state-update', el.id, 'audio');
+        toggleVideoBtn.onclick = socket.emit('user-state-update', el.id, 'video');
+        toggleChatBtn.onclick = socket.emit('user-state-update', el.id, 'chat');
+        toggleBoardBtn.onclick = socket.emit('user-state-update', el.id, 'board');
+        kickBtn.onclick = socket.emit('kick-user', el.id);
 
         el.appendChild(toggleAudioBtn);
         el.appendChild(toggleVideoBtn);

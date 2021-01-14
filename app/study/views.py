@@ -52,12 +52,23 @@ def join_room(sid, room_id, user_peer_id, user_id):
 
 
 @sio.on('user-state-update')
-def user_state_update(sid, user_id, new_state):
-    if user_state_exists(user_id):
+def user_state_update(sid, user_id, toggle_state):
+    if not sio.get_session(sid)['is_speaker']:
+        return
+    if user_state_exists(user_id) and toggle_state in ['audio', 'video', 'chat', 'board']:
         current_state = get_user_state(user_id)
-        updated_state = {**current_state, 'state': {**current_state['state'], **new_state}}
-        sio.emit('user-state-update', updated_state['state'], to=updated_state['sid'])
-        set_user_state(user_id, updated_state)
+        current_state['state'].update((toggle_state, not current_state['state'].get(toggle_state)))
+        sio.emit('user-state-update', current_state['state'], to=current_state['sid'])
+        set_user_state(user_id, current_state)
+
+
+@sio.on('kick-user')
+def kick_user(sid, user_id):
+    if not sio.get_session(sid)['is_speaker']:
+        return
+    if user_state_exists(user_id):
+        user_sid = get_user_state(user_id)['sid']
+        sio.disconnect(user_sid)
 
 
 @sio.event
