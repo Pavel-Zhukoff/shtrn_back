@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 const ExpressPeerServer = require('peer').ExpressPeerServer;
 const https = require('https');
+const cors = require('cors');
 const fs = require('fs');
 
 const sslOptions = {
@@ -12,10 +13,6 @@ const sslOptions = {
 const server = https.createServer(sslOptions, app).listen(443);
 
 // CORS
-app.use(function(req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-  next();
-});
+app.use(cors());
 
 app.use('/', ExpressPeerServer(server, {debug:true}));
