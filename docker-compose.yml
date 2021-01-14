@@ -34,6 +34,8 @@ services:
       - ./logs/nginx:/var/log/nginx
       - ./app/media:/home/app/media/
       - ./app/static:/home/app/static/
+      - ./cert/key.pem:/etc/nginx/key.pem
+      - ./cert/cert.pem:/etc/nginx/cert.pem
     networks:
       - nginx_network
     depends_on:
@@ -52,11 +54,15 @@ services:
       - ./pg_data:/var/lib/postgresql/data/
   peer_server:
     container_name: peer_server
-    image: peerjs/peerjs-server:latest
-    command: peerjs --port 9000 --key peerjs
+    build:
+      context: ./peer_server
+    command: node server.js
     restart: always
     ports:
-      - 9000:9000
+      - 9000:443
+    volumes:
+      - ./cert/key.pem:key.pem
+      - ./cert/cert.pem:cert.pem
   redis:
     container_name: redis
     image: redis:alpine
