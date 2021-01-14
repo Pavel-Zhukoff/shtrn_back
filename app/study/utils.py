@@ -28,7 +28,7 @@ def user_state_exists(user_id):
 
 def get_user_state(user_id):
     if user_state_exists(user_id):
-        return json.loads(REDIS_INSTANCE.get(user_id), cls=DjangoJSONEncoder)
+        return json.loads(REDIS_INSTANCE.get(user_id))
     return None
 
 
