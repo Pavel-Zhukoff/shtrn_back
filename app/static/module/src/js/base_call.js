@@ -31,10 +31,11 @@ userMedia.then(stream => {
   addVideoStream(myVideoWrapper, stream);
 
   myPeer.on('call', call => {
+    console.log('on peer call');
     call.answer(stream);
     let parent = document.createElement('div');
-    parent.className = "watcher-item";
     let video = document.createElement('video');
+    parent.className = "watcher-item";
     parent.appendChild(video);
     call.on('stream', userVideoStream => {
       parent.id = call.peer;
@@ -53,22 +54,28 @@ myPeer.on('open', id => {
 });
 
 socket.on('user-disconnected', userId => {
-  if (peers[userId]) peers[userId].close();
-  document.getElementById(userId).remove();
+  console.log('user disconnected ' + userId);
+  if (peers[userId]) {
+    peers[userId].close();
+    document.getElementById(userId).remove();
+  }
+
 });
 
 function connectToNewUser(userId, stream) {
   const call = myPeer.call(userId, stream);
+  console.log('connect to new user ' + call);
   let parent = document.createElement('div');
-  parent.className = "watcher-item";
   let video = document.createElement('video');
+  parent.className = "watcher-item";
   parent.appendChild(video);
   call.on('stream', userVideoStream => {
+    console.log('connect to new user [onStream] ' + call);
     parent.id = call.peer;
     addVideoStream(parent, userVideoStream);
   });
   call.on('close', () => {
-    video.remove();
+    parent.remove();
   });
 
   peers[userId] = call;
