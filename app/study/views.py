@@ -56,7 +56,7 @@ def user_state_update(sid, user_id, toggle_state):
         return
     if user_state_exists(user_id) and toggle_state in ['audio', 'video', 'chat', 'board']:
         current_state = get_user_state(user_id)
-        current_state['state'].update((toggle_state, not current_state['state'].get(toggle_state)))
+        current_state['state']['toggle_state'] = not current_state['state'].get(toggle_state)
         sio.emit('user-state-update', current_state['state'], to=current_state['sid'])
         set_user_state(user_id, current_state)
 
