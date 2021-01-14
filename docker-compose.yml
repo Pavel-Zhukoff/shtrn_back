@@ -28,7 +28,7 @@ services:
     image: nginx:stable-alpine
     restart: always
     ports:
-      - 8000:80
+      - 8000:443
     volumes:
       - ./nginx:/etc/nginx/conf.d
       - ./logs/nginx:/var/log/nginx
@@ -61,8 +61,8 @@ services:
     ports:
       - 9000:443
     volumes:
-      - ./cert/key.pem:key.pem
-      - ./cert/cert.pem:cert.pem
+      - ./cert/key.pem:/usr/src/app/key.pem
+      - ./cert/cert.pem:/usr/src/app/cert.pem
   redis:
     container_name: redis
     image: redis:alpine
