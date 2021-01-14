@@ -21,7 +21,6 @@ def connect(sid, environ):
 
 @sio.on('join-room')
 def join_room(sid, room_id, user_peer_id, user_id):
-    print(sid)
     room = RoomModel.objects.filter(id=room_id, start_date__lte=timezone.now(), is_finished=False)
     if room.exists():
         room = room.get()

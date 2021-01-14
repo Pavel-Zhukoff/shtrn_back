@@ -1,5 +1,6 @@
-socket.on('user-connected', userId => {
-    const el = document.getElementById(userId);
+var mutationObserver = new MutationObserver(function(mutations) {
+  mutations.forEach(function(mutation) {
+      const el = mutation.addedNodes[mutation.addedNodes.length - 1];
     const toggleAudioBtn = document.createElement('button');
     const toggleVideoBtn = document.createElement('button');
     const toggleChatBtn = document.createElement('button');
@@ -10,13 +11,17 @@ socket.on('user-connected', userId => {
     toggleChatBtn.textContent = 'Вкл\\Выкл чат';
     toggleBoardBtn.textContent = 'Вкл\\Выкл доску';
     kickBtn.textContent = 'Отключить пользователя';
-    toggleAudioBtn.onclick = socket.emit('user-state-update', userId, 'audio');
-    toggleVideoBtn.onclick = socket.emit('user-state-update', userId, 'video');
-    toggleChatBtn.onclick = socket.emit('user-state-update', userId, 'chat');
-    toggleBoardBtn.onclick = socket.emit('user-state-update', userId, 'board');
-    kickBtn.onclick = socket.emit('kick-user', userId);
+    toggleAudioBtn.onclick = socket.emit('user-state-update', el.id, 'audio');
+    toggleVideoBtn.onclick = socket.emit('user-state-update', el.id, 'video');
+    toggleChatBtn.onclick = socket.emit('user-state-update', el.id, 'chat');
+    toggleBoardBtn.onclick = socket.emit('user-state-update', el.id, 'board');
+    kickBtn.onclick = socket.emit('kick-user', el.id);
 
     el.appendChild(toggleAudioBtn);
     el.appendChild(toggleVideoBtn);
+    el.appendChild(toggleChatBtn);
+    el.appendChild(toggleBoardBtn);
     el.appendChild(kickBtn);
+  });
 });
+mutationObserver.observe(videoGrid, {childList: true});
