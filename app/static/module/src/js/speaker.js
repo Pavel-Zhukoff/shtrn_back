@@ -24,7 +24,7 @@ var mutationObserver = new MutationObserver(function(mutations) {
       socket.emit('user-state-update', el.id, 'board')
     };
     kickBtn.onclick = function () {
-      socket.emit('kick-user', el.id)
+      socket.emit('user-kick', el.id)
     };
 
     el.appendChild(toggleAudioBtn);

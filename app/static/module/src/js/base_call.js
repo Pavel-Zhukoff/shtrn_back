@@ -48,6 +48,10 @@ userMedia.then(stream => {
   });
 });
 
+socket.on('user-kick', userId => {
+  window.location.replace('/');
+});
+
 myPeer.on('open', id => {
   socket.emit('join-room', room_id, id, user);
   myVideoWrapper.id = id;

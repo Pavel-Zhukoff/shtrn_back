@@ -61,15 +61,16 @@ def user_state_update(sid, user_id, toggle_state):
         sio.emit('user-state-update', current_state['state'], to=current_state['sid'])
 
 
-@sio.on('kick-user')
-def kick_user(sid, user_id):
+@sio.on('user-kick')
+def user_kick(sid, user_id):
     if not sio.get_session(sid)['is_speaker']:
         return
     if user_state_exists(user_id):
         user_sid = get_user_state(user_id)['sid']
         session = sio.get_session(sid)
         sio.leave_room(user_sid, session['room_id'])
-        # sio.emit('user-disconnected', session['peer_id'], room=session['room_id'], skip_sid=sid)
+        sio.emit('user-kick', to=user_sid)
+        sio.emit('user-disconnected', session['peer_id'], room=session['room_id'], skip_sid=sid)
 
 
 
