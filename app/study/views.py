@@ -75,9 +75,12 @@ def user_kick(sid, user_id):
 
 @sio.on('user-message')
 def user_message(sid, message):
-    session = sio.get_session(sio)
+    session = sio.get_session(sid)
     if session['state']['chat']:
-        sio.emit('user-message', {'author': session['user'].user.get_short_name(), 'text': message})
+        sio.emit('user-message',
+                 {'author': session['user'].user.get_short_name(), 'text': message},
+                 room=session['room_id'],
+                 skip_sid=sid)
 
 
 @sio.event
