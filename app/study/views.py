@@ -28,8 +28,7 @@ def join_room(sid, room_id, user_peer_id, user_id):
         if user not in room.speakers.all() or user not in room.users.all():
             sio.emit('user-disconnected', user_peer_id, room=room_id, skip_sid=sid)
         is_speaker = user in room.speakers.all()
-        default_state = {  # Состояния блокировки видео-аудио-чата-доски
-                           # по умолчанию все в муте, кроме чата  и спикера
+        default_state = {
                         'audio': is_speaker,
                         'video': is_speaker,
                         'chat': True,
