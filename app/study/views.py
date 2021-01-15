@@ -85,12 +85,11 @@ def room(request, room_slug):
     room = RoomModel.objects.get(slug=room_slug)
     if room is None:
         return HttpResponseNotFound('Комната не найдена!')
-    # speakers = list(map(lambda x: x.user, room.speakers.all()))
-    # watchers = list(map(lambda x: x.user, room.users.all()))
-    user = get_user_instance_by_id(request.user.id)
-    if user in room.speakers.all():
+    speakers = list(map(lambda x: x.user, room.speakers.all()))
+    watchers = list(map(lambda x: x.user, room.users.all()))
+    if request.user in speakers:
         view_name = 'room_speaker.html'
-    elif user in room.users.all():
+    elif request.user in watchers:
         view_name = 'room.html'
     else:
         return HttpResponseForbidden('У вас нет доступа к этой комнате!')
