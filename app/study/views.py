@@ -7,7 +7,8 @@ from config import settings
 from config.wsgi import sio
 from study.models import RoomModel
 from study.service import get_user_instance_by_id
-from study.utils import set_user_state, user_state_exists, get_user_state
+from study.utils import set_user_state, user_state_exists, get_user_state, delete_user_state, exists_messages, \
+    init_messages, get_messages, add_message, delete_messages
 
 
 def find_watcher(user_id):
@@ -43,9 +44,14 @@ def join_room(sid, room_id, user_peer_id, user_id):
         sio.enter_room(sid, room_id)
         sio.save_session(sid , sid_data)
         set_user_state(user_peer_id, {'sid': sid, 'state': default_state})
+        if not exists_messages(room_id):
+            init_messages(room_id)
+        messages = get_messages(room_id)
         sio.emit('user-connected', user_peer_id, room=room_id, skip_sid=sid)
         sio.emit('user-state-update', default_state, to=sid)
+        sio.emit('user-chat-init', messages, to=sid)
     else:
+        delete_messages(room_id)
         sio.close_room(room_id)
 
 
@@ -70,22 +76,26 @@ def user_kick(sid, user_id):
         sio.leave_room(user_sid, session['room_id'])
         sio.emit('user-kick', to=user_sid)
         sio.emit('user-disconnected', session['peer_id'], room=session['room_id'], skip_sid=sid)
+        delete_user_state(session['peer_id'])
 
 
 @sio.on('user-message')
 def user_message(sid, message):
     session = sio.get_session(sid)
     if session['state']['chat']:
+        author = session['user'].user.get_short_name()
         sio.emit('user-message',
-                 {'author': session['user'].user.get_short_name(), 'text': message},
+                 {'author': author, 'text': message},
                  room=session['room_id'],
                  skip_sid=sid)
+        add_message(session['room_id'], author, message, session['user'].user.id)
 
 
 @sio.event
 def disconnect(sid):
     session = sio.get_session(sid)
     sio.emit('user-disconnected', session['peer_id'], room=session['room_id'], skip_sid=sid)
+    delete_user_state(session['peer_id'])
 
 #django views
 @login_required

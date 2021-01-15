@@ -64,6 +64,12 @@ socket.on('user-message', data => {
   makeMessage(data.author, data.text);
 });
 
+socket.on('user-chat-init', messages => {
+  messages.forEach(message => {
+    makeMessage(message[0], message[1], user === message[2]);
+  })
+});
+
 function connectToNewUser(userId, stream) {
   const call = myPeer.call(userId, stream);
   let parent = document.createElement('div');
@@ -110,20 +116,24 @@ function toggleVideo() {
   });
 }
 
-function sendMessage(inputId) {
+function sendMessage(inputId, author) {
   let messageInput = document.getElementById(inputId);
   let text = messageInput.value;
   if (text === '' || text == null) return false;
   messageInput.value = null;
   socket.emit('user-message', text);
-  makeMessage('Я', text);
+  makeMessage(author, text, true);
 }
 
-function makeMessage(author, text) {
+function makeMessage(author, text, my) {
   let messageEl = document.createElement('div');
   let authorEl = document.createElement('span');
   authorEl.style.fontWeight = 900;
   authorEl.textContent = author;
+  if (my) {
+    messageEl.style.textAlign = 'right';
+    authorEl.style.color = 'red';
+  }
   messageEl.append(authorEl);
   messageEl.append(text);
   document.getElementById('message-container').appendChild(messageEl);

@@ -40,3 +40,34 @@ def delete_user_state(user_id):
     if user_state_exists(user_id):
         return REDIS_INSTANCE.delete(user_id)
     return False
+
+
+def init_messages(room):
+    key = 'room_message_{}'.format(room)
+    if not REDIS_INSTANCE.exists(key):
+        REDIS_INSTANCE.set(key, json.dumps([]))
+
+
+def add_message(room, author, message, user_id):
+    key = 'room_message_{}'.format(room)
+    if REDIS_INSTANCE.exists(key):
+        messages = json.loads(REDIS_INSTANCE.get(key))
+        messages.append([author, message, user_id])
+        REDIS_INSTANCE.set(key, json.dumps(messages, cls=DjangoJSONEncoder))
+
+
+def get_messages(room):
+    key = 'room_message_{}'.format(room)
+    if REDIS_INSTANCE.exists(key):
+        return json.loads(REDIS_INSTANCE.get(key))
+
+
+def delete_messages(room):
+    key = 'room_message_{}'.format(room)
+    if REDIS_INSTANCE.exists(key):
+        REDIS_INSTANCE.delete(key)
+
+
+def exists_messages(room):
+    key = 'room_message_{}'.format(room)
+    return REDIS_INSTANCE.exists(key)
