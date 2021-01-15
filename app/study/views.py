@@ -73,6 +73,12 @@ def user_kick(sid, user_id):
         sio.emit('user-disconnected', session['peer_id'], room=session['room_id'], skip_sid=sid)
 
 
+@sio.on('user-message')
+def user_message(sid, message):
+    session = sio.get_session(sio)
+    if session['state']['chat']:
+        sio.emit('user-message', {'author': session['user'].user.get_short_name(), 'text': message})
+
 
 @sio.event
 def disconnect(sid):

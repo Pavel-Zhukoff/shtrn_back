@@ -7,6 +7,16 @@
 </head>
 <body>
     <h1>{{ room }}</h1>
+    <div class="chat">
+        <div id="message-container" style="height: 150px;width: 250px;overflow-y: auto;">
+
+        </div>
+        <div class="message-input">
+            <label for="message">Сообщение:</label>
+            <input type="text" id="message">
+            <button id="message-sender" onclick="sendMessage('message')">Отправить</button>
+        </div>
+    </div>
     <div id="video-grid"></div>
 
     <button onclick="toggleAudio()">Вкл./Выкл. аудио</button>

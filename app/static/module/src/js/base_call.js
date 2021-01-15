@@ -15,7 +15,6 @@ const userMedia = navigator.mediaDevices.getUserMedia({
 const videoGrid = document.getElementById('video-grid');
 socket.on('user-state-update', state => {
   Object.assign(STATE, {...state});
-  console.log(STATE);
   userMedia.then(stream => {
     stream.getAudioTracks().forEach(track => {
       track.enabled = STATE.audio;
@@ -27,11 +26,8 @@ socket.on('user-state-update', state => {
 });
 
 userMedia.then(stream => {
-
   addVideoStream(myVideoWrapper, stream);
-
   myPeer.on('call', call => {
-    console.log('on peer call');
     call.answer(stream);
     let parent = document.createElement('div');
     let video = document.createElement('video');
@@ -58,23 +54,23 @@ myPeer.on('open', id => {
 });
 
 socket.on('user-disconnected', userId => {
-  console.log('user disconnected ' + userId);
   if (peers[userId]) {
     peers[userId].close();
     document.getElementById(userId).remove();
   }
+});
 
+socket.on('user-message', data => {
+  makeMessage(data.author, data.text);
 });
 
 function connectToNewUser(userId, stream) {
   const call = myPeer.call(userId, stream);
-  console.log('connect to new user ' + call);
   let parent = document.createElement('div');
   let video = document.createElement('video');
   parent.className = "watcher-item";
   parent.appendChild(video);
   call.on('stream', userVideoStream => {
-    console.log('connect to new user [onStream] ' + call);
     parent.id = call.peer;
     addVideoStream(parent, userVideoStream);
   });
@@ -112,4 +108,23 @@ function toggleVideo() {
       track.enabled = toggleLogic(STATE.video, track.enabled);
     });
   });
+}
+
+function sendMessage(inputId) {
+  let messageInput = document.getElementById(inputId);
+  let text = messageInput.value;
+  if (text === '' || text == null) return false;
+  messageInput.value = null;
+  socket.emit('user-message', text);
+  makeMessage('Я', text);
+}
+
+function makeMessage(author, text) {
+  let messageEl = document.createElement('div');
+  let authorEl = document.createElement('span');
+  authorEl.style.fontWeight = 900;
+  authorEl.textContent = author;
+  messageEl.append(authorEl);
+  messageEl.append(text);
+  document.getElementById('message-container').appendChild(messageEl);
 }
