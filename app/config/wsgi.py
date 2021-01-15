@@ -17,8 +17,8 @@ from config import settings
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'config.settings')
 
 if settings.DEBUG:
-    sio = socketio.Server(logger=True, ngineio_logger=True, async_mode='gevent', cors_allowed_origins='*')
+    sio = socketio.Server(logger=True, ngineio_logger=True, cors_allowed_origins='*')
 else:
-    sio = socketio.Server(async_mode='gevent', cors_allowed_origins='*')
+    sio = socketio.Server(cors_allowed_origins='*')
 
 application = socketio.WSGIApp(sio, get_wsgi_application())

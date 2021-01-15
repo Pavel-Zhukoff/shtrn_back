@@ -11,11 +11,21 @@ var mutationObserver = new MutationObserver(function(mutations) {
     toggleChatBtn.textContent = 'Вкл\\Выкл чат';
     toggleBoardBtn.textContent = 'Вкл\\Выкл доску';
     kickBtn.textContent = 'Отключить пользователя';
-    toggleAudioBtn.onclick = socket.emit('user-state-update', el.id, 'audio');
-    toggleVideoBtn.onclick = socket.emit('user-state-update', el.id, 'video');
-    toggleChatBtn.onclick = socket.emit('user-state-update', el.id, 'chat');
-    toggleBoardBtn.onclick = socket.emit('user-state-update', el.id, 'board');
-    kickBtn.onclick = socket.emit('kick-user', el.id);
+    toggleAudioBtn.onclick = function () {
+      socket.emit('user-state-update', el.id, 'audio')
+    };
+    toggleVideoBtn.onclick = function () {
+      socket.emit('user-state-update', el.id, 'video')
+    };
+    toggleChatBtn.onclick = function () {
+      socket.emit('user-state-update', el.id, 'chat')
+    };
+    toggleBoardBtn.onclick = function () {
+      socket.emit('user-state-update', el.id, 'board')
+    };
+    kickBtn.onclick = function () {
+      socket.emit('kick-user', el.id)
+    };
 
     el.appendChild(toggleAudioBtn);
     el.appendChild(toggleVideoBtn);

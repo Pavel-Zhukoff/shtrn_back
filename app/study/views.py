@@ -57,8 +57,8 @@ def user_state_update(sid, user_id, toggle_state):
     if user_state_exists(user_id) and toggle_state in ['audio', 'video', 'chat', 'board']:
         current_state = get_user_state(user_id)
         current_state['state'][toggle_state] = not current_state['state'].get(toggle_state)
-        sio.emit('user-state-update', current_state['state'], to=current_state['sid'])
         set_user_state(user_id, current_state)
+        sio.emit('user-state-update', current_state['state'], to=current_state['sid'])
 
 
 @sio.on('kick-user')
@@ -67,9 +67,10 @@ def kick_user(sid, user_id):
         return
     if user_state_exists(user_id):
         user_sid = get_user_state(user_id)['sid']
-        sio.disconnect(user_sid)
         session = sio.get_session(sid)
-        sio.emit('user-disconnected', session['peer_id'], room=session['room_id'], skip_sid=sid)
+        sio.leave_room(user_sid, session['room_id'])
+        # sio.emit('user-disconnected', session['peer_id'], room=session['room_id'], skip_sid=sid)
+
 
 
 @sio.event
@@ -83,12 +84,12 @@ def room(request, room_slug):
     room = RoomModel.objects.get(slug=room_slug)
     if room is None:
         return HttpResponseNotFound('Комната не найдена!')
-    speakers = list(map(lambda x: x.user, room.speakers.all()))
-    watchers = list(map(lambda x: x.user, room.users.all()))
-    print(speakers)
-    if request.user in speakers:
+    # speakers = list(map(lambda x: x.user, room.speakers.all()))
+    # watchers = list(map(lambda x: x.user, room.users.all()))
+    user = get_user_instance_by_id(request.user.id)
+    if user in room.speakers.all():
         view_name = 'room_speaker.html'
-    elif request.user in watchers:
+    elif user in room.users.all():
         view_name = 'room.html'
     else:
         return HttpResponseForbidden('У вас нет доступа к этой комнате!')
