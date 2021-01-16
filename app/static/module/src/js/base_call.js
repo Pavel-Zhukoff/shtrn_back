@@ -33,7 +33,7 @@ userMedia.then(stream => {
   });
 
   socket.on('user-connected', userId => {
-    print(userId);
+    console.log(userId);
     connectToNewUser(userId, stream);
   });
 });
@@ -110,11 +110,19 @@ function setVideo(enabled) {
 }
 
 function toggleAudio() {
-  setAudio(toggleLogic(STATE.audio, track.enabled));
+  userMedia.then(stream => {
+    stream.getVideoTracks().forEach(track => {
+      track.enabled = toggleLogic(STATE.audio, track.enabled);
+    });
+  });
 }
 
 function toggleVideo() {
-  setVideo(toggleLogic(STATE.video, track.enabled));
+  userMedia.then(stream => {
+    stream.getVideoTracks().forEach(track => {
+      track.enabled = toggleLogic(STATE.video, track.enabled);
+    });
+  });
 }
 
 function sendMessage(inputId, author) {
