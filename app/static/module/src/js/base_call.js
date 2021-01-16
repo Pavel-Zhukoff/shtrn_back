@@ -15,31 +15,25 @@ const userMedia = navigator.mediaDevices.getUserMedia({
 const videoGrid = document.getElementById('video-grid');
 socket.on('user-state-update', state => {
   Object.assign(STATE, {...state});
-  userMedia.then(stream => {
-    stream.getAudioTracks().forEach(track => {
-      track.enabled = STATE.audio;
-    });
-    stream.getVideoTracks().forEach(track => {
-      track.enabled = STATE.video;
-    });
-  });
+  setAudio(STATE.audio);
+  setVideo(STATE.video);
 });
-
 userMedia.then(stream => {
-  addVideoStream(myVideoWrapper, stream);
+  addVideoStream(myVideo, stream);
   myPeer.on('call', call => {
-    call.answer(stream);
     let parent = document.createElement('div');
     let video = document.createElement('video');
     parent.className = "watcher-item";
     parent.appendChild(video);
+    call.answer(stream);
     call.on('stream', userVideoStream => {
       parent.id = call.peer;
-      addVideoStream(parent, userVideoStream);
+      addVideoStream(video, userVideoStream);
     });
   });
 
   socket.on('user-connected', userId => {
+    print(userId);
     connectToNewUser(userId, stream);
   });
 });
@@ -78,7 +72,7 @@ function connectToNewUser(userId, stream) {
   parent.appendChild(video);
   call.on('stream', userVideoStream => {
     parent.id = call.peer;
-    addVideoStream(parent, userVideoStream);
+    addVideoStream(video, userVideoStream);
   });
   call.on('close', () => {
     parent.remove();
@@ -87,33 +81,40 @@ function connectToNewUser(userId, stream) {
   peers[userId] = call;
 }
 // Добавляет видео в сетку
-function addVideoStream(el, stream) {
-  let video = el.getElementsByTagName('video')[0];
+function addVideoStream(video, stream) {
   video.srcObject = stream;
   video.addEventListener('loadedmetadata', () => {
     video.play();
   });
-  videoGrid.append(el);
+  videoGrid.append(video.parentNode);
 }
 
 function toggleLogic(a, b) {
   return a && !b;
 }
 
-function toggleAudio() {
+function setAudio(enabled) {
   userMedia.then(stream => {
     stream.getAudioTracks().forEach(track => {
-      track.enabled = toggleLogic(STATE.audio, track.enabled);
+      track.enabled = enabled;
     });
   });
 }
 
-function toggleVideo() {
+function setVideo(enabled) {
   userMedia.then(stream => {
     stream.getVideoTracks().forEach(track => {
-      track.enabled = toggleLogic(STATE.video, track.enabled);
+      track.enabled = enabled;
     });
   });
+}
+
+function toggleAudio() {
+  setAudio(toggleLogic(STATE.audio, track.enabled));
+}
+
+function toggleVideo() {
+  setVideo(toggleLogic(STATE.video, track.enabled));
 }
 
 function sendMessage(inputId, author) {
