@@ -82,7 +82,8 @@ def user_kick(sid, user_id):
 @sio.on('user-message')
 def user_message(sid, message):
     session = sio.get_session(sid)
-    if session['state']['chat']:
+    state = get_user_state(session['peer_id'])
+    if state['state']['chat']:
         author = session['user'].user.get_short_name()
         sio.emit('user-message',
                  {'author': author, 'text': message},
